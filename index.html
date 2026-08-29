@@ -11,7 +11,7 @@
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
     /* Universal smooth micro-interactions */
-    a, button, input, select, .smooth-element {
+    a, button, input, select {
       transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
       -webkit-tap-highlight-color: transparent;
     }
@@ -45,6 +45,23 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* Clean Google Translate Styling */
+    .goog-te-banner-frame.skiptranslate { display: none !important; }
+    body { top: 0px !important; }
+    .goog-te-combo {
+      font-family: inherit !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      color: #0f172a !important;
+      background: transparent !important;
+      border: none !important;
+      outline: none !important;
+      cursor: pointer !important;
+      padding: 2px 4px !important;
+    }
+    .goog-logo-link, .goog-te-gadget span { display: none !important; }
+    .goog-te-gadget { color: transparent !important; font-size: 0px !important; }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen">
@@ -206,7 +223,7 @@
   </section>
 
   <!-- SUCCESS RATE & PERFORMANCE NUMBERS (ANIMATED COUNTER) -->
-  <section class="max-w-6xl mx-auto px-4 py-16 reveal">
+  <section id="metrics-section" class="max-w-6xl mx-auto px-4 py-16 reveal">
     <div class="bg-gradient-to-br from-blue-950 via-slate-900 to-blue-900 text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden border border-blue-800/40">
       
       <!-- Subtle Decorative Background Glow -->
@@ -223,7 +240,7 @@
 
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center relative z-10">
         
-        <!-- Counter Item 1 -->
+        <!-- Counter 1 -->
         <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm interactive-card">
           <div class="text-3xl sm:text-5xl font-black text-white flex items-center justify-center tracking-tight">
             <span class="counter" data-target="1500">0</span>
@@ -233,7 +250,7 @@
           <span class="text-[10px] text-slate-400 block mt-0.5">Taiwan & Japan hubs</span>
         </div>
 
-        <!-- Counter Item 2 -->
+        <!-- Counter 2 -->
         <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm interactive-card">
           <div class="text-3xl sm:text-5xl font-black text-white flex items-center justify-center tracking-tight">
             <span class="counter" data-target="98">0</span>
@@ -243,7 +260,7 @@
           <span class="text-[10px] text-slate-400 block mt-0.5">Strict compliance screening</span>
         </div>
 
-        <!-- Counter Item 3 -->
+        <!-- Counter 3 -->
         <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm interactive-card">
           <div class="text-3xl sm:text-5xl font-black text-white flex items-center justify-center tracking-tight">
             <span class="counter" data-target="25">0</span>
@@ -253,7 +270,7 @@
           <span class="text-[10px] text-slate-400 block mt-0.5">Accredited employer partners</span>
         </div>
 
-        <!-- Counter Item 4 -->
+        <!-- Counter 4 -->
         <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm interactive-card">
           <div class="text-3xl sm:text-5xl font-black text-white flex items-center justify-center tracking-tight">
             <span class="counter" data-target="100">0</span>
@@ -385,16 +402,21 @@
     </div>
   </footer>
 
+  <!-- FLOATING LANGUAGE SELECTOR (LOWER LEFT CORNER) -->
+  <div id="google_translate_element" class="fixed bottom-4 left-4 z-50 bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl rounded-2xl px-3 py-1.5 flex items-center gap-1.5">
+    <span class="text-sm select-none">🌐</span>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Mobile Navigation Toggle
+      // 1. Mobile Navigation Toggle
       const menuBtn = document.getElementById('menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       if (menuBtn && mobileMenu) {
         menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
       }
 
-      // Carousel Horizontal Scroll Controls
+      // 2. Carousel Horizontal Scroll Controls
       const track = document.getElementById('carousel-track');
       const prevBtn = document.getElementById('slide-prev');
       const nextBtn = document.getElementById('slide-next');
@@ -403,7 +425,7 @@
         prevBtn.addEventListener('click', () => track.scrollBy({ left: -320, behavior: 'smooth' }));
       }
 
-      // Intersection Observer for Smooth Scroll Reveal
+      // 3. Scroll Reveal for Sections
       const reveals = document.querySelectorAll('.reveal');
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -412,57 +434,69 @@
             revealObserver.unobserve(entry.target);
           }
         });
-      }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -30px 0px'
-      });
-
+      }, { threshold: 0.1 });
       reveals.forEach(el => revealObserver.observe(el));
 
-      // Number Roll-Up Counter Animation
+      // 4. Number Counter Trigger
       const counters = document.querySelectorAll('.counter');
-      let countersStarted = false;
+      let countersDone = false;
 
-      function startCounters() {
+      function runCounters() {
+        if (countersDone) return;
+        countersDone = true;
+
         counters.forEach(counter => {
-          const target = +counter.getAttribute('data-target');
-          const duration = 1800; // Total duration in ms
-          const startTime = performance.now();
+          const target = parseInt(counter.getAttribute('data-target'), 10) || 0;
+          const duration = 2000;
+          const start = performance.now();
 
-          function updateCount(currentTime) {
-            const elapsedTime = currentTime - startTime;
-            const progress = Math.min(elapsedTime / duration, 1);
-            
-            // Ease-out curve for smooth decelerating finish
-            const easeOutProgress = 1 - Math.pow(1 - progress, 3);
-            const currentVal = Math.floor(easeOutProgress * target);
+          function step(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const value = Math.floor(easeOut * target);
 
-            counter.innerText = currentVal.toLocaleString();
+            counter.textContent = value.toLocaleString();
 
             if (progress < 1) {
-              requestAnimationFrame(updateCount);
+              requestAnimationFrame(step);
             } else {
-              counter.innerText = target.toLocaleString();
+              counter.textContent = target.toLocaleString();
             }
           }
-
-          requestAnimationFrame(updateCount);
+          requestAnimationFrame(step);
         });
       }
 
-      // Trigger counter animation only when the milestone card comes into view
-      const counterSection = document.querySelector('.counter')?.closest('section');
-      if (counterSection) {
+      const metricsSection = document.getElementById('metrics-section');
+      if (metricsSection && 'IntersectionObserver' in window) {
         const counterObserver = new IntersectionObserver((entries) => {
-          if (entries[0].isIntersecting && !countersStarted) {
-            countersStarted = true;
-            startCounters();
+          if (entries[0].isIntersecting) {
+            runCounters();
+            counterObserver.disconnect();
           }
-        }, { threshold: 0.2 });
-
-        counterObserver.observe(counterSection);
+        }, { threshold: 0.15 });
+        counterObserver.observe(metricsSection);
       }
+
+      window.addEventListener('scroll', () => {
+        if (countersDone || !metricsSection) return;
+        const rect = metricsSection.getBoundingClientRect();
+        if (rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.9) {
+          runCounters();
+        }
+      }, { passive: true });
     });
+
+    // Google Translation Initialization
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,ja,zh-TW,tl',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
   </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
