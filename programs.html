@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Country Placement Programs | TW (Phil.) International Manpower Inc.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen">
+
+  <!-- TOP BAR -->
+  <div class="bg-blue-950 text-white text-xs py-2 px-4 border-b border-blue-900">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-0 text-center sm:text-left">
+      <div class="flex items-center gap-2">
+        <span class="bg-red-600 text-[10px] font-bold px-2 py-0.5 rounded">DMW LICENSED</span>
+        <span>License No. <strong>DMW-051-LB-03202023-R</strong></span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span>🕒 Mon-Fri: 9:00 AM – 4:00 PM</span>
+        <span>📞 0917 115 6683 / (02) 8403 4885</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="logo.jpg" alt="TW Manpower Logo" class="h-10 sm:h-12 w-auto object-contain shrink-0" onerror="this.style.display='none'" />
+        <div class="flex flex-col leading-tight">
+          <span class="text-xs sm:text-sm font-black text-blue-950 tracking-tight group-hover:text-red-600 transition">TW (PHIL.) INTERNATIONAL</span>
+          <span class="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">MANPOWER INC.</span>
+        </div>
+      </a>
+
+      <div class="hidden lg:flex items-center space-x-5 text-xs font-semibold text-slate-600">
+        <a href="index.html" class="hover:text-blue-900 transition">Home</a>
+        <a href="about.html" class="hover:text-blue-900 transition">About Us</a>
+        <a href="jobs.html" class="hover:text-blue-900 transition">Job Vacancies</a>
+        <a href="process.html" class="hover:text-blue-900 transition">Application Guide</a>
+        <a href="programs.html" class="text-blue-900 font-bold border-b-2 border-blue-900 pb-1">Country Programs</a>
+        <a href="employers.html" class="hover:text-blue-900 transition">Employers</a>
+        <a href="advisory.html" class="hover:text-blue-900 transition text-red-600">Advisory</a>
+        <a href="faqs.html" class="hover:text-blue-900 transition">FAQs</a>
+        <a href="contact.html" class="hover:text-blue-900 transition">Contact</a>
+        <a href="apply.html" class="bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold uppercase px-3.5 py-2 rounded-lg shadow transition">Apply Now</a>
+      </div>
+
+      <button id="menu-btn" type="button" class="lg:hidden p-2 text-slate-700 hover:text-blue-900" aria-label="Toggle Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-6 space-y-2.5 shadow-lg text-sm font-medium">
+      <a href="index.html" class="block py-1.5 text-slate-700 hover:text-blue-900">Home</a>
+      <a href="about.html" class="block py-1.5 text-slate-700 hover:text-blue-900">About the Agency</a>
+      <a href="jobs.html" class="block py-1.5 text-slate-700 hover:text-blue-900">Job Vacancies</a>
+      <a href="process.html" class="block py-1.5 text-slate-700 hover:text-blue-900">Application Guide & Requirements</a>
+      <a href="programs.html" class="block py-1.5 text-blue-900 font-bold">Country Programs</a>
+      <a href="employers.html" class="block py-1.5 text-slate-700 hover:text-blue-900">For Foreign Employers</a>
+      <a href="advisory.html" class="block py-1.5 text-red-600 font-semibold">Anti-Illegal Recruitment Advisory</a>
+      <a href="faqs.html" class="block py-1.5 text-slate-700 hover:text-blue-900">Frequently Asked Questions</a>
+      <a href="contact.html" class="block py-1.5 text-slate-700 hover:text-blue-900">Contact & Location</a>
+      <a href="apply.html" class="block w-full text-center bg-red-600 text-white font-bold py-2.5 rounded-lg mt-2">Apply Now</a>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white py-14 px-4 text-center">
+    <div class="max-w-4xl mx-auto space-y-3">
+      <span class="inline-block text-xs font-bold tracking-widest text-amber-400 uppercase bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
+        International Career Paths
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-black">Our Country Placement Programs</h1>
+      <p class="text-slate-300 text-sm max-w-2xl mx-auto">
+        Specialized hiring pathways for Taiwan manufacturing and Japan's government-approved TITP and SSW worker tracks.
+      </p>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="max-w-5xl mx-auto px-4 py-12 space-y-12 flex-grow">
+    
+    <!-- Taiwan Section -->
+    <section class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-3xl">🇹🇼</span>
+        <div>
+          <span class="text-xs font-bold text-blue-900 uppercase">Direct Factory Deployment</span>
+          <h2 class="text-2xl font-black text-slate-900">Taiwan Manufacturing & Tech Sector</h2>
+        </div>
+      </div>
+
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+        Taiwan remains one of the top destinations for Filipino workers seeking competitive wages and steady overtime. We partner with premier semiconductor plants, electronics manufacturers, and metal stamping plants across Taoyuan, Hsinchu Science Park, and Taichung.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+          <div class="font-bold text-slate-900">⚙️ Key Categories</div>
+          <div class="text-slate-600 mt-1">Machine Operators, PCB Assembly, Cleanroom Technicians, Quality Control Inspectors.</div>
+        </div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+          <div class="font-bold text-slate-900">💰 Compensation</div>
+          <div class="text-slate-600 mt-1">Mandated basic salary (NT$ 27,470+) + official overtime pay and labor insurance coverage.</div>
+        </div>
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+          <div class="font-bold text-slate-900">📝 Contract Terms</div>
+          <div class="text-slate-600 mt-1">Standard 3-year employment contract with possible extension under Taiwan labor laws.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Japan Section -->
+    <section class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-3xl">🇯🇵</span>
+        <div>
+          <span class="text-xs font-bold text-red-600 uppercase">TITP & SSW Programs</span>
+          <h2 class="text-2xl font-black text-slate-900">Japan Technical Internship & Skilled Worker Tracks</h2>
+        </div>
+      </div>
+
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+        Japan offers long-term career progression with Japanese-equivalent wage rates under the Technical Intern Training Program (TITP) and the Specified Skilled Worker (SSW-1) visa program.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- SSW -->
+        <div class="border border-red-100 bg-red-50/40 p-5 rounded-2xl space-y-2">
+          <span class="bg-red-600 text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded">SSW (Specified Skilled Worker)</span>
+          <h3 class="font-bold text-sm text-slate-900">Caregiving & Agriculture Track</h3>
+          <p class="text-xs text-slate-600">Requires JLPT N4 / JFT-Basic + Prometric skill test passer certificate. 5-year renewable visa with direct facility employment in Tokyo, Kanagawa, and Osaka.</p>
+        </div>
+
+        <!-- TITP -->
+        <div class="border border-blue-100 bg-blue-50/40 p-5 rounded-2xl space-y-2">
+          <span class="bg-blue-900 text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded">TITP (Technical Intern)</span>
+          <h3 class="font-bold text-sm text-slate-900">Industrial Manufacturing & Assembly</h3>
+          <p class="text-xs text-slate-600">3 to 5-year skills transfer program in automotive parts, metal press, and food packing. Free intensive Nihongo study provided prior to departure.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 py-10 px-4 text-xs border-t border-slate-800 mt-auto">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+      <div>
+        <div class="text-base font-bold text-white">TW (PHIL.) INTERNATIONAL MANPOWER INC.</div>
+        <p class="text-slate-400">DMW License: DMW-051-LB-03202023-R • Malate, Manila</p>
+      </div>
+      <p class="text-amber-400 font-semibold">⚠️ Advisory: Manpower Pooling Only. No Fees Collected.</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  </script>
+</body>
+</html>
