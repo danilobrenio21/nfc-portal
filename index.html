@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TW Manpower | Overseas Recruitment & Japan Career Placement</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Hide scrollbar for clean carousel UI */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased font-sans">
 
@@ -26,7 +36,7 @@
         TW <span class="text-red-600">MANPOWER</span>
       </a>
 
-      <!-- Desktop Links -->
+      <!-- Desktop Navigation Links -->
       <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
         <a href="index.html" class="text-blue-900 font-bold">Home</a>
         <a href="jobs.html" class="hover:text-blue-900 transition">Job Openings</a>
@@ -60,12 +70,12 @@
   </nav>
 
   <!-- HERO SECTION -->
-  <header class="relative bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white py-12 sm:py-20 px-4">
+  <header class="relative bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white py-14 sm:py-20 px-4">
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
       
       <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
-        <span class="inline-block text-xs font-bold tracking-widest text-amber-400 uppercase bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
-          Official Japan Placement Partner
+        <span class="inline-block text-xs font-bold tracking-widest text-amber-400 uppercase bg-amber-400/10 px-3.5 py-1.5 rounded-full border border-amber-400/30">
+          🇯🇵 Official Japan Placement Partner
         </span>
         <h1 class="text-3xl sm:text-5xl font-black leading-tight">
           Build Your Future Career in <span class="text-red-500">Japan</span> & Overseas.
@@ -75,7 +85,7 @@
         </p>
         
         <div class="pt-2 flex flex-col sm:flex-row justify-center lg:justify-start gap-3">
-          <a href="jobs.html" class="w-full sm:w-auto text-center bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition shadow-lg">
+          <a href="jobs.html" class="w-full sm:w-auto text-center bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition shadow-lg hover:shadow-red-600/30">
             View Job Vacancies
           </a>
           <a href="apply.html" class="w-full sm:w-auto text-center bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl text-sm transition border border-white/20">
@@ -85,20 +95,20 @@
       </div>
 
       <!-- Quick Application Box -->
-      <div id="apply" class="lg:col-span-5 bg-white text-slate-900 p-6 rounded-2xl shadow-2xl border border-slate-100">
+      <div id="apply" class="lg:col-span-5 bg-white text-slate-900 p-6 sm:p-7 rounded-2xl shadow-2xl border border-slate-100">
         <h3 class="text-lg font-bold text-blue-950">Quick Pre-Registration</h3>
         <p class="text-xs text-slate-500 mt-0.5 mb-4">Submit your details for upcoming Japan interview batches.</p>
         
         <form class="space-y-3" onsubmit="event.preventDefault(); alert('Application submitted! TW Manpower recruitment team will contact you.');">
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Full Name</label>
-            <input type="text" required placeholder="Juan Dela Cruz" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 focus:outline-none focus:border-blue-900" />
+            <input type="text" required placeholder="Juan Dela Cruz" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:border-blue-900" />
           </div>
           
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Contact Number</label>
-              <input type="tel" required placeholder="09170000000" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 focus:outline-none focus:border-blue-900" />
+              <input type="tel" required placeholder="09170000000" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:border-blue-900" />
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Target Skill/Job</label>
@@ -132,7 +142,7 @@
   </header>
 
   <!-- HIGHLIGHTS / STATS -->
-  <section class="max-w-6xl mx-auto px-4 -mt-6">
+  <section class="max-w-6xl mx-auto px-4 -mt-6 relative z-20">
     <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
       <div>
         <div class="text-2xl font-black text-blue-900">100%</div>
@@ -150,6 +160,90 @@
         <div class="text-2xl font-black text-blue-900">Direct</div>
         <div class="text-xs text-slate-500 font-medium mt-1">Japanese Principals</div>
       </div>
+    </div>
+  </section>
+
+  <!-- SLIDING SQUARE ANNOUNCEMENTS / BULLETIN GALLERY -->
+  <section class="max-w-6xl mx-auto px-4 pt-16 pb-6">
+    <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 gap-4">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100">
+          Official Bulletin & Updates
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-blue-950 mt-2">Special Announcements</h2>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">Upcoming employer interview schedules, Japanese language orientations, and visa advisories.</p>
+      </div>
+      
+      <!-- Slide Left/Right Controls -->
+      <div class="flex items-center space-x-2">
+        <button id="slide-prev" class="w-10 h-10 rounded-full bg-white border border-slate-300 flex items-center justify-center text-slate-700 hover:bg-blue-900 hover:text-white transition shadow-sm" aria-label="Previous Announcement">
+          &#10094;
+        </button>
+        <button id="slide-next" class="w-10 h-10 rounded-full bg-white border border-slate-300 flex items-center justify-center text-slate-700 hover:bg-blue-900 hover:text-white transition shadow-sm" aria-label="Next Announcement">
+          &#10095;
+        </button>
+      </div>
+    </div>
+
+    <!-- Carousel Container -->
+    <div id="carousel-track" class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory py-2">
+      
+      <!-- Square Card 1 -->
+      <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-slate-200">
+        <img 
+          src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=800&auto=format&fit=crop" 
+          alt="Caregiver Batch Announcement" 
+          class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-5 flex flex-col justify-end text-white">
+          <span class="bg-red-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded w-max mb-1.5">Direct Interview</span>
+          <h3 class="text-base font-bold leading-snug">Tokyo Caregiving Batch 12 Open</h3>
+          <p class="text-xs text-slate-300 mt-1 line-clamp-2">Free Nihongo review classes for qualified N4 examinees.</p>
+        </div>
+      </div>
+
+      <!-- Square Card 2 -->
+      <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-slate-200">
+        <img 
+          src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop" 
+          alt="Factory Assembly Intake" 
+          class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-5 flex flex-col justify-end text-white">
+          <span class="bg-blue-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded w-max mb-1.5">TITP Track</span>
+          <h3 class="text-base font-bold leading-snug">Nagoya Auto Parts Screening</h3>
+          <p class="text-xs text-slate-300 mt-1 line-clamp-2">No Japanese language requirement prior to interview selection.</p>
+        </div>
+      </div>
+
+      <!-- Square Card 3 -->
+      <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-slate-200">
+        <img 
+          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop" 
+          alt="Nihongo Training Class" 
+          class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-5 flex flex-col justify-end text-white">
+          <span class="bg-emerald-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded w-max mb-1.5">Free Orientation</span>
+          <h3 class="text-base font-bold leading-snug">JLPT & JFT Basic Prep Class</h3>
+          <p class="text-xs text-slate-300 mt-1 line-clamp-2">Saturday hybrid batches at our Malate training facility.</p>
+        </div>
+      </div>
+
+      <!-- Square Card 4 -->
+      <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-slate-200">
+        <img 
+          src="https://images.unsplash.com/photo-1595246140625-573b715d11dc?q=80&w=800&auto=format&fit=crop" 
+          alt="Agriculture Trainees" 
+          class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-5 flex flex-col justify-end text-white">
+          <span class="bg-amber-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded w-max mb-1.5">Hokkaido Track</span>
+          <h3 class="text-base font-bold leading-snug">Hydroponic Greenhouse Workers</h3>
+          <p class="text-xs text-slate-300 mt-1 line-clamp-2">Direct deployment slots with subsidized accommodation.</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -197,14 +291,50 @@
     </div>
   </footer>
 
-  <!-- JAVASCRIPT FOR MOBILE MENU TOGGLE -->
+  <!-- CAROUSEL & MOBILE MENU SCRIPT -->
   <script>
+    // Mobile Hamburger Menu
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-
     menuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
+
+    // Square Announcement Carousel Auto-Slide & Manual Controls
+    const track = document.getElementById('carousel-track');
+    const prevBtn = document.getElementById('slide-prev');
+    const nextBtn = document.getElementById('slide-next');
+
+    const cardWidth = 320; // Scroll increment in pixels
+
+    nextBtn.addEventListener('click', () => {
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (track.scrollLeft <= 10) {
+        track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+      }
+    });
+
+    // Gentle Auto-Scroll every 4 seconds
+    let autoScroll = setInterval(() => {
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      }
+    }, 4000);
+
+    // Pause auto-scroll on mouse hover or touch
+    track.addEventListener('mouseenter', () => clearInterval(autoScroll));
+    track.addEventListener('touchstart', () => clearInterval(autoScroll));
   </script>
 
 </body>
