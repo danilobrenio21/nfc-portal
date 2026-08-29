@@ -10,35 +10,40 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Page fade-in */
-    body {
-      animation: fadeIn 0.4s ease-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     /* Universal smooth micro-interactions */
     a, button, input, select, .smooth-element {
       transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      -webkit-tap-highlight-color: transparent;
     }
 
-    /* Interactive button lift and active press */
+    /* Desktop Hover & Mobile Tap Press Feedback */
     button:hover, a.btn-action:hover {
       transform: translateY(-2px);
       filter: brightness(1.05);
     }
     button:active, a.btn-action:active {
-      transform: translateY(1px) scale(0.98);
+      transform: scale(0.96) translateY(1px);
+      filter: brightness(0.95);
     }
 
-    /* Card elevation effect */
+    /* Interactive card subtle hover */
     .interactive-card {
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .interactive-card:hover {
       transform: translateY(-4px);
+    }
+
+    /* Scroll Reveal Animation for Mobile & Desktop */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -58,7 +63,7 @@
     </div>
   </div>
 
-  <!-- NAVIGATION (Single Primary Landmark) -->
+  <!-- NAVIGATION -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
     <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-3 group">
@@ -83,7 +88,7 @@
         <a href="apply.html" class="btn-action bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold uppercase px-3.5 py-2 rounded-lg shadow-md hover:shadow-lg transition inline-block">Apply Now</a>
       </nav>
 
-      <!-- Mobile Button -->
+      <!-- Mobile Menu Button -->
       <button id="menu-btn" type="button" class="lg:hidden p-2 text-slate-700 hover:text-blue-900 hover:bg-slate-100 rounded-lg focus:outline-none" aria-label="Toggle Menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
       </button>
@@ -105,7 +110,7 @@
   </header>
 
   <!-- HERO SECTION -->
-  <section class="relative bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white py-14 sm:py-20 px-4">
+  <section class="relative bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white py-14 sm:py-20 px-4 reveal">
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
       
       <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
@@ -179,7 +184,7 @@
   </section>
 
   <!-- HIGHLIGHTS -->
-  <section class="max-w-6xl mx-auto px-4 -mt-6 relative z-20">
+  <section class="max-w-6xl mx-auto px-4 -mt-6 relative z-20 reveal">
     <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
       <div class="interactive-card p-3 rounded-xl hover:bg-slate-50">
         <div class="text-xl sm:text-2xl font-black text-blue-900">DMW Licensed</div>
@@ -201,7 +206,7 @@
   </section>
 
   <!-- ANNOUNCEMENTS CAROUSEL -->
-  <section class="max-w-6xl mx-auto px-4 pt-16 pb-6">
+  <section class="max-w-6xl mx-auto px-4 pt-16 pb-6 reveal">
     <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 gap-4">
       <div>
         <span class="text-xs font-bold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100">
@@ -254,7 +259,7 @@
   </section>
 
   <!-- MAP SECTION -->
-  <section class="max-w-6xl mx-auto px-4 py-12">
+  <section class="max-w-6xl mx-auto px-4 py-12 reveal">
     <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center interactive-card">
       <div class="lg:col-span-5 space-y-4">
         <span class="text-xs font-bold uppercase tracking-widest text-blue-900 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
@@ -294,7 +299,7 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-slate-900 text-slate-400 py-10 px-4 text-xs border-t border-slate-800 mt-auto">
+  <footer class="bg-slate-900 text-slate-400 py-10 px-4 text-xs border-t border-slate-800 mt-auto reveal">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
       <div class="space-y-1">
         <div class="text-base font-bold text-white tracking-wide">TW (PHIL.) INTERNATIONAL MANPOWER INC.</div>
@@ -320,12 +325,14 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Mobile Navigation Toggle
       const menuBtn = document.getElementById('menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       if (menuBtn && mobileMenu) {
         menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
       }
 
+      // Carousel Horizontal Scroll Controls
       const track = document.getElementById('carousel-track');
       const prevBtn = document.getElementById('slide-prev');
       const nextBtn = document.getElementById('slide-next');
@@ -333,6 +340,22 @@
         nextBtn.addEventListener('click', () => track.scrollBy({ left: 320, behavior: 'smooth' }));
         prevBtn.addEventListener('click', () => track.scrollBy({ left: -320, behavior: 'smooth' }));
       }
+
+      // Intersection Observer for Smooth Scroll Reveal
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -30px 0px'
+      });
+
+      reveals.forEach(el => observer.observe(el));
     });
   </script>
 </body>
