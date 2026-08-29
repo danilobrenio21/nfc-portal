@@ -19,67 +19,86 @@
     </div>
   </div>
 
-    <!-- NAVIGATION -->
+  <!-- NAVIGATION -->
   <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
       <a href="index.html" class="text-xl font-black text-blue-900 tracking-tight flex items-center gap-1">
         TW <span class="text-red-600">MANPOWER</span>
       </a>
+
+      <!-- Desktop Links -->
       <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
         <a href="index.html" class="text-blue-900 font-bold">Home</a>
         <a href="jobs.html" class="hover:text-blue-900 transition">Job Openings</a>
         <a href="employers.html" class="hover:text-blue-900 transition">For Employers</a>
       </div>
-      <a href="apply.html" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-lg shadow transition">
+
+      <!-- Desktop CTA Button -->
+      <div class="hidden md:block">
+        <a href="apply.html" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-lg shadow transition">
+          Apply Now
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="menu-btn" class="md:hidden p-2 text-slate-700 hover:text-blue-900 focus:outline-none" aria-label="Toggle Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-5 space-y-3 shadow-lg">
+      <a href="index.html" class="block py-2 text-sm font-bold text-blue-900 border-b border-slate-50">Home</a>
+      <a href="jobs.html" class="block py-2 text-sm font-medium text-slate-700 hover:text-blue-900 border-b border-slate-50">Job Openings</a>
+      <a href="employers.html" class="block py-2 text-sm font-medium text-slate-700 hover:text-blue-900 border-b border-slate-50">For Employers</a>
+      <a href="apply.html" class="block w-full text-center bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider py-3 rounded-lg shadow mt-2">
         Apply Now
       </a>
     </div>
   </nav>
 
-    <img 
-  src="hero.jpg" 
-  alt="TW Manpower Overseas Gateway" 
-  class="w-full h-full object-cover object-center brightness-[0.25] contrast-125"
-
-    <!-- Hero Content (z-10 keeps it above the photo) -->
-    <div class="relative z-10 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+  <!-- HERO SECTION -->
+  <header class="relative bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white py-12 sm:py-20 px-4">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
       
       <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
-        <span class="inline-block text-xs font-bold tracking-widest text-amber-400 uppercase bg-amber-400/10 px-3.5 py-1.5 rounded-full border border-amber-400/30 backdrop-blur-sm">
-          🇯🇵 Official Japan Placement Partner
+        <span class="inline-block text-xs font-bold tracking-widest text-amber-400 uppercase bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
+          Official Japan Placement Partner
         </span>
-        <h1 class="text-3xl sm:text-5xl font-black leading-tight drop-shadow-md">
+        <h1 class="text-3xl sm:text-5xl font-black leading-tight">
           Build Your Future Career in <span class="text-red-500">Japan</span> & Overseas.
         </h1>
-        <p class="text-slate-200 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0 drop-shadow">
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
           Connecting skilled Filipino professionals, technical trainees, and workers with verified, high-paying employers in Japan under SSW and TITP programs.
         </p>
         
         <div class="pt-2 flex flex-col sm:flex-row justify-center lg:justify-start gap-3">
-          <a href="jobs.html" class="w-full sm:w-auto text-center bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition shadow-lg hover:shadow-red-600/30">
+          <a href="jobs.html" class="w-full sm:w-auto text-center bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition shadow-lg">
             View Job Vacancies
           </a>
-          <a href="apply.html" class="w-full sm:w-auto text-center bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl text-sm transition border border-white/20 backdrop-blur-sm">
+          <a href="apply.html" class="w-full sm:w-auto text-center bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl text-sm transition border border-white/20">
             Submit CV Online
           </a>
         </div>
       </div>
 
       <!-- Quick Application Box -->
-      <div id="apply" class="lg:col-span-5 bg-white/95 backdrop-blur-md text-slate-900 p-6 sm:p-7 rounded-2xl shadow-2xl border border-white/40">
+      <div id="apply" class="lg:col-span-5 bg-white text-slate-900 p-6 rounded-2xl shadow-2xl border border-slate-100">
         <h3 class="text-lg font-bold text-blue-950">Quick Pre-Registration</h3>
         <p class="text-xs text-slate-500 mt-0.5 mb-4">Submit your details for upcoming Japan interview batches.</p>
         
         <form class="space-y-3" onsubmit="event.preventDefault(); alert('Application submitted! TW Manpower recruitment team will contact you.');">
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Full Name</label>
-            <input type="text" required placeholder="Juan Dela Cruz" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:border-blue-900" />
+            <input type="text" required placeholder="Juan Dela Cruz" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 focus:outline-none focus:border-blue-900" />
           </div>
           
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Contact Number</label>
-              <input type="tel" required placeholder="09170000000" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:border-blue-900" />
+              <input type="tel" required placeholder="09170000000" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 focus:outline-none focus:border-blue-900" />
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Target Skill/Job</label>
@@ -121,24 +140,24 @@
       </div>
       <div>
         <div class="text-2xl font-black text-blue-900">SSW & TITP</div>
-        <div class="text-xs text-slate-500 font-medium mt-1">Japan Accredited Programs</div>
+        <div class="text-xs text-slate-500 font-medium mt-1">Japan Programs</div>
       </div>
       <div>
         <div class="text-2xl font-black text-blue-900">₱0 Placement</div>
-        <div class="text-xs text-slate-500 font-medium mt-1">For Qualified Japan Tracks</div>
+        <div class="text-xs text-slate-500 font-medium mt-1">For Japan Tracks</div>
       </div>
       <div>
         <div class="text-2xl font-black text-blue-900">Direct</div>
-        <div class="text-xs text-slate-500 font-medium mt-1">Verified Japanese Principals</div>
+        <div class="text-xs text-slate-500 font-medium mt-1">Japanese Principals</div>
       </div>
     </div>
   </section>
 
   <!-- POPULAR JAPAN TRACKS -->
-  <section id="programs" class="max-w-6xl mx-auto px-4 py-16">
+  <section class="max-w-6xl mx-auto px-4 py-16">
     <div class="text-center mb-12">
       <h2 class="text-2xl sm:text-3xl font-extrabold text-blue-950">In-Demand Japan Programs</h2>
-      <p class="text-sm text-slate-500 mt-2">We provide complete processing, Japanese language support, and employer matching.</p>
+      <p class="text-sm text-slate-500 mt-2">Complete processing, Nihongo training support, and direct employer matching.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -146,19 +165,19 @@
       <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
         <div class="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center text-xl font-bold mb-4">🏥</div>
         <h3 class="text-lg font-bold text-slate-900">Caregiving & Healthcare</h3>
-        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Direct placement for nursing homes and medical facilities in Tokyo, Osaka, and Nagoya. Free accommodation allowances included.</p>
+        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Direct placement for medical facilities and nursing homes in Tokyo, Kanagawa, and Osaka.</p>
       </div>
 
       <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
         <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-bold mb-4">🏭</div>
         <h3 class="text-lg font-bold text-slate-900">Manufacturing & Assembly</h3>
-        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Automotive, electronics packaging, and industrial machinery assembly positions with overtime opportunities.</p>
+        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Automotive assembly, industrial electronics, and metal processing in Aichi and Nagoya.</p>
       </div>
 
       <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
         <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl font-bold mb-4">🌾</div>
         <h3 class="text-lg font-bold text-slate-900">Agriculture & Food Processing</h3>
-        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Greenhouse cultivation, vegetable sorting, and ready-meal packaging across Hokkaido and central prefectures.</p>
+        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Greenhouse farming, vegetable sorting, and packaged meals preparation in Hokkaido and Chiba.</p>
       </div>
 
     </div>
@@ -177,6 +196,16 @@
       </div>
     </div>
   </footer>
+
+  <!-- JAVASCRIPT FOR MOBILE MENU TOGGLE -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
 
 </body>
 </html>
