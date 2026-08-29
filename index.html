@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TW Manpower | Overseas Recruitment & Japan Career Placement</title>
+  <title>TW (Phil.) International Manpower Inc. | Japan & Overseas Placement</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Hide scrollbar for clean carousel UI */
+    /* Hide scrollbar for clean announcement carousel UI */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -31,9 +31,24 @@
 
   <!-- NAVIGATION -->
   <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-      <a href="index.html" class="text-xl font-black text-blue-900 tracking-tight flex items-center gap-1">
-        TW <span class="text-red-600">MANPOWER</span>
+    <div class="max-w-6xl mx-auto px-4 h-16 sm:h-20 flex items-center justify-between">
+      
+      <!-- LOGO + FULL COMPANY NAME -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img 
+          src="logo.png" 
+          alt="TW Manpower Logo" 
+          class="h-9 sm:h-12 w-auto object-contain shrink-0" 
+          onerror="this.style.display='none'"
+        />
+        <div class="flex flex-col leading-tight">
+          <span class="text-xs sm:text-sm font-extrabold text-blue-950 tracking-tight group-hover:text-red-600 transition">
+            TW (Phil.) International
+          </span>
+          <span class="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">
+            Manpower Inc.
+          </span>
+        </div>
       </a>
 
       <!-- Desktop Navigation Links -->
@@ -174,7 +189,7 @@
         <p class="text-xs sm:text-sm text-slate-500 mt-1">Upcoming employer interview schedules, Japanese language orientations, and visa advisories.</p>
       </div>
       
-      <!-- Slide Left/Right Controls -->
+      <!-- Slide Controls -->
       <div class="flex items-center space-x-2">
         <button id="slide-prev" class="w-10 h-10 rounded-full bg-white border border-slate-300 flex items-center justify-center text-slate-700 hover:bg-blue-900 hover:text-white transition shadow-sm" aria-label="Previous Announcement">
           &#10094;
@@ -185,10 +200,10 @@
       </div>
     </div>
 
-    <!-- Carousel Container -->
+    <!-- Carousel Track -->
     <div id="carousel-track" class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory py-2">
       
-      <!-- Square Card 1 -->
+      <!-- Announcement 1 -->
       <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-slate-200">
         <img 
           src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=800&auto=format&fit=crop" 
@@ -202,7 +217,7 @@
         </div>
       </div>
 
-      <!-- Square Card 2 -->
+      <!-- Announcement 2 -->
       <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-slate-200">
         <img 
           src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop" 
@@ -216,7 +231,7 @@
         </div>
       </div>
 
-      <!-- Square Card 3 -->
+      <!-- Announcement 3 -->
       <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-slate-200">
         <img 
           src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop" 
@@ -230,7 +245,7 @@
         </div>
       </div>
 
-      <!-- Square Card 4 -->
+      <!-- Announcement 4 -->
       <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-slate-200">
         <img 
           src="https://images.unsplash.com/photo-1595246140625-573b715d11dc?q=80&w=800&auto=format&fit=crop" 
@@ -291,21 +306,20 @@
     </div>
   </footer>
 
-  <!-- CAROUSEL & MOBILE MENU SCRIPT -->
+  <!-- SCRIPT FOR MOBILE MENU & CAROUSEL -->
   <script>
-    // Mobile Hamburger Menu
+    // Mobile menu toggle
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     menuBtn.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
 
-    // Square Announcement Carousel Auto-Slide & Manual Controls
+    // Square Announcement Carousel controls
     const track = document.getElementById('carousel-track');
     const prevBtn = document.getElementById('slide-prev');
     const nextBtn = document.getElementById('slide-next');
-
-    const cardWidth = 320; // Scroll increment in pixels
+    const cardWidth = 320;
 
     nextBtn.addEventListener('click', () => {
       if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
@@ -323,7 +337,7 @@
       }
     });
 
-    // Gentle Auto-Scroll every 4 seconds
+    // Auto-scroll every 4s
     let autoScroll = setInterval(() => {
       if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
         track.scrollTo({ left: 0, behavior: 'smooth' });
@@ -332,7 +346,6 @@
       }
     }, 4000);
 
-    // Pause auto-scroll on mouse hover or touch
     track.addEventListener('mouseenter', () => clearInterval(autoScroll));
     track.addEventListener('touchstart', () => clearInterval(autoScroll));
   </script>
