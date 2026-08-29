@@ -34,7 +34,7 @@
       transform: translateY(-4px);
     }
 
-    /* Scroll Reveal Animation for Mobile & Desktop */
+    /* Scroll Reveal Animation */
     .reveal {
       opacity: 0;
       transform: translateY(28px);
@@ -205,8 +205,70 @@
     </div>
   </section>
 
+  <!-- SUCCESS RATE & PERFORMANCE NUMBERS (ANIMATED COUNTER) -->
+  <section class="max-w-6xl mx-auto px-4 py-16 reveal">
+    <div class="bg-gradient-to-br from-blue-950 via-slate-900 to-blue-900 text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden border border-blue-800/40">
+      
+      <!-- Subtle Decorative Background Glow -->
+      <div class="absolute -top-24 -right-24 w-72 h-72 bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
+          Proven Track Record
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-black mt-3">Our Placement & Success Milestones</h2>
+        <p class="text-slate-300 text-xs sm:text-sm mt-2">Empowering thousands of Filipino workers with ethical recruitment and legitimate job deployments.</p>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center relative z-10">
+        
+        <!-- Counter Item 1 -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm interactive-card">
+          <div class="text-3xl sm:text-5xl font-black text-white flex items-center justify-center tracking-tight">
+            <span class="counter" data-target="1500">0</span>
+            <span class="text-amber-400">+</span>
+          </div>
+          <p class="text-xs sm:text-sm font-bold text-slate-200 mt-2">Workers Deployed</p>
+          <span class="text-[10px] text-slate-400 block mt-0.5">Taiwan & Japan hubs</span>
+        </div>
+
+        <!-- Counter Item 2 -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm interactive-card">
+          <div class="text-3xl sm:text-5xl font-black text-white flex items-center justify-center tracking-tight">
+            <span class="counter" data-target="98">0</span>
+            <span class="text-red-500">%</span>
+          </div>
+          <p class="text-xs sm:text-sm font-bold text-slate-200 mt-2">Visa Approval Rate</p>
+          <span class="text-[10px] text-slate-400 block mt-0.5">Strict compliance screening</span>
+        </div>
+
+        <!-- Counter Item 3 -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm interactive-card">
+          <div class="text-3xl sm:text-5xl font-black text-white flex items-center justify-center tracking-tight">
+            <span class="counter" data-target="25">0</span>
+            <span class="text-blue-400">+</span>
+          </div>
+          <p class="text-xs sm:text-sm font-bold text-slate-200 mt-2">Foreign Principals</p>
+          <span class="text-[10px] text-slate-400 block mt-0.5">Accredited employer partners</span>
+        </div>
+
+        <!-- Counter Item 4 -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm interactive-card">
+          <div class="text-3xl sm:text-5xl font-black text-white flex items-center justify-center tracking-tight">
+            <span class="counter" data-target="100">0</span>
+            <span class="text-emerald-400">%</span>
+          </div>
+          <p class="text-xs sm:text-sm font-bold text-slate-200 mt-2">DMW Compliant</p>
+          <span class="text-[10px] text-slate-400 block mt-0.5">No illegal fees collected</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ANNOUNCEMENTS CAROUSEL -->
-  <section class="max-w-6xl mx-auto px-4 pt-16 pb-6 reveal">
+  <section class="max-w-6xl mx-auto px-4 pt-4 pb-6 reveal">
     <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 gap-4">
       <div>
         <span class="text-xs font-bold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100">
@@ -343,11 +405,11 @@
 
       // Intersection Observer for Smooth Scroll Reveal
       const reveals = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver((entries) => {
+      const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('active');
-            observer.unobserve(entry.target);
+            revealObserver.unobserve(entry.target);
           }
         });
       }, {
@@ -355,7 +417,51 @@
         rootMargin: '0px 0px -30px 0px'
       });
 
-      reveals.forEach(el => observer.observe(el));
+      reveals.forEach(el => revealObserver.observe(el));
+
+      // Number Roll-Up Counter Animation
+      const counters = document.querySelectorAll('.counter');
+      let countersStarted = false;
+
+      function startCounters() {
+        counters.forEach(counter => {
+          const target = +counter.getAttribute('data-target');
+          const duration = 1800; // Total duration in ms
+          const startTime = performance.now();
+
+          function updateCount(currentTime) {
+            const elapsedTime = currentTime - startTime;
+            const progress = Math.min(elapsedTime / duration, 1);
+            
+            // Ease-out curve for smooth decelerating finish
+            const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+            const currentVal = Math.floor(easeOutProgress * target);
+
+            counter.innerText = currentVal.toLocaleString();
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCount);
+            } else {
+              counter.innerText = target.toLocaleString();
+            }
+          }
+
+          requestAnimationFrame(updateCount);
+        });
+      }
+
+      // Trigger counter animation only when the milestone card comes into view
+      const counterSection = document.querySelector('.counter')?.closest('section');
+      if (counterSection) {
+        const counterObserver = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting && !countersStarted) {
+            countersStarted = true;
+            startCounters();
+          }
+        }, { threshold: 0.2 });
+
+        counterObserver.observe(counterSection);
+      }
     });
   </script>
 </body>
