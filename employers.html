@@ -26,8 +26,14 @@
   <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
       
+      <!-- LOGO + BRAND NAME -->
       <a href="index.html" class="flex items-center gap-3 group">
-        <img src="logo.jpg" alt="TW Manpower Logo" class="h-10 sm:h-12 w-auto object-contain shrink-0" onerror="this.style.display='none'" />
+        <img 
+          src="logo.jpg" 
+          alt="TW Manpower Logo" 
+          class="h-10 sm:h-12 w-auto object-contain shrink-0" 
+          onerror="this.style.display='none'" 
+        />
         <div class="flex flex-col leading-tight">
           <span class="text-xs sm:text-sm font-black text-blue-950 tracking-tight group-hover:text-red-600 transition">
             TW (PHIL.) INTERNATIONAL
@@ -54,6 +60,7 @@
         </a>
       </div>
 
+      <!-- Mobile Hamburger Button -->
       <button id="menu-btn" type="button" class="lg:hidden p-2 text-slate-700 hover:text-blue-900 focus:outline-none" aria-label="Toggle Menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -144,18 +151,25 @@
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
       <div>
         <div class="text-base font-bold text-white">TW (PHIL.) INTERNATIONAL MANPOWER INC.</div>
-        <p class="text-slate-400">DMW License: DMW-051-LB-03202023-R • Malate, Manila</p>
+        <p class="text-slate-400">DMW License: <strong>DMW-051-LB-03202023-R</strong></p>
+        <p class="text-slate-500">Suite 201/203 Marioco Bldg., 1945 M. Adriatico St., Malate, Manila</p>
       </div>
       <p class="text-amber-400 font-semibold">⚠️ Advisory: Manpower Pooling Only. No Fees Collected.</p>
     </div>
   </footer>
 
+  <!-- SCRIPT -->
   <script>
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+    });
   </script>
 </body>
 </html>
