@@ -3,138 +3,176 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Setup Your Smart NFC Profile | VPH</title>
+  <title>TW Manpower | Overseas Recruitment & Japan Career Placement</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
-<body class="bg-zinc-950 text-zinc-100 min-h-screen py-10 px-4">
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
 
-  <div class="max-w-4xl mx-auto">
-    <header class="text-center mb-10">
-      <span class="text-xs font-bold tracking-widest text-amber-400 uppercase bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
-        VPH Smart NFC Portal
-      </span>
-      <h1 class="text-3xl font-extrabold text-white mt-3">Setup Your Digital Profile</h1>
-      <p class="text-sm text-zinc-400 mt-1">Fill in your details below to build your live one-tap digital card.</p>
-    </header>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-      
-      <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl shadow-xl space-y-4">
-        <h2 class="text-lg font-bold text-white border-b border-zinc-800 pb-3">1. Profile Information</h2>
-        
-        <div>
-          <label class="block text-xs font-semibold text-zinc-300 uppercase mb-1">Full Name / Business Name</label>
-          <input type="text" id="inputName" placeholder="e.g. Danilo Brenio" value="Danilo Brenio" class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" oninput="updatePreview()" />
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-zinc-300 uppercase mb-1">Designation / Tagline</label>
-          <input type="text" id="inputTitle" placeholder="e.g. Founder | VPH Media Production" value="Founder | VPH Media" class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" oninput="updatePreview()" />
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-zinc-300 uppercase mb-1">Short Bio</label>
-          <textarea id="inputBio" rows="2" placeholder="Tell people what you do..." class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-amber-400" oninput="updatePreview()">Visual storytelling, commercial media & smart digital branding.</textarea>
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-zinc-300 uppercase mb-1">Mobile / WhatsApp Number</label>
-          <input type="tel" id="inputPhone" placeholder="09171234567" value="09171234567" class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" oninput="updatePreview()" />
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-zinc-300 uppercase mb-1">Primary Website / Portfolio URL</label>
-          <input type="url" id="inputWebsite" placeholder="https://yourwebsite.com" value="https://vphmediaproduction.com" class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" oninput="updatePreview()" />
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-zinc-300 uppercase mb-1">Promo / Special Offer Text</label>
-          <input type="text" id="inputPromo" placeholder="e.g. VIP Member: 10% OFF Shawarma" value="🌯 10% OFF Shawarma VIP Discount" class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400" oninput="updatePreview()" />
-        </div>
-
-        <button onclick="generateNFCDetails()" class="w-full mt-4 bg-amber-400 hover:bg-amber-300 text-black font-bold py-3 rounded-xl transition duration-200 shadow-lg text-sm">
-          ⚡ Lock Details & Generate QR/Link
-        </button>
+  <!-- TOP BAR -->
+  <div class="bg-blue-950 text-white text-xs py-2 px-4 border-b border-blue-900">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1 sm:gap-0 text-center sm:text-left">
+      <span>🇯🇵 DMW Accredited Land-Based Recruitment Agency</span>
+      <div class="flex items-center space-x-4">
+        <span>📞 (02) 554-0661</span>
+        <span>📍 Malate, Manila</span>
       </div>
-
-      <div class="space-y-4">
-        <h2 class="text-lg font-bold text-white">2. Live Tap Preview (Mobile View)</h2>
-        
-        <div class="bg-zinc-900 border-2 border-zinc-800 rounded-3xl p-6 shadow-2xl text-center max-w-sm mx-auto">
-          
-          <div id="previewAvatar" class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-2xl font-black text-black border-4 border-zinc-950 shadow-md">
-            VPH
-          </div>
-
-          <h3 id="previewName" class="mt-4 text-xl font-bold text-white">Danilo Brenio</h3>
-          <p id="previewTitle" class="text-xs text-amber-400 font-semibold tracking-wide uppercase mt-1">Founder | VPH Media</p>
-          <p id="previewBio" class="text-xs text-zinc-400 mt-2 leading-relaxed">Visual storytelling, commercial media & smart digital branding.</p>
-
-          <div class="mt-6 space-y-2.5">
-            <a id="btnCall" href="tel:09171234567" class="block w-full py-3 bg-amber-400 text-black font-bold rounded-xl text-xs hover:opacity-90 transition shadow">
-              📞 Call Now / Save Contact
-            </a>
-
-            <a id="btnWebsite" href="https://vphmediaproduction.com" target="_blank" class="block w-full py-3 bg-zinc-800 text-zinc-200 font-semibold rounded-xl text-xs border border-zinc-700 hover:bg-zinc-700 transition">
-              🌐 View Website / Portfolio
-            </a>
-
-            <div id="btnPromo" class="w-full py-3 bg-amber-400/10 text-amber-300 font-semibold rounded-xl text-xs border border-amber-400/30">
-              🌯 10% OFF Shawarma VIP Discount
-            </div>
-          </div>
-
-          <div id="qrContainer" class="mt-6 hidden pt-4 border-t border-zinc-800 flex flex-col items-center">
-            <p class="text-[11px] text-zinc-400 mb-3 font-medium">Scan to open or write to your NFC card:</p>
-            <div id="qrcode" class="p-2 bg-white rounded-xl shadow"></div>
-          </div>
-
-        </div>
-      </div>
-
     </div>
   </div>
 
-  <script>
-    function updatePreview() {
-      const name = document.getElementById('inputName').value || 'Your Name';
-      const title = document.getElementById('inputTitle').value || 'Your Title';
-      const bio = document.getElementById('inputBio').value || 'Short bio goes here...';
-      const phone = document.getElementById('inputPhone').value || '';
-      const website = document.getElementById('inputWebsite').value || '#';
-      const promo = document.getElementById('inputPromo').value || '';
+  <!-- NAVIGATION -->
+  <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="text-xl font-black text-blue-900 tracking-tight flex items-center gap-1">
+        TW <span class="text-red-600">MANPOWER</span>
+      </div>
+      <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
+        <a href="#about" class="hover:text-blue-900 transition">About Us</a>
+        <a href="#programs" class="hover:text-blue-900 transition">Japan Programs</a>
+        <a href="#jobs" class="hover:text-blue-900 transition">Job Openings</a>
+        <a href="#employers" class="hover:text-blue-900 transition">For Employers</a>
+      </div>
+      <a href="#apply" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-lg shadow transition">
+        Apply Now
+      </a>
+    </div>
+  </nav>
 
-      document.getElementById('previewName').innerText = name;
-      document.getElementById('previewTitle').innerText = title;
-      document.getElementById('previewBio').innerText = bio;
-      document.getElementById('btnCall').href = 'tel:' + phone;
-      document.getElementById('btnWebsite').href = website;
-      document.getElementById('btnPromo').innerText = promo;
-
-      // Update avatar initials
-      const initials = name.split(' ').map(n => n[0]).join('').substring(0, 3).toUpperCase() || 'ID';
-      document.getElementById('previewAvatar').innerText = initials;
-    }
-
-    function generateNFCDetails() {
-      const qrDiv = document.getElementById('qrcode');
-      qrDiv.innerHTML = ''; // Clear previous QR
+  <!-- HERO SECTION -->
+  <header class="relative bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white py-16 sm:py-20 px-4">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
       
-      // For now, encodes the current URL or website
-      const websiteUrl = document.getElementById('inputWebsite').value || window.location.href;
-      
-      new QRCode(qrDiv, {
-        text: websiteUrl,
-        width: 128,
-        height: 128,
-        colorDark: '#000000',
-        colorLight: '#ffffff',
-        correctLevel: QRCode.CorrectLevel.H
-      });
+      <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
+        <span class="inline-block text-xs font-bold tracking-widest text-amber-400 uppercase bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
+          Official Japan Placement Partner
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black leading-tight">
+          Build Your Future Career in <span class="text-red-500">Japan</span> & Overseas.
+        </h1>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
+          Connecting skilled Filipino professionals, technical trainees, and workers with verified, high-paying employers in Japan under SSW and TITP programs.
+        </p>
+        <div class="pt-2 flex flex-wrap justify-center lg:justify-start gap-3">
+          <a href="#jobs" class="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition shadow-lg">
+            View Job Vacancies
+          </a>
+          <a href="#apply" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl text-sm transition border border-white/20">
+            Submit CV Online
+          </a>
+        </div>
+      </div>
 
-      document.getElementById('qrContainer').classList.remove('hidden');
-    }
-  </script>
+      <!-- Quick Application Box -->
+      <div id="apply" class="lg:col-span-5 bg-white text-slate-900 p-6 rounded-2xl shadow-2xl border border-slate-100">
+        <h3 class="text-lg font-bold text-blue-950">Quick Pre-Registration</h3>
+        <p class="text-xs text-slate-500 mt-0.5 mb-4">Submit your details for upcoming Japan interview batches.</p>
+        
+        <form class="space-y-3" onsubmit="event.preventDefault(); alert('Application submitted successfully! TW Manpower recruitment will contact you via SMS/Call.');">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Full Name</label>
+            <input type="text" required placeholder="Juan Dela Cruz" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 focus:outline-none focus:border-blue-900" />
+          </div>
+          
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Contact Number</label>
+              <input type="tel" required placeholder="09170000000" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 focus:outline-none focus:border-blue-900" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Target Skill/Job</label>
+              <select class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:border-blue-900">
+                <option>Caregiver / Nurse</option>
+                <option>Factory / Assembly</option>
+                <option>Agriculture / Farming</option>
+                <option>Construction / Welding</option>
+                <option>Food Service / Hotel</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Japanese Language Level</label>
+            <select class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:border-blue-900">
+              <option>No Japanese Background</option>
+              <option>Currently Studying / N5</option>
+              <option>N4 Passer (Certified)</option>
+              <option>N3 / N2 / N1 Passer</option>
+            </select>
+          </div>
+
+          <button type="submit" class="w-full bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 rounded-lg text-sm transition duration-150 shadow mt-2">
+            Submit Application
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- HIGHLIGHTS / STATS -->
+  <section class="max-w-6xl mx-auto px-4 -mt-6">
+    <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div>
+        <div class="text-2xl font-black text-blue-900">100%</div>
+        <div class="text-xs text-slate-500 font-medium mt-1">DMW Licensed Agency</div>
+      </div>
+      <div>
+        <div class="text-2xl font-black text-blue-900">SSW & TITP</div>
+        <div class="text-xs text-slate-500 font-medium mt-1">Japan Accredited Programs</div>
+      </div>
+      <div>
+        <div class="text-2xl font-black text-blue-900">₱0 Placement</div>
+        <div class="text-xs text-slate-500 font-medium mt-1">For Qualified Japan Tracks</div>
+      </div>
+      <div>
+        <div class="text-2xl font-black text-blue-900">Direct</div>
+        <div class="text-xs text-slate-500 font-medium mt-1">Verified Japanese Principals</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POPULAR JAPAN TRACKS -->
+  <section id="programs" class="max-w-6xl mx-auto px-4 py-16">
+    <div class="text-center mb-12">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-blue-950">In-Demand Japan Programs</h2>
+      <p class="text-sm text-slate-500 mt-2">We provide complete processing, Japanese language support, and employer matching.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <div class="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center text-xl font-bold mb-4">🏥</div>
+        <h3 class="text-lg font-bold text-slate-900">Caregiving & Healthcare</h3>
+        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Direct placement for nursing homes and medical facilities in Tokyo, Osaka, and Nagoya. Free accommodation allowances included.</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-bold mb-4">🏭</div>
+        <h3 class="text-lg font-bold text-slate-900">Manufacturing & Assembly</h3>
+        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Automotive, electronics packaging, and industrial machinery assembly positions with overtime opportunities.</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
+        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl font-bold mb-4">🌾</div>
+        <h3 class="text-lg font-bold text-slate-900">Agriculture & Food Processing</h3>
+        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Greenhouse cultivation, vegetable sorting, and ready-meal packaging across Hokkaido and central prefectures.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 py-10 px-4 text-xs border-t border-slate-800">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="text-center md:text-left">
+        <div class="text-base font-bold text-white tracking-wide">TW (Phil.) International Manpower Inc.</div>
+        <p class="mt-1 text-slate-400">DMW Licensed Land-Based Recruitment Agency • Malate, Manila, Philippines</p>
+      </div>
+      <div class="text-center md:text-right">
+        <p class="text-amber-400 font-semibold">⚠️ Anti-Illegal Recruitment Advisory</p>
+        <p class="text-slate-400">No fees are collected during initial screening and document verification.</p>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
