@@ -3,20 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TW (Phil.) International Manpower Inc. | Japan & Overseas Placement</title>
+  <title>Foreign Principals & Employers | TW Manpower</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Hide scrollbar for clean announcement carousel UI */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-  </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+<body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen">
 
   <!-- TOP BAR -->
   <div class="bg-blue-950 text-white text-xs py-2 px-4 border-b border-blue-900">
@@ -31,34 +21,17 @@
 
   <!-- NAVIGATION -->
   <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 h-16 sm:h-20 flex items-center justify-between">
-      
-      <!-- LOGO (JPG) + FULL COMPANY NAME -->
-      <a href="index.html" class="flex items-center gap-3 group">
-        <img 
-          src="logo.jpg" 
-          alt="TW Manpower Logo" 
-          class="h-9 sm:h-12 w-auto object-contain shrink-0" 
-          onerror="this.style.display='none'"
-        />
-        <div class="flex flex-col leading-tight">
-          <span class="text-xs sm:text-sm font-extrabold text-blue-950 tracking-tight group-hover:text-red-600 transition">
-            TW (Phil.) International
-          </span>
-          <span class="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider">
-            Manpower Inc.
-          </span>
-        </div>
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="index.html" class="text-xl font-black text-blue-900 tracking-tight flex items-center gap-1">
+        TW <span class="text-red-600">MANPOWER</span>
       </a>
 
-      <!-- Desktop Navigation Links -->
       <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
-        <a href="index.html" class="text-blue-900 font-bold">Home</a>
+        <a href="index.html" class="hover:text-blue-900 transition">Home</a>
         <a href="jobs.html" class="hover:text-blue-900 transition">Job Openings</a>
-        <a href="employers.html" class="hover:text-blue-900 transition">For Employers</a>
+        <a href="employers.html" class="text-blue-900 font-bold">For Employers</a>
       </div>
 
-      <!-- Desktop CTA Button -->
       <div class="hidden md:block">
         <a href="apply.html" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-lg shadow transition">
           Apply Now
@@ -75,280 +48,85 @@
 
     <!-- Mobile Dropdown Menu -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-5 space-y-3 shadow-lg">
-      <a href="index.html" class="block py-2 text-sm font-bold text-blue-900 border-b border-slate-50">Home</a>
+      <a href="index.html" class="block py-2 text-sm font-medium text-slate-700 hover:text-blue-900 border-b border-slate-50">Home</a>
       <a href="jobs.html" class="block py-2 text-sm font-medium text-slate-700 hover:text-blue-900 border-b border-slate-50">Job Openings</a>
-      <a href="employers.html" class="block py-2 text-sm font-medium text-slate-700 hover:text-blue-900 border-b border-slate-50">For Employers</a>
+      <a href="employers.html" class="block py-2 text-sm font-bold text-blue-900 border-b border-slate-50">For Employers</a>
       <a href="apply.html" class="block w-full text-center bg-red-600 hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider py-3 rounded-lg shadow mt-2">
         Apply Now
       </a>
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
-  <header class="relative bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white py-14 sm:py-20 px-4">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-      
-      <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
-        <span class="inline-block text-xs font-bold tracking-widest text-amber-400 uppercase bg-amber-400/10 px-3.5 py-1.5 rounded-full border border-amber-400/30">
-          🇯🇵 Official Japan Placement Partner
-        </span>
-        <h1 class="text-3xl sm:text-5xl font-black leading-tight">
-          Build Your Future Career in <span class="text-red-500">Japan</span> & Overseas.
-        </h1>
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
-          Connecting skilled Filipino professionals, technical trainees, and workers with verified, high-paying employers in Japan under SSW and TITP programs.
-        </p>
-        
-        <div class="pt-2 flex flex-col sm:flex-row justify-center lg:justify-start gap-3">
-          <a href="jobs.html" class="w-full sm:w-auto text-center bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition shadow-lg hover:shadow-red-600/30">
-            View Job Vacancies
-          </a>
-          <a href="apply.html" class="w-full sm:w-auto text-center bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl text-sm transition border border-white/20">
-            Submit CV Online
-          </a>
-        </div>
-      </div>
-
-      <!-- Quick Application Box -->
-      <div id="apply" class="lg:col-span-5 bg-white text-slate-900 p-6 sm:p-7 rounded-2xl shadow-2xl border border-slate-100">
-        <h3 class="text-lg font-bold text-blue-950">Quick Pre-Registration</h3>
-        <p class="text-xs text-slate-500 mt-0.5 mb-4">Submit your details for upcoming Japan interview batches.</p>
-        
-        <form class="space-y-3" onsubmit="event.preventDefault(); alert('Application submitted! TW Manpower recruitment team will contact you.');">
-          <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Full Name</label>
-            <input type="text" required placeholder="Juan Dela Cruz" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:border-blue-900" />
-          </div>
-          
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Contact Number</label>
-              <input type="tel" required placeholder="09170000000" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:border-blue-900" />
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-slate-700 mb-1">Target Skill/Job</label>
-              <select class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:border-blue-900">
-                <option>Caregiver / Nurse</option>
-                <option>Factory / Assembly</option>
-                <option>Agriculture / Farming</option>
-                <option>Construction / Welding</option>
-                <option>Food Service / Hotel</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Japanese Language Level</label>
-            <select class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:border-blue-900">
-              <option>No Japanese Background</option>
-              <option>Currently Studying / N5</option>
-              <option>N4 Passer (Certified)</option>
-              <option>N3 / N2 / N1 Passer</option>
-            </select>
-          </div>
-
-          <button type="submit" class="w-full bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 rounded-lg text-sm transition duration-150 shadow mt-2">
-            Submit Application
-          </button>
-        </form>
-      </div>
-
+  <!-- EMPLOYER HERO -->
+  <header class="bg-gradient-to-r from-slate-950 via-blue-950 to-slate-900 text-white py-14 px-4 text-center">
+    <div class="max-w-4xl mx-auto space-y-3">
+      <span class="inline-block text-xs font-bold tracking-widest text-amber-400 uppercase bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20">
+        B2B & Foreign Principals
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-black">Pre-Screened Filipino Talent for Japan</h1>
+      <p class="text-slate-300 text-sm max-w-2xl mx-auto">
+        End-to-end recruitment, TESDA trade skill verification, intensive Japanese language training (N5 to N3), and fast DMW contract documentation.
+      </p>
     </div>
   </header>
 
-  <!-- HIGHLIGHTS / STATS -->
-  <section class="max-w-6xl mx-auto px-4 -mt-6 relative z-20">
-    <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-      <div>
-        <div class="text-2xl font-black text-blue-900">100%</div>
-        <div class="text-xs text-slate-500 font-medium mt-1">DMW Licensed Agency</div>
-      </div>
-      <div>
-        <div class="text-2xl font-black text-blue-900">SSW & TITP</div>
-        <div class="text-xs text-slate-500 font-medium mt-1">Japan Programs</div>
-      </div>
-      <div>
-        <div class="text-2xl font-black text-blue-900">₱0 Placement</div>
-        <div class="text-xs text-slate-500 font-medium mt-1">For Japan Tracks</div>
-      </div>
-      <div>
-        <div class="text-2xl font-black text-blue-900">Direct</div>
-        <div class="text-xs text-slate-500 font-medium mt-1">Japanese Principals</div>
-      </div>
-    </div>
-  </section>
+  <!-- RECRUITMENT STEPS -->
+  <main class="max-w-5xl mx-auto px-4 py-12 flex-grow w-full">
+    <h2 class="text-2xl font-bold text-center text-slate-900 mb-10">4-Step Sourcing Workflow</h2>
 
-  <!-- SLIDING SQUARE ANNOUNCEMENTS / BULLETIN GALLERY -->
-  <section class="max-w-6xl mx-auto px-4 pt-16 pb-6">
-    <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 gap-4">
-      <div>
-        <span class="text-xs font-bold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100">
-          Official Bulletin & Updates
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-blue-950 mt-2">Special Announcements</h2>
-        <p class="text-xs sm:text-sm text-slate-500 mt-1">Upcoming employer interview schedules, Japanese language orientations, and visa advisories.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm">
+        <div class="text-2xl font-black text-blue-900 mb-2">01</div>
+        <h3 class="font-bold text-sm text-slate-900">Sourcing & Screening</h3>
+        <p class="text-xs text-slate-500 mt-2">Comprehensive background verification and practical skills testing.</p>
       </div>
-      
-      <!-- Slide Controls -->
-      <div class="flex items-center space-x-2">
-        <button id="slide-prev" class="w-10 h-10 rounded-full bg-white border border-slate-300 flex items-center justify-center text-slate-700 hover:bg-blue-900 hover:text-white transition shadow-sm" aria-label="Previous Announcement">
-          &#10094;
-        </button>
-        <button id="slide-next" class="w-10 h-10 rounded-full bg-white border border-slate-300 flex items-center justify-center text-slate-700 hover:bg-blue-900 hover:text-white transition shadow-sm" aria-label="Next Announcement">
-          &#10095;
-        </button>
+      <div class="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm">
+        <div class="text-2xl font-black text-blue-900 mb-2">02</div>
+        <h3 class="font-bold text-sm text-slate-900">Nihongo Immersion</h3>
+        <p class="text-xs text-slate-500 mt-2">Japanese language preparation, work etiquette, and cultural adaptation.</p>
+      </div>
+      <div class="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm">
+        <div class="text-2xl font-black text-blue-900 mb-2">03</div>
+        <h3 class="font-bold text-sm text-slate-900">DMW Processing</h3>
+        <p class="text-xs text-slate-500 mt-2">Contract verification, embassy visa processing, and official clearance.</p>
+      </div>
+      <div class="bg-white border border-slate-200 p-5 rounded-2xl shadow-sm">
+        <div class="text-2xl font-black text-blue-900 mb-2">04</div>
+        <h3 class="font-bold text-sm text-slate-900">Deployment & Support</h3>
+        <p class="text-xs text-slate-500 mt-2">Flight booking, airport assistance, and post-arrival monitoring.</p>
       </div>
     </div>
 
-    <!-- Carousel Track -->
-    <div id="carousel-track" class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory py-2">
-      
-      <!-- Announcement 1 -->
-      <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-slate-200">
-        <img 
-          src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=800&auto=format&fit=crop" 
-          alt="Caregiver Batch Announcement" 
-          class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-5 flex flex-col justify-end text-white">
-          <span class="bg-red-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded w-max mb-1.5">Direct Interview</span>
-          <h3 class="text-base font-bold leading-snug">Tokyo Caregiving Batch 12 Open</h3>
-          <p class="text-xs text-slate-300 mt-1 line-clamp-2">Free Nihongo review classes for qualified N4 examinees.</p>
+    <!-- Contact Desk Card -->
+    <div class="mt-12 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 max-w-xl mx-auto shadow-sm">
+      <h3 class="text-lg font-bold text-slate-900 text-center">Principal Business Desk</h3>
+      <p class="text-xs text-slate-500 text-center mb-6">Connect with our business development officers for manpower inquiries.</p>
+      <div class="space-y-3 text-xs text-slate-700">
+        <div class="flex justify-between py-2 border-b border-slate-100">
+          <span class="font-semibold">Direct Desk:</span>
+          <span>+63 (2) 554-0661</span>
+        </div>
+        <div class="flex justify-between py-2 border-b border-slate-100">
+          <span class="font-semibold">Japan Desk Email:</span>
+          <span>principals@twmanpower.com</span>
+        </div>
+        <div class="flex justify-between py-2 border-b border-slate-100">
+          <span class="font-semibold">Office Location:</span>
+          <span>Malate, Manila, Philippines</span>
         </div>
       </div>
-
-      <!-- Announcement 2 -->
-      <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-slate-200">
-        <img 
-          src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop" 
-          alt="Factory Assembly Intake" 
-          class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-5 flex flex-col justify-end text-white">
-          <span class="bg-blue-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded w-max mb-1.5">TITP Track</span>
-          <h3 class="text-base font-bold leading-snug">Nagoya Auto Parts Screening</h3>
-          <p class="text-xs text-slate-300 mt-1 line-clamp-2">No Japanese language requirement prior to interview selection.</p>
-        </div>
-      </div>
-
-      <!-- Announcement 3 -->
-      <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-slate-200">
-        <img 
-          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop" 
-          alt="Nihongo Training Class" 
-          class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-5 flex flex-col justify-end text-white">
-          <span class="bg-emerald-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded w-max mb-1.5">Free Orientation</span>
-          <h3 class="text-base font-bold leading-snug">JLPT & JFT Basic Prep Class</h3>
-          <p class="text-xs text-slate-300 mt-1 line-clamp-2">Saturday hybrid batches at our Malate training facility.</p>
-        </div>
-      </div>
-
-      <!-- Announcement 4 -->
-      <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-slate-200">
-        <img 
-          src="https://images.unsplash.com/photo-1595246140625-573b715d11dc?q=80&w=800&auto=format&fit=crop" 
-          alt="Agriculture Trainees" 
-          class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-        />
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-5 flex flex-col justify-end text-white">
-          <span class="bg-amber-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded w-max mb-1.5">Hokkaido Track</span>
-          <h3 class="text-base font-bold leading-snug">Hydroponic Greenhouse Workers</h3>
-          <p class="text-xs text-slate-300 mt-1 line-clamp-2">Direct deployment slots with subsidized accommodation.</p>
-        </div>
-      </div>
-
     </div>
-  </section>
-
-  <!-- POPULAR JAPAN TRACKS -->
-  <section class="max-w-6xl mx-auto px-4 py-16">
-    <div class="text-center mb-12">
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-blue-950">In-Demand Japan Programs</h2>
-      <p class="text-sm text-slate-500 mt-2">Complete processing, Nihongo training support, and direct employer matching.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      
-      <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
-        <div class="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center text-xl font-bold mb-4">🏥</div>
-        <h3 class="text-lg font-bold text-slate-900">Caregiving & Healthcare</h3>
-        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Direct placement for medical facilities and nursing homes in Tokyo, Kanagawa, and Osaka.</p>
-      </div>
-
-      <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
-        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-bold mb-4">🏭</div>
-        <h3 class="text-lg font-bold text-slate-900">Manufacturing & Assembly</h3>
-        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Automotive assembly, industrial electronics, and metal processing in Aichi and Nagoya.</p>
-      </div>
-
-      <div class="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-md transition">
-        <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl font-bold mb-4">🌾</div>
-        <h3 class="text-lg font-bold text-slate-900">Agriculture & Food Processing</h3>
-        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Greenhouse farming, vegetable sorting, and packaged meals preparation in Hokkaido and Chiba.</p>
-      </div>
-
-    </div>
-  </section>
+  </main>
 
   <!-- FOOTER -->
-  <footer class="bg-slate-900 text-slate-400 py-10 px-4 text-xs border-t border-slate-800">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="text-center md:text-left">
-        <div class="text-base font-bold text-white tracking-wide">TW (Phil.) International Manpower Inc.</div>
-        <p class="mt-1 text-slate-400">DMW Licensed Land-Based Recruitment Agency • Malate, Manila, Philippines</p>
-      </div>
-      <div class="text-center md:text-right">
-        <p class="text-amber-400 font-semibold">⚠️ Anti-Illegal Recruitment Advisory</p>
-        <p class="text-slate-400">No fees are collected during initial screening and document verification.</p>
-      </div>
-    </div>
+  <footer class="bg-slate-900 text-slate-400 py-8 px-4 text-xs text-center border-t border-slate-800 mt-auto">
+    <p>© 2026 TW (Phil.) International Manpower Inc. • DMW Licensed</p>
   </footer>
 
-  <!-- SCRIPT FOR MOBILE MENU & CAROUSEL -->
   <script>
-    // Mobile menu toggle
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-
-    // Square Announcement Carousel controls
-    const track = document.getElementById('carousel-track');
-    const prevBtn = document.getElementById('slide-prev');
-    const nextBtn = document.getElementById('slide-next');
-    const cardWidth = 320;
-
-    nextBtn.addEventListener('click', () => {
-      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
-        track.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        track.scrollBy({ left: cardWidth, behavior: 'smooth' });
-      }
-    });
-
-    prevBtn.addEventListener('click', () => {
-      if (track.scrollLeft <= 10) {
-        track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
-      } else {
-        track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-      }
-    });
-
-    // Auto-scroll every 4s
-    let autoScroll = setInterval(() => {
-      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
-        track.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        track.scrollBy({ left: cardWidth, behavior: 'smooth' });
-      }
-    }, 4000);
-
-    track.addEventListener('mouseenter', () => clearInterval(autoScroll));
-    track.addEventListener('touchstart', () => clearInterval(autoScroll));
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
   </script>
-
 </body>
 </html>
