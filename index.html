@@ -285,68 +285,58 @@
     </div>
   </section>
 
-  <!-- ANNOUNCEMENTS CAROUSEL -->
-  <section class="max-w-6xl mx-auto px-4 pt-4 pb-6 reveal">
-    <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 gap-4">
-      <div>
-        <span class="text-xs font-bold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100">
-          Official Bulletin & Updates
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-blue-950 mt-2">Latest Announcements</h2>
-        <p class="text-xs sm:text-sm text-slate-500 mt-1">Upcoming employer interview schedules, pooling notices, and office advisories.</p>
-      </div>
-      
-      <div class="flex items-center space-x-2">
-        <button id="slide-prev" type="button" class="w-10 h-10 rounded-full bg-white border border-slate-300 flex items-center justify-center text-slate-700 hover:bg-blue-900 hover:text-white transition shadow-sm hover:shadow cursor-pointer" aria-label="Previous Slide">
-          &#10094;
-        </button>
-        <button id="slide-next" type="button" class="w-10 h-10 rounded-full bg-white border border-slate-300 flex items-center justify-center text-slate-700 hover:bg-blue-900 hover:text-white transition shadow-sm hover:shadow cursor-pointer" aria-label="Next Slide">
-          &#10095;
-        </button>
-      </div>
+  <!-- LATEST ANNOUNCEMENTS (RESPONSIVE GRID SYSTEM) -->
+  <section class="max-w-6xl mx-auto px-4 pt-4 pb-12 reveal">
+    <div class="text-center sm:text-left mb-8">
+      <span class="text-xs font-bold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100">
+        Official Bulletin & Updates
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-blue-950 mt-2">Latest Announcements</h2>
+      <p class="text-xs sm:text-sm text-slate-500 mt-1">Upcoming employer interview schedules, pooling notices, and office advisories.</p>
     </div>
 
-    <div id="carousel-track" class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory py-2">
+    <!-- Responsive Clean Grid: 1 col on mobile, 2 cols on tablet, 4 cols on desktop -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       
-      <!-- Announcement Card: National Heroes Day Office Closure Advisory -->
-      <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-blue-900/30 interactive-card bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 p-6 flex flex-col justify-between text-white">
+      <!-- Announcement Card 1: National Heroes Day Closure -->
+      <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 text-white rounded-3xl p-6 shadow-md border border-blue-800/40 interactive-card flex flex-col justify-between min-h-[300px]">
         <div>
-          <span class="bg-red-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow-sm inline-block mb-3">Office Advisory</span>
+          <span class="bg-red-600 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm inline-block mb-3">Office Advisory</span>
           <h3 class="text-lg font-black leading-snug text-amber-400">National Heroes Day Closure</h3>
-          <p class="text-xs text-slate-200 mt-2 leading-relaxed">
+          <p class="text-xs text-slate-200 mt-2.5 leading-relaxed">
             No office operations on <strong>Monday, August 31, 2026</strong>. Operations & application processing resume on <strong>Tuesday, September 1, 2026</strong>.
           </p>
         </div>
-        <div class="pt-3 border-t border-white/10 text-[11px] text-slate-300 flex items-center gap-1.5">
+        <div class="pt-4 border-t border-white/10 text-[11px] text-slate-300 flex items-center gap-1.5">
           <span>🇵🇭</span> We honor our national heroes.
         </div>
       </div>
 
-      <!-- Announcement Card 2 -->
-      <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-slate-200 interactive-card">
-        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop" alt="Taiwan Factory" class="w-full h-full object-cover group-hover:scale-108 transition duration-700 ease-out" />
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-5 flex flex-col justify-end text-white">
-          <span class="bg-blue-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded w-max mb-1.5 shadow-sm">Taiwan Pooling</span>
+      <!-- Announcement Card 2: Taiwan Pooling -->
+      <div class="relative rounded-3xl overflow-hidden shadow-md group border border-slate-200 interactive-card min-h-[300px]">
+        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop" alt="Taiwan Factory" class="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition duration-700 ease-out" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent p-6 flex flex-col justify-end text-white">
+          <span class="bg-blue-600 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm w-max mb-2">Taiwan Pooling</span>
           <h3 class="text-base font-bold leading-snug">Electronics & Machine Operators</h3>
           <p class="text-xs text-slate-300 mt-1 line-clamp-2">Direct placement for leading semiconductor hubs in Taiwan.</p>
         </div>
       </div>
 
-      <!-- Announcement Card 3 -->
-      <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-slate-200 interactive-card">
-        <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=800&auto=format&fit=crop" alt="Japan Caregiver" class="w-full h-full object-cover group-hover:scale-108 transition duration-700 ease-out" />
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-5 flex flex-col justify-end text-white">
-          <span class="bg-red-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded w-max mb-1.5 shadow-sm">Japan SSW / TITP</span>
+      <!-- Announcement Card 3: Japan SSW -->
+      <div class="relative rounded-3xl overflow-hidden shadow-md group border border-slate-200 interactive-card min-h-[300px]">
+        <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=800&auto=format&fit=crop" alt="Japan Caregiver" class="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition duration-700 ease-out" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent p-6 flex flex-col justify-end text-white">
+          <span class="bg-red-600 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm w-max mb-2">Japan SSW / TITP</span>
           <h3 class="text-base font-bold leading-snug">Caregivers & Nursing Assistants</h3>
           <p class="text-xs text-slate-300 mt-1 line-clamp-2">Free intensive Nihongo training support for certified passers.</p>
         </div>
       </div>
 
-      <!-- Announcement Card 4 -->
-      <div class="snap-start shrink-0 w-[270px] sm:w-[300px] aspect-square relative rounded-3xl overflow-hidden shadow-md group border border-slate-200 interactive-card">
-        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop" alt="Walk-in Screening" class="w-full h-full object-cover group-hover:scale-108 transition duration-700 ease-out" />
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-5 flex flex-col justify-end text-white">
-          <span class="bg-emerald-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded w-max mb-1.5 shadow-sm">Walk-In Applicants</span>
+      <!-- Announcement Card 4: Walk-in Screening -->
+      <div class="relative rounded-3xl overflow-hidden shadow-md group border border-slate-200 interactive-card min-h-[300px]">
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop" alt="Walk-in Screening" class="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition duration-700 ease-out" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent p-6 flex flex-col justify-end text-white">
+          <span class="bg-emerald-600 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm w-max mb-2">Walk-In Applicants</span>
           <h3 class="text-base font-bold leading-snug">Malate Office Screening Daily</h3>
           <p class="text-xs text-slate-300 mt-1 line-clamp-2">Mon - Fri, 9:00 AM – 4:00 PM at Marioco Bldg, Malate.</p>
         </div>
@@ -481,16 +471,7 @@
         menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
       }
 
-      // 2. Carousel Horizontal Scroll Controls
-      const track = document.getElementById('carousel-track');
-      const prevBtn = document.getElementById('slide-prev');
-      const nextBtn = document.getElementById('slide-next');
-      if (track && nextBtn && prevBtn) {
-        nextBtn.addEventListener('click', () => track.scrollBy({ left: 320, behavior: 'smooth' }));
-        prevBtn.addEventListener('click', () => track.scrollBy({ left: -320, behavior: 'smooth' }));
-      }
-
-      // 3. Scroll Reveal for Sections
+      // 2. Scroll Reveal for Sections
       const reveals = document.querySelectorAll('.reveal');
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -502,7 +483,7 @@
       }, { threshold: 0.1 });
       reveals.forEach(el => revealObserver.observe(el));
 
-      // 4. Guaranteed Number Counter Trigger
+      // 3. Guaranteed Number Counter Trigger
       const counters = document.querySelectorAll('.counter');
       let countersDone = false;
 
