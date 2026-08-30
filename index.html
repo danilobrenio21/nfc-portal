@@ -59,7 +59,7 @@
     .goog-te-gadget { color: transparent !important; font-size: 0px !important; }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen">
+<body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen relative">
 
   <!-- TOP BAR -->
   <div class="bg-blue-950 text-white text-xs py-2 px-4 border-b border-blue-900">
@@ -454,9 +454,30 @@
     </div>
   </footer>
 
-  <!-- FLOATING LANGUAGE SELECTOR -->
+  <!-- FLOATING LANGUAGE SELECTOR (LOWER LEFT) -->
   <div id="google_translate_element" class="fixed bottom-4 left-4 z-50 bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl rounded-2xl px-3 py-1.5 flex items-center gap-1.5">
     <span class="text-sm select-none">🌐</span>
+  </div>
+
+  <!-- FLOATING PRIVACY & COOKIE CONSENT BANNER (LOWER RIGHT) -->
+  <div id="cookieConsentBanner" class="fixed bottom-4 right-4 left-4 sm:left-auto sm:max-w-md z-50 bg-slate-950/95 backdrop-blur-md text-white p-5 rounded-3xl border border-white/10 shadow-2xl transition-all duration-500 ease-out transform translate-y-20 opacity-0 pointer-events-none">
+    <div class="flex items-start gap-3">
+      <span class="text-2xl select-none">🍪</span>
+      <div class="space-y-1">
+        <h4 class="text-xs sm:text-sm font-bold text-white">We Value Your Privacy & Data</h4>
+        <p class="text-[11px] text-slate-300 leading-relaxed">
+          We use essential cookies to personalize language preferences and store job alert choices in accordance with the Data Privacy Act.
+        </p>
+        <div class="pt-3 flex items-center gap-2">
+          <button onclick="acceptCookies()" class="btn-action bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow cursor-pointer">
+            Accept & Continue
+          </button>
+          <a href="privacy.html" class="text-xs text-slate-400 hover:text-white underline px-2 py-1">
+            Read Policy
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- LEAD GENERATION / JOB ALERT POPUP MODAL -->
@@ -571,12 +592,22 @@
         counterObserver.observe(metricsSection);
       }
 
-      // 4. Lead Modal Trigger (Delayed 2 seconds)
+      // 4. Lead Modal Trigger (Delayed 2.5 seconds)
       const modalDismissed = localStorage.getItem('tw_lead_modal_dismissed');
       if (!modalDismissed) {
         setTimeout(() => {
           openLeadModal();
-        }, 2000);
+        }, 2500);
+      }
+
+      // 5. Cookie Consent Banner Trigger (Delayed 1.2 seconds)
+      const cookiesAccepted = localStorage.getItem('tw_cookies_accepted');
+      const banner = document.getElementById('cookieConsentBanner');
+      if (!cookiesAccepted && banner) {
+        setTimeout(() => {
+          banner.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+          banner.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+        }, 1200);
       }
     });
 
@@ -614,6 +645,16 @@
 
       alert(`Thank you! (${email}) is now subscribed to priority TW Manpower vacancy alerts.`);
       closeLeadModal();
+    }
+
+    // Cookie Banner Controls
+    function acceptCookies() {
+      const banner = document.getElementById('cookieConsentBanner');
+      if (banner) {
+        banner.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+        banner.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+      }
+      localStorage.setItem('tw_cookies_accepted', 'true');
     }
 
     // Google Translation Initialization
