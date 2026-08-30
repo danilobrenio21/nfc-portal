@@ -183,11 +183,12 @@
           <div>
             <label for="target-skill" class="block text-xs font-semibold text-slate-700 mb-1">Target Skill/Job</label>
             <select id="target-skill" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900">
-              <option>Factory Machine Operator / Technician</option>
-              <option>Caregiver / Healthcare Assistant</option>
-              <option>Semiconductor & Electronics Assembly</option>
-              <option>Agriculture & Food Processing</option>
-              <option>Construction & Metal Fabrication</option>
+              <option>Rubber Injection Molding Worker</option>
+              <option>Female Soldering Operator</option>
+              <option>Female Factory Staff (College Grad)</option>
+              <option>Female Caretaker (Ex-Abroad / Mandarin)</option>
+              <option>Overhead Crane Operator</option>
+              <option>General Electronics & Assembly</option>
             </select>
           </div>
 
@@ -337,6 +338,32 @@
     </div>
   </section>
 
+  <!-- LIVE FACEBOOK FEED (AUTO-UPDATES WITH FACEBOOK POSTS) -->
+  <section class="max-w-6xl mx-auto px-4 py-12 reveal">
+    <div class="text-center mb-8">
+      <span class="text-xs font-bold uppercase tracking-widest text-blue-900 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+        Live Social Updates
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Latest from Our Official Facebook Page</h2>
+      <p class="text-xs sm:text-sm text-slate-500 mt-1">Real-time pooling announcements, interview batches, and official photos direct from Facebook.</p>
+    </div>
+
+    <div class="flex justify-center">
+      <div class="bg-white p-3 sm:p-4 rounded-3xl shadow-xl border border-slate-200 overflow-hidden w-full max-w-[500px] flex justify-center">
+        <iframe 
+          src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1V5EraQai2%2F&tabs=timeline&width=500&height=650&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" 
+          width="500" 
+          height="650" 
+          style="border:none;overflow:hidden;width:100%;max-width:500px;" 
+          scrolling="no" 
+          frameborder="0" 
+          allowfullscreen="true" 
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
   <!-- MAP SECTION -->
   <section class="max-w-6xl mx-auto px-4 py-12 reveal">
     <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center interactive-card">
@@ -437,7 +464,7 @@
       }, { threshold: 0.1 });
       reveals.forEach(el => revealObserver.observe(el));
 
-      // 4. Number Counter Trigger
+      // 4. Guaranteed Number Counter Trigger
       const counters = document.querySelectorAll('.counter');
       let countersDone = false;
 
