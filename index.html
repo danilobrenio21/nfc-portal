@@ -12,7 +12,6 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Desktop Hover & Mobile Tap Press Feedback */
     button:hover, a.btn-action:hover {
       transform: translateY(-2px);
       filter: brightness(1.05);
@@ -22,7 +21,6 @@
       filter: brightness(0.95);
     }
 
-    /* Interactive card subtle hover */
     .interactive-card {
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -30,7 +28,6 @@
       transform: translateY(-4px);
     }
 
-    /* Scroll Reveal Animation */
     .reveal {
       opacity: 0;
       transform: translateY(20px);
@@ -39,6 +36,30 @@
     .reveal.active {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* Ultra-Smooth Modal Transitions */
+    #leadModal {
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.4s ease;
+    }
+    #leadModalCard {
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+    }
+    .modal-hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .modal-hidden #leadModalCard {
+      transform: scale(0.88) translateY(24px);
+      opacity: 0;
+    }
+    .modal-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-visible #leadModalCard {
+      transform: scale(1) translateY(0);
+      opacity: 1;
     }
 
     /* Clean Google Translate Styling */
@@ -61,6 +82,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen relative">
 
+  <!-- TOP BAR -->
   <div class="bg-blue-950 text-white text-xs py-2 px-4 border-b border-blue-900">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-0 text-center sm:text-left">
       <div class="flex items-center gap-2">
@@ -74,6 +96,7 @@
     </div>
   </div>
 
+  <!-- NAVIGATION -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
     <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-3 group">
@@ -84,6 +107,7 @@
         </div>
       </a>
 
+      <!-- Desktop Navigation -->
       <nav aria-label="Main Navigation" class="hidden lg:flex items-center space-x-4 text-xs font-semibold text-slate-600">
         <a href="index.html" class="text-blue-900 font-bold border-b-2 border-blue-900 pb-1">Home</a>
         <a href="about.html" class="hover:text-blue-900 hover:-translate-y-0.5 transition">About Us</a>
@@ -97,11 +121,13 @@
         <a href="apply.html" class="btn-action bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold uppercase px-3.5 py-2 rounded-lg shadow-md hover:shadow-lg transition inline-block">Apply Now</a>
       </nav>
 
+      <!-- Mobile Menu Button -->
       <button id="menu-btn" type="button" class="lg:hidden p-2 text-slate-700 hover:text-blue-900 hover:bg-slate-100 rounded-lg focus:outline-none" aria-label="Toggle Menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
       </button>
     </div>
 
+    <!-- Mobile Dropdown Menu -->
     <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-6 space-y-2 shadow-lg text-sm font-medium">
       <a href="index.html" class="block py-2 text-blue-900 font-bold border-b border-slate-50">Home</a>
       <a href="about.html" class="block py-2 text-slate-700 hover:text-blue-900 border-b border-slate-50">About the Agency</a>
@@ -116,6 +142,7 @@
     </div>
   </header>
 
+  <!-- HERO SECTION -->
   <section class="relative bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white py-14 sm:py-20 px-4 reveal">
     <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
       
@@ -140,6 +167,7 @@
         </div>
       </div>
 
+      <!-- Quick Pre-Registration Form -->
       <div id="apply" class="lg:col-span-5 bg-white text-slate-900 p-6 sm:p-7 rounded-2xl shadow-2xl border border-slate-100">
         <div class="flex items-center justify-between mb-1">
           <h3 class="text-lg font-bold text-blue-950">Quick Pre-Registration</h3>
@@ -198,6 +226,7 @@
     </div>
   </section>
 
+  <!-- HIGHLIGHTS -->
   <section class="max-w-6xl mx-auto px-4 -mt-6 relative z-20 reveal">
     <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
       <div class="interactive-card p-3 rounded-xl hover:bg-slate-50">
@@ -219,6 +248,7 @@
     </div>
   </section>
 
+  <!-- METRICS -->
   <section id="metrics-section" class="max-w-6xl mx-auto px-4 py-16 reveal">
     <div class="bg-gradient-to-br from-blue-950 via-slate-900 to-blue-900 text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden border border-blue-800/40">
       
@@ -270,6 +300,7 @@
     </div>
   </section>
 
+  <!-- LATEST ANNOUNCEMENTS -->
   <section class="max-w-6xl mx-auto px-4 py-8 reveal">
     <div class="mb-6">
       <span class="text-xs font-bold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100">
@@ -280,7 +311,6 @@
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      
       <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 text-white rounded-3xl p-6 shadow-md border border-blue-800/40 interactive-card flex flex-col justify-between min-h-[290px]">
         <div>
           <span class="bg-red-600 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm inline-block mb-3">Office Advisory</span>
@@ -332,10 +362,10 @@
           <p class="text-xs text-slate-300 mt-1 line-clamp-2">Mon - Fri, 9:00 AM – 4:00 PM at Marioco Bldg, Malate.</p>
         </div>
       </div>
-
     </div>
   </section>
 
+  <!-- LIVE SOCIAL COMMUNITY CARD -->
   <section class="max-w-6xl mx-auto px-4 py-8 reveal">
     <div class="text-center mb-6">
       <span class="text-xs font-bold uppercase tracking-widest text-blue-900 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
@@ -382,6 +412,7 @@
     </div>
   </section>
 
+  <!-- MAP SECTION -->
   <section class="max-w-6xl mx-auto px-4 py-12 reveal">
     <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center interactive-card">
       <div class="lg:col-span-5 space-y-4">
@@ -421,6 +452,7 @@
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer class="bg-slate-900 text-slate-400 py-10 px-4 text-xs border-t border-slate-800 mt-auto reveal">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
       <div class="space-y-1">
@@ -445,10 +477,12 @@
     </div>
   </footer>
 
+  <!-- FLOATING LANGUAGE SELECTOR -->
   <div id="google_translate_element" class="fixed bottom-4 left-4 z-50 bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl rounded-2xl px-3 py-1.5 flex items-center gap-1.5">
     <span class="text-sm select-none">🌐</span>
   </div>
 
+  <!-- FLOATING COOKIE CONSENT BANNER -->
   <div id="cookieConsentBanner" class="fixed bottom-4 right-4 left-4 sm:left-auto sm:max-w-md z-50 bg-slate-950/95 backdrop-blur-md text-white p-5 rounded-3xl border border-white/10 shadow-2xl transition-all duration-500 ease-out transform translate-y-20 opacity-0 pointer-events-none">
     <div class="flex items-start gap-3">
       <span class="text-2xl select-none">🍪</span>
@@ -469,57 +503,90 @@
     </div>
   </div>
 
-  <div id="leadModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 ease-out">
-    <div id="leadModalCard" class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-100 text-center relative transform scale-90 translate-y-4 transition-all duration-300 ease-out">
+  <!-- THEMED EXECUTIVE POPUP MODAL (SMOOTH SPRING ANIMATION) -->
+  <div id="leadModal" class="modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+    <div id="leadModalCard" class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-100/80 relative">
       
-      <button onclick="closeLeadModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition cursor-pointer" aria-label="Close modal">
+      <!-- Top Decorative Band -->
+      <div class="h-1.5 bg-gradient-to-r from-red-600 via-amber-400 to-blue-900 w-full"></div>
+
+      <!-- Close Button -->
+      <button onclick="closeLeadModal()" class="absolute top-4 right-4 z-10 text-white/80 hover:text-white w-7 h-7 rounded-full bg-black/25 hover:bg-black/50 flex items-center justify-center transition cursor-pointer backdrop-blur-sm" aria-label="Close modal">
         ✕
       </button>
 
-      <div class="w-14 h-14 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl shadow-sm">
-        🔔
+      <!-- Modal Header (Navy Gradient Theme) -->
+      <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 text-white p-6 sm:p-7 relative overflow-hidden">
+        <div class="relative z-10 space-y-1.5">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-amber-400/10 px-2.5 py-0.5 rounded-full border border-amber-400/20">
+              Direct Pooling Desk
+            </span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-black tracking-tight text-white">
+            Priority Job Alerts
+          </h3>
+          <p class="text-slate-300 text-xs leading-relaxed">
+            Get notified first for upcoming <strong>Taiwan</strong> factory batches & <strong>Japan</strong> TITP/SSW interview schedules.
+          </p>
+        </div>
       </div>
 
-      <span class="text-[10px] font-black uppercase tracking-widest text-red-600 bg-red-50 px-2.5 py-1 rounded-full border border-red-100">
-        Priority Job Alerts
-      </span>
-      <h3 class="text-xl sm:text-2xl font-black text-blue-950 mt-2">
-        Be the First to Know!
-      </h3>
-      <p class="text-xs text-slate-500 mt-2 leading-relaxed">
-        Get instant alerts for new <strong>Taiwan & Japan</strong> factory, technical, and caretaking job batches before interview queues fill up.
-      </p>
-
-      <form action="https://api.web3forms.com/submit" method="POST" class="mt-6 space-y-3">
-        <input type="hidden" name="access_key" value="a22d6a8d-48ef-467f-948e-336c83f1b15c" />
-        <input type="hidden" name="subject" value="New Priority Job Alert Subscription - TW Manpower" />
-        <input type="hidden" name="from_name" value="TW Manpower Lead Engine" />
-
-        <div>
-          <input 
-            id="leadEmail" 
-            name="email"
-            type="email" 
-            required 
-            placeholder="Enter your email address..." 
-            class="w-full text-xs sm:text-sm border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 transition" 
-          />
+      <!-- Modal Body -->
+      <div class="p-6 sm:p-7 space-y-4">
+        <!-- Quick Benefits List -->
+        <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-700 bg-slate-50 p-3 rounded-2xl border border-slate-100">
+          <div class="flex items-center gap-1.5">
+            <span class="text-red-600 font-bold">✓</span>
+            <span>Taiwan Electronics</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-red-600 font-bold">✓</span>
+            <span>Japan Technical Trainee</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-red-600 font-bold">✓</span>
+            <span>Interview Batches</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-emerald-700 font-bold">✓</span>
+            <span>₱0 Pre-Reg Fee</span>
+          </div>
         </div>
 
-        <button type="submit" class="btn-action w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl text-xs sm:text-sm shadow-lg hover:shadow-red-600/30 transition cursor-pointer">
-          Get Priority Vacancy Alerts 📩
-        </button>
-      </form>
+        <!-- Form -->
+        <form action="https://api.web3forms.com/submit" method="POST" class="space-y-3">
+          <input type="hidden" name="access_key" value="a22d6a8d-48ef-467f-948e-336c83f1b15c" />
+          <input type="hidden" name="subject" value="New Priority Job Alert Subscription - TW Manpower" />
+          <input type="hidden" name="from_name" value="TW Manpower Lead Engine" />
 
-      <div class="mt-4">
-        <button onclick="closeLeadModal()" class="text-xs font-semibold text-slate-400 hover:text-slate-600 hover:underline cursor-pointer">
-          No thanks, I'll browse manually
-        </button>
+          <div>
+            <label for="subscriber-email" class="block text-xs font-bold text-slate-700 mb-1 text-left">Applicant Email Address</label>
+            <input 
+              id="subscriber-email" 
+              name="email"
+              type="email" 
+              required 
+              placeholder="juandelacruz@gmail.com" 
+              class="w-full text-xs sm:text-sm border border-slate-300 rounded-xl px-3.5 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 transition" 
+            />
+          </div>
+
+          <button type="submit" class="btn-action w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl text-xs sm:text-sm shadow-md hover:shadow-red-600/30 transition cursor-pointer flex items-center justify-center gap-1.5">
+            <span>Subscribe to Priority Vacancies</span>
+            <span>→</span>
+          </button>
+        </form>
+
+        <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+          <span>🔒 DMW & RA 10173 Compliant</span>
+          <button onclick="closeLeadModal()" class="font-semibold text-slate-500 hover:text-slate-800 hover:underline cursor-pointer">
+            Dismiss
+          </button>
+        </div>
       </div>
 
-      <p class="text-[10px] text-slate-400 mt-4 border-t border-slate-100 pt-3">
-        🔒 100% Free • No spam • Unsubscribe anytime • DMW Compliant
-      </p>
     </div>
   </div>
 
@@ -585,12 +652,12 @@
         counterObserver.observe(metricsSection);
       }
 
-      // 4. Lead Modal Trigger (Delayed 2.5 seconds)
+      // 4. Smooth Lead Modal Trigger (Delayed 2.2 seconds)
       const modalDismissed = localStorage.getItem('tw_lead_modal_dismissed');
       if (!modalDismissed) {
         setTimeout(() => {
           openLeadModal();
-        }, 2500);
+        }, 2200);
       }
 
       // 5. Cookie Consent Banner Trigger (Delayed 1.2 seconds)
@@ -604,30 +671,19 @@
       }
     });
 
-    // Lead Modal Controls
+    // Smooth Modal Functions
     function openLeadModal() {
       const modal = document.getElementById('leadModal');
-      const card = document.getElementById('leadModalCard');
-      if (!modal || !card) return;
-
-      modal.classList.remove('opacity-0', 'pointer-events-none');
-      modal.classList.add('opacity-100', 'pointer-events-auto');
-      
-      card.classList.remove('scale-90', 'translate-y-4');
-      card.classList.add('scale-100', 'translate-y-0');
+      if (!modal) return;
+      modal.classList.remove('modal-hidden');
+      modal.classList.add('modal-visible');
     }
 
     function closeLeadModal() {
       const modal = document.getElementById('leadModal');
-      const card = document.getElementById('leadModalCard');
-      if (!modal || !card) return;
-
-      modal.classList.remove('opacity-100', 'pointer-events-auto');
-      modal.classList.add('opacity-0', 'pointer-events-none');
-      
-      card.classList.remove('scale-100', 'translate-y-0');
-      card.classList.add('scale-90', 'translate-y-4');
-
+      if (!modal) return;
+      modal.classList.remove('modal-visible');
+      modal.classList.add('modal-hidden');
       localStorage.setItem('tw_lead_modal_dismissed', 'true');
     }
 
