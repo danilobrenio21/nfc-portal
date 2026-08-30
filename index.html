@@ -38,6 +38,52 @@
       transform: translateY(0);
     }
 
+    /* Modern Page Switching Fade-Slide Effect */
+    body {
+      opacity: 1;
+      transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    body.page-leaving {
+      opacity: 0;
+      transform: scale(0.99) translateY(-6px);
+    }
+
+    /* Morphing Hamburger Menu Icon Animation */
+    .bar {
+      transition: transform 0.3s cubic-bezier(0.68, -0.6, 0.32, 1.6), opacity 0.2s ease, background-color 0.2s ease;
+      transform-origin: center;
+    }
+    .menu-active .bar-1 {
+      transform: translateY(6px) rotate(45deg);
+      background-color: #dc2626 !important;
+    }
+    .menu-active .bar-2 {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .menu-active .bar-3 {
+      transform: translateY(-6px) rotate(-45deg);
+      background-color: #dc2626 !important;
+    }
+
+    /* Modern Mobile Menu Slide & Fade Transition */
+    #mobile-menu {
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-10px) scale(0.98);
+      pointer-events: none;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                  opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      overflow: hidden;
+    }
+    #mobile-menu.menu-open {
+      max-height: 600px;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
     /* Ultra-Smooth Modal Transitions */
     #leadModal {
       transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.4s ease;
@@ -97,9 +143,9 @@
   </div>
 
   <!-- NAVIGATION -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-40 shadow-sm">
     <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3 group">
+      <a href="index.html" class="flex items-center gap-3 group page-link">
         <img src="logo.jpg" alt="TW Manpower Logo" class="h-10 sm:h-12 w-auto object-contain shrink-0 group-hover:scale-105 transition duration-300" onerror="this.style.display='none'" />
         <div class="flex flex-col leading-tight">
           <span class="text-xs sm:text-sm font-black text-blue-950 tracking-tight group-hover:text-red-600 transition">TW (PHIL.) INTERNATIONAL</span>
@@ -109,36 +155,71 @@
 
       <!-- Desktop Navigation -->
       <nav aria-label="Main Navigation" class="hidden lg:flex items-center space-x-4 text-xs font-semibold text-slate-600">
-        <a href="index.html" class="text-blue-900 font-bold border-b-2 border-blue-900 pb-1">Home</a>
-        <a href="about.html" class="hover:text-blue-900 hover:-translate-y-0.5 transition">About Us</a>
-        <a href="jobs.html" class="hover:text-blue-900 hover:-translate-y-0.5 transition">Job Vacancies</a>
-        <a href="process.html" class="hover:text-blue-900 hover:-translate-y-0.5 transition">Application Guide</a>
-        <a href="programs.html" class="hover:text-blue-900 hover:-translate-y-0.5 transition">Country Programs</a>
-        <a href="employers.html" class="hover:text-blue-900 hover:-translate-y-0.5 transition">Employers</a>
-        <a href="advisory.html" class="hover:text-blue-900 hover:-translate-y-0.5 transition text-red-600 font-bold">Advisory</a>
-        <a href="faqs.html" class="hover:text-blue-900 hover:-translate-y-0.5 transition">FAQs</a>
-        <a href="contact.html" class="hover:text-blue-900 hover:-translate-y-0.5 transition">Contact</a>
-        <a href="apply.html" class="btn-action bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold uppercase px-3.5 py-2 rounded-lg shadow-md hover:shadow-lg transition inline-block">Apply Now</a>
+        <a href="index.html" class="page-link text-blue-900 font-bold border-b-2 border-blue-900 pb-1">Home</a>
+        <a href="about.html" class="page-link hover:text-blue-900 hover:-translate-y-0.5 transition">About Us</a>
+        <a href="jobs.html" class="page-link hover:text-blue-900 hover:-translate-y-0.5 transition">Job Vacancies</a>
+        <a href="process.html" class="page-link hover:text-blue-900 hover:-translate-y-0.5 transition">Application Guide</a>
+        <a href="programs.html" class="page-link hover:text-blue-900 hover:-translate-y-0.5 transition">Country Programs</a>
+        <a href="employers.html" class="page-link hover:text-blue-900 hover:-translate-y-0.5 transition">Employers</a>
+        <a href="advisory.html" class="page-link hover:text-blue-900 hover:-translate-y-0.5 transition text-red-600 font-bold">Advisory</a>
+        <a href="faqs.html" class="page-link hover:text-blue-900 hover:-translate-y-0.5 transition">FAQs</a>
+        <a href="contact.html" class="page-link hover:text-blue-900 hover:-translate-y-0.5 transition">Contact</a>
+        <a href="apply.html" class="page-link btn-action bg-red-600 hover:bg-red-700 text-white text-[11px] font-bold uppercase px-3.5 py-2 rounded-lg shadow-md hover:shadow-lg transition inline-block">Apply Now</a>
       </nav>
 
-      <!-- Mobile Menu Button -->
-      <button id="menu-btn" type="button" class="lg:hidden p-2 text-slate-700 hover:text-blue-900 hover:bg-slate-100 rounded-lg focus:outline-none" aria-label="Toggle Menu">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      <!-- Morphing Animated Mobile Menu Button -->
+      <button id="menu-btn" type="button" class="lg:hidden w-11 h-11 flex flex-col items-center justify-center gap-1.5 p-2 rounded-xl text-slate-800 bg-slate-100 hover:bg-slate-200/80 active:scale-90 transition duration-200 focus:outline-none" aria-label="Toggle Menu">
+        <span class="bar bar-1 w-5 h-0.5 bg-slate-800 rounded-full block"></span>
+        <span class="bar bar-2 w-5 h-0.5 bg-slate-800 rounded-full block"></span>
+        <span class="bar bar-3 w-5 h-0.5 bg-slate-800 rounded-full block"></span>
       </button>
     </div>
 
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-6 space-y-2 shadow-lg text-sm font-medium">
-      <a href="index.html" class="block py-2 text-blue-900 font-bold border-b border-slate-50">Home</a>
-      <a href="about.html" class="block py-2 text-slate-700 hover:text-blue-900 border-b border-slate-50">About the Agency</a>
-      <a href="jobs.html" class="block py-2 text-slate-700 hover:text-blue-900 border-b border-slate-50">Job Vacancies</a>
-      <a href="process.html" class="block py-2 text-slate-700 hover:text-blue-900 border-b border-slate-50">Application Guide & Requirements</a>
-      <a href="programs.html" class="block py-2 text-slate-700 hover:text-blue-900 border-b border-slate-50">Country Programs</a>
-      <a href="employers.html" class="block py-2 text-slate-700 hover:text-blue-900 border-b border-slate-50">For Foreign Employers</a>
-      <a href="advisory.html" class="block py-2 text-red-600 font-bold border-b border-slate-50">Anti-Illegal Recruitment Advisory</a>
-      <a href="faqs.html" class="block py-2 text-slate-700 hover:text-blue-900 border-b border-slate-50">Frequently Asked Questions</a>
-      <a href="contact.html" class="block py-2 text-slate-700 hover:text-blue-900 border-b border-slate-50">Contact & Location</a>
-      <a href="apply.html" class="block w-full text-center bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 rounded-lg shadow mt-2">Apply Now</a>
+    <!-- Modern Glassmorphism Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="lg:hidden border-t border-slate-100 bg-white/95 backdrop-blur-md px-4 space-y-1.5 shadow-xl text-xs font-semibold">
+      <div class="py-3 space-y-1">
+        <a href="index.html" class="page-link flex items-center justify-between p-2.5 rounded-xl bg-blue-50 text-blue-950 font-bold">
+          <span>Home</span>
+          <span class="text-[10px] text-blue-900">Current</span>
+        </a>
+        <a href="about.html" class="page-link flex items-center justify-between p-2.5 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-blue-950 transition">
+          <span>About the Agency</span>
+          <span class="text-slate-400">→</span>
+        </a>
+        <a href="jobs.html" class="page-link flex items-center justify-between p-2.5 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-blue-950 transition">
+          <span>Job Vacancies</span>
+          <span class="bg-red-50 text-red-600 text-[10px] font-black px-2 py-0.5 rounded-full border border-red-100">HIRING</span>
+        </a>
+        <a href="process.html" class="page-link flex items-center justify-between p-2.5 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-blue-950 transition">
+          <span>Application Guide & Requirements</span>
+          <span class="text-slate-400">→</span>
+        </a>
+        <a href="programs.html" class="page-link flex items-center justify-between p-2.5 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-blue-950 transition">
+          <span>Country Programs (Taiwan / Japan)</span>
+          <span class="text-slate-400">→</span>
+        </a>
+        <a href="employers.html" class="page-link flex items-center justify-between p-2.5 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-blue-950 transition">
+          <span>For Foreign Employers</span>
+          <span class="text-slate-400">→</span>
+        </a>
+        <a href="advisory.html" class="page-link flex items-center justify-between p-2.5 rounded-xl text-red-600 hover:bg-red-50 font-bold transition">
+          <span>Anti-Illegal Recruitment Advisory</span>
+          <span class="text-red-600">⚠️</span>
+        </a>
+        <a href="faqs.html" class="page-link flex items-center justify-between p-2.5 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-blue-950 transition">
+          <span>Frequently Asked Questions</span>
+          <span class="text-slate-400">→</span>
+        </a>
+        <a href="contact.html" class="page-link flex items-center justify-between p-2.5 rounded-xl text-slate-700 hover:bg-slate-50 hover:text-blue-950 transition">
+          <span>Contact & Location Map</span>
+          <span class="text-slate-400">📍</span>
+        </a>
+      </div>
+      <div class="pb-4 pt-1">
+        <a href="apply.html" class="page-link btn-action block w-full text-center bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl shadow-md text-xs uppercase tracking-wide">
+          Apply Now Online
+        </a>
+      </div>
     </div>
   </header>
 
@@ -158,10 +239,10 @@
         </p>
         
         <div class="pt-2 flex flex-col sm:flex-row justify-center lg:justify-start gap-3">
-          <a href="jobs.html" class="btn-action w-full sm:w-auto text-center bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition shadow-lg hover:shadow-red-600/30 inline-block">
+          <a href="jobs.html" class="page-link btn-action w-full sm:w-auto text-center bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition shadow-lg hover:shadow-red-600/30 inline-block">
             View Active Job Vacancies
           </a>
-          <a href="apply.html" class="btn-action w-full sm:w-auto text-center bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl text-sm transition border border-white/20 hover:border-white/40 inline-block backdrop-blur-sm">
+          <a href="apply.html" class="page-link btn-action w-full sm:w-auto text-center bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl text-sm transition border border-white/20 hover:border-white/40 inline-block backdrop-blur-sm">
             Submit Pre-Registration
           </a>
         </div>
@@ -349,7 +430,7 @@
         </div>
         <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
           <span class="text-[10px] font-semibold text-slate-400">₱0 Initial Fee</span>
-          <a href="jobs.html" class="btn-action inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow transition">
+          <a href="jobs.html" class="page-link btn-action inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow transition">
             Apply Now →
           </a>
         </div>
@@ -450,7 +531,7 @@
         </div>
 
         <div class="pt-2">
-          <a href="https://maps.google.com/?q=1945+M.+Adriatico+St,+Malate,+Manila,+Philippines" target="_blank" rel="noopener noreferrer" class="btn-action inline-block bg-blue-900 hover:bg-blue-800 text-white text-xs font-bold px-5 py-3 rounded-xl shadow transition">
+          <a href="https://maps.google.com/?q=1945+M.+Adriatico+St,+Malate,+Manila,+Philippines" target="_blank" rel="noopener noreferrer" class="page-link btn-action inline-block bg-blue-900 hover:bg-blue-800 text-white text-xs font-bold px-5 py-3 rounded-xl shadow transition">
             Open in Google Maps App
           </a>
         </div>
@@ -505,7 +586,7 @@
           <button onclick="acceptCookies()" class="btn-action bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow cursor-pointer">
             Accept & Continue
           </button>
-          <a href="privacy.html" class="text-xs text-slate-400 hover:text-white underline px-2 py-1">
+          <a href="privacy.html" class="page-link text-xs text-slate-400 hover:text-white underline px-2 py-1">
             Read Policy
           </a>
         </div>
@@ -517,15 +598,12 @@
   <div id="leadModal" class="modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
     <div id="leadModalCard" class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-100/80 relative">
       
-      <!-- Top Decorative Band -->
       <div class="h-1.5 bg-gradient-to-r from-red-600 via-amber-400 to-blue-900 w-full"></div>
 
-      <!-- Close Button -->
       <button onclick="closeLeadModal()" class="absolute top-4 right-4 z-10 text-white/80 hover:text-white w-7 h-7 rounded-full bg-black/25 hover:bg-black/50 flex items-center justify-center transition cursor-pointer backdrop-blur-sm" aria-label="Close modal">
         ✕
       </button>
 
-      <!-- Modal Header (Navy Gradient Theme) -->
       <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 text-white p-6 sm:p-7 relative overflow-hidden">
         <div class="relative z-10 space-y-1.5">
           <div class="flex items-center gap-2">
@@ -543,7 +621,6 @@
         </div>
       </div>
 
-      <!-- Modal Body -->
       <div class="p-6 sm:p-7 space-y-4">
         <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-700 bg-slate-50 p-3 rounded-2xl border border-slate-100">
           <div class="flex items-center gap-1.5">
@@ -600,14 +677,33 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // 1. Mobile Navigation Toggle
+      // 1. Morphing Hamburger Mobile Navigation Toggle
       const menuBtn = document.getElementById('menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        menuBtn.addEventListener('click', () => {
+          menuBtn.classList.toggle('menu-active');
+          mobileMenu.classList.toggle('menu-open');
+        });
       }
 
-      // 2. Scroll Reveal for Sections
+      // 2. Smooth Page-Switch Transitions
+      const pageLinks = document.querySelectorAll('a.page-link');
+      pageLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const targetUrl = this.getAttribute('href');
+          // Only trigger transition for internal pages (not hashes, outside links, or javascript)
+          if (targetUrl && !targetUrl.startsWith('#') && !targetUrl.startsWith('http') && !targetUrl.startsWith('mailto:') && !targetUrl.startsWith('tel:')) {
+            e.preventDefault();
+            document.body.classList.add('page-leaving');
+            setTimeout(() => {
+              window.location.href = targetUrl;
+            }, 200);
+          }
+        });
+      });
+
+      // 3. Scroll Reveal for Sections
       const reveals = document.querySelectorAll('.reveal');
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -619,7 +715,7 @@
       }, { threshold: 0.1 });
       reveals.forEach(el => revealObserver.observe(el));
 
-      // 3. Counter Trigger
+      // 4. Counter Trigger
       const counters = document.querySelectorAll('.counter');
       let countersDone = false;
 
@@ -660,7 +756,7 @@
         counterObserver.observe(metricsSection);
       }
 
-      // 4. Smooth Lead Modal Trigger (Delayed 2.2 seconds)
+      // 5. Smooth Lead Modal Trigger (Delayed 2.2 seconds)
       const modalDismissed = localStorage.getItem('tw_lead_modal_dismissed');
       if (!modalDismissed) {
         setTimeout(() => {
@@ -668,7 +764,7 @@
         }, 2200);
       }
 
-      // 5. Cookie Consent Banner Trigger (Delayed 1.2 seconds)
+      // 6. Cookie Consent Banner Trigger (Delayed 1.2 seconds)
       const cookiesAccepted = localStorage.getItem('tw_cookies_accepted');
       const banner = document.getElementById('cookieConsentBanner');
       if (!cookiesAccepted && banner) {
