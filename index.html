@@ -6,7 +6,7 @@
   <title>TW (Phil.) International Manpower Inc. | DMW Licensed Agency</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Prevent any horizontal screen breakage */
+    /* Prevent horizontal overflow */
     html, body {
       max-width: 100% !important;
       overflow-x: hidden !important;
@@ -287,7 +287,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full">
       
       <!-- Card 1: National Heroes Day -->
-      <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 text-white rounded-3xl p-6 shadow-md border border-blue-800/40 interactive-card flex flex-col justify-between min-h-[260px] w-full">
+      <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 text-white rounded-3xl p-6 shadow-md border border-blue-800/40 interactive-card flex flex-col justify-between min-h-[300px] w-full">
         <div>
           <span class="bg-red-600 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm inline-block mb-3">Office Advisory</span>
           <h3 class="text-lg font-black leading-snug text-amber-400">National Heroes Day Closure</h3>
@@ -300,18 +300,30 @@
         </div>
       </div>
 
-      <!-- Card 2: Taiwan Pooling -->
-      <div class="relative rounded-3xl overflow-hidden shadow-md group border border-slate-200 interactive-card min-h-[260px] w-full">
-        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop" alt="Taiwan Factory" class="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition duration-700 ease-out" />
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent p-6 flex flex-col justify-end text-white">
-          <span class="bg-blue-600 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm w-max mb-2">Taiwan Pooling</span>
-          <h3 class="text-base font-bold leading-snug">Electronics & Machine Operators</h3>
-          <p class="text-xs text-slate-300 mt-1 line-clamp-2">Direct placement for leading semiconductor hubs in Taiwan.</p>
+      <!-- Card 2: Rubber Injection Molding Hiring (Taiwan Bound with Apply Link) -->
+      <div class="bg-white rounded-3xl p-6 shadow-md border border-blue-200 interactive-card flex flex-col justify-between min-h-[300px] w-full">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="bg-blue-100 text-blue-900 text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full">🇹🇼 Bound for Taiwan</span>
+            <span class="text-[10px] font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded border border-red-100">HIRING</span>
+          </div>
+          <h3 class="text-base font-black leading-snug text-blue-950 mt-1">Rubber Injection Molding Workers</h3>
+          <ul class="text-xs text-slate-600 mt-3 space-y-1.5 bg-slate-50 p-3 rounded-xl border border-slate-100">
+            <li class="flex items-center gap-1.5"><span>✅</span> <strong>Male, 20–35 yrs old</strong></li>
+            <li class="flex items-center gap-1.5"><span>✅</span> <strong>Height:</strong> At least 165 cm</li>
+            <li class="flex items-center gap-1.5"><span>✅</span> <strong>Exp:</strong> Rubber injection molding</li>
+          </ul>
+        </div>
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+          <span class="text-[10px] font-semibold text-slate-400">₱0 Initial Fee</span>
+          <a href="jobs.html" class="btn-action inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow transition">
+            Apply Now →
+          </a>
         </div>
       </div>
 
-      <!-- Card 3: Japan SSW -->
-      <div class="relative rounded-3xl overflow-hidden shadow-md group border border-slate-200 interactive-card min-h-[260px] w-full">
+      <!-- Card 3: Japan SSW Caregivers -->
+      <div class="relative rounded-3xl overflow-hidden shadow-md group border border-slate-200 interactive-card min-h-[300px] w-full">
         <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=800&auto=format&fit=crop" alt="Japan Caregiver" class="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition duration-700 ease-out" />
         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent p-6 flex flex-col justify-end text-white">
           <span class="bg-red-600 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm w-max mb-2">Japan SSW / TITP</span>
@@ -321,7 +333,7 @@
       </div>
 
       <!-- Card 4: Walk-in Screening -->
-      <div class="relative rounded-3xl overflow-hidden shadow-md group border border-slate-200 interactive-card min-h-[260px] w-full">
+      <div class="relative rounded-3xl overflow-hidden shadow-md group border border-slate-200 interactive-card min-h-[300px] w-full">
         <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop" alt="Walk-in Screening" class="absolute inset-0 w-full h-full object-cover group-hover:scale-108 transition duration-700 ease-out" />
         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent p-6 flex flex-col justify-end text-white">
           <span class="bg-emerald-600 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm w-max mb-2">Walk-In Applicants</span>
@@ -362,12 +374,12 @@
 
       <div class="mt-5 pt-4 border-t border-white/10 space-y-2 text-xs text-slate-300">
         <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center justify-between">
-          <span>📢 Advisory: National Heroes Day Office Closure</span>
+          <span>📢 Latest: Rubber Injection Molding Workers (Taiwan)</span>
           <span class="text-[10px] font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">NEW</span>
         </div>
         <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center justify-between">
-          <span>📸 Deployment Send-Off Photos & Passers</span>
-          <span class="text-[10px] font-bold text-slate-400">UPDATED</span>
+          <span>📢 Advisory: National Heroes Day Office Closure</span>
+          <span class="text-[10px] font-bold text-slate-300 bg-white/10 px-2 py-0.5 rounded">ADVISORY</span>
         </div>
       </div>
 
