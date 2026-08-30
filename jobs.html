@@ -35,9 +35,8 @@
     /* Scroll Reveal */
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     }
     .reveal.active {
       opacity: 1;
@@ -126,37 +125,39 @@
 
   <!-- BANNER -->
   <section class="bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white py-12 sm:py-16 px-4 text-center reveal">
-    <div class="max-w-4xl mx-auto space-y-3">
+    <div class="max-w-4xl mx-auto space-y-4">
       <span class="inline-block text-xs font-bold tracking-widest text-amber-400 uppercase bg-amber-400/10 px-3.5 py-1.5 rounded-full border border-amber-400/30">
         📢 Active Recruitment Batches
       </span>
       <h1 class="text-3xl sm:text-4xl font-black">Official Job Vacancies</h1>
-      <p class="text-slate-300 text-xs sm:text-sm max-w-2xl mx-auto">
+      <p class="text-slate-300 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">
         Browse open positions bound for Taiwan. Select any job card to review complete qualifications and requirements.
       </p>
-      <div class="pt-2">
-        <span class="text-[11px] font-bold bg-green-500/20 text-green-300 px-3 py-1 rounded-full border border-green-500/30">
+      
+      <!-- FIXED RESPONSIVE GREEN ADVISORY BADGE -->
+      <div class="pt-2 px-2 flex justify-center">
+        <div class="bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-bold px-4 py-2.5 rounded-2xl max-w-xl text-center leading-snug shadow-sm">
           ⚠️ Manpower Pooling Only • ₱0 Placement Fee Collected During Initial Application
-        </span>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- JOB LISTINGS SECTION -->
-  <main class="max-w-6xl mx-auto px-4 py-12 flex-grow">
+  <main class="max-w-6xl mx-auto px-4 py-10 flex-grow">
     
     <!-- Filter Tags -->
     <div class="flex flex-wrap items-center justify-center gap-2 mb-10 reveal">
-      <button onclick="filterJobs('all')" class="filter-btn active bg-blue-900 text-white text-xs font-bold px-4 py-2 rounded-xl shadow cursor-pointer">
+      <button onclick="filterJobs('all')" class="filter-btn active bg-blue-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow cursor-pointer">
         All Jobs (5)
       </button>
-      <button onclick="filterJobs('factory')" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 text-xs font-bold px-4 py-2 rounded-xl border border-slate-200 shadow-sm cursor-pointer">
+      <button onclick="filterJobs('factory')" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 text-xs font-bold px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm cursor-pointer">
         Factory & Molding
       </button>
-      <button onclick="filterJobs('technical')" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 text-xs font-bold px-4 py-2 rounded-xl border border-slate-200 shadow-sm cursor-pointer">
+      <button onclick="filterJobs('technical')" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 text-xs font-bold px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm cursor-pointer">
         Technical & Operator
       </button>
-      <button onclick="filterJobs('caregiver')" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 text-xs font-bold px-4 py-2 rounded-xl border border-slate-200 shadow-sm cursor-pointer">
+      <button onclick="filterJobs('caregiver')" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 text-xs font-bold px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm cursor-pointer">
         Caretaker / Healthcare
       </button>
     </div>
@@ -297,7 +298,7 @@
       </button>
 
       <div id="modal-content">
-        <!-- Content inserted dynamically by JavaScript -->
+        <!-- Dynamic content via JS -->
       </div>
     </div>
   </div>
@@ -314,7 +315,7 @@
       <div class="text-center md:text-right space-y-2">
         <div class="flex items-center justify-center md:justify-end gap-3">
           <span class="text-slate-300 font-medium">Follow Us:</span>
-          <a href="https://www.facebook.com/share/1V5EraQai2/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="text-white hover:text-blue-400 hover:scale-110 transition duration-200" aria-label="Facebook Page">
+          <a href="https://www.facebook.com/share/19Qor4aPka/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="text-white hover:text-blue-400 hover:scale-110 transition duration-200" aria-label="Facebook Page">
             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
         </div>
@@ -327,7 +328,7 @@
     </div>
   </footer>
 
-  <!-- FLOATING LANGUAGE SELECTOR (LOWER LEFT CORNER) -->
+  <!-- FLOATING LANGUAGE SELECTOR -->
   <div id="google_translate_element" class="fixed bottom-4 left-4 z-50 bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl rounded-2xl px-3 py-1.5 flex items-center gap-1.5">
     <span class="text-sm select-none">🌐</span>
   </div>
@@ -455,7 +456,6 @@
       document.body.style.overflow = 'auto';
     }
 
-    // Filter Buttons logic
     function filterJobs(category) {
       const items = document.querySelectorAll('.job-item');
       const buttons = document.querySelectorAll('.filter-btn');
