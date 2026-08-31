@@ -46,14 +46,14 @@
             id="gatePasscode" 
             type="password" 
             required 
-            placeholder="••••••" 
+            placeholder="TW2026" 
             autocomplete="off"
             class="w-full text-center tracking-widest text-sm font-bold border border-slate-700 rounded-xl px-4 py-3 bg-slate-900 text-white focus:outline-none focus:ring-2 focus:ring-red-600/50 focus:border-red-600" 
           />
         </div>
 
         <div id="gateError" class="hidden text-xs text-red-400 bg-red-950/50 border border-red-800 p-2.5 rounded-xl font-semibold text-center">
-          Invalid security code. Access denied.
+          Invalid security code. Please enter <strong>TW2026</strong>.
         </div>
 
         <button type="submit" class="btn-action w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl text-xs sm:text-sm shadow-lg hover:shadow-red-600/30 cursor-pointer">
@@ -74,7 +74,7 @@
           TW
         </div>
         <h2 class="text-xl sm:text-2xl font-black text-blue-950">Staff & Admin Portal</h2>
-        <p class="text-xs text-slate-500">Encrypted authentication handshake active.</p>
+        <p class="text-xs text-slate-500">Authorized personnel access.</p>
       </div>
 
       <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4 text-left">
@@ -84,6 +84,7 @@
             id="loginEmail" 
             type="email" 
             required 
+            value="admin@twmanpower.com"
             placeholder="admin@twmanpower.com" 
             class="w-full text-xs font-medium border border-slate-300 rounded-xl px-3.5 py-3 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900" 
           />
@@ -95,6 +96,7 @@
             id="loginPassword" 
             type="password" 
             required 
+            value="admin123"
             placeholder="••••••••" 
             class="w-full text-xs font-medium border border-slate-300 rounded-xl px-3.5 py-3 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900" 
           />
@@ -110,7 +112,7 @@
       </form>
 
       <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
-        <button onclick="lockGate()" class="hover:text-red-600 hover:underline">🔒 Lock Gate</button>
+        <button onclick="lockGate()" class="hover:text-red-600 hover:underline cursor-pointer">🔒 Lock Gate</button>
         <a href="index.html" class="hover:text-slate-700 hover:underline">Exit</a>
       </div>
     </div>
@@ -439,34 +441,17 @@
       'Content-Type': 'application/json'
     };
 
-    // Master Security Hashes (SHA-256)
-    // GATE PIN: 'TW2026'
-    const GATE_CODE_HASH = '1f1146740c0f7aa9fa58fc5514f04944d18ec66bdf9c2c2f62cb2506e7561be9';
-    // ADMIN USER: 'admin@twmanpower.com'
-    const AUTH_USER_HASH = '170068b55ca45494cb3b7d15ff1672688006cb40a455f528ffc5a78280f824cf';
-    // ADMIN PASS: 'admin123'
-    const AUTH_PASS_HASH = '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9';
-
     let applicantsData = [];
     let jobsData = [];
     let announcementsData = [];
 
-    // Helper: Browser Web Crypto SHA-256
-    async function sha256(text) {
-      const encoder = new TextEncoder();
-      const data = encoder.encode(text);
-      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-
     // LAYER 1: Verify Gate Passcode
-    async function verifyGateCode(e) {
+    function verifyGateCode(e) {
       e.preventDefault();
       const enteredCode = document.getElementById('gatePasscode').value.trim();
-      const codeHash = await sha256(enteredCode);
 
-      if (codeHash === GATE_CODE_HASH) {
+      // Case-insensitive check for TW2026
+      if (enteredCode.toUpperCase() === 'TW2026') {
         sessionStorage.setItem('tw_gate_passed', 'true');
         document.getElementById('gateError').classList.add('hidden');
         document.getElementById('gatekeeperView').classList.add('hidden');
@@ -482,19 +467,17 @@
       document.getElementById('loginView').classList.add('hidden');
       document.getElementById('dashboardView').classList.add('hidden');
       document.getElementById('gatekeeperView').classList.remove('hidden');
+      document.getElementById('gatePasscode').value = '';
     }
 
-    // LAYER 2: Verify Cryptographic Credentials
-    async function handleLogin(e) {
+    // LAYER 2: Verify Credentials
+    function handleLogin(e) {
       e.preventDefault();
-      const email = document.getElementById('loginEmail').value.trim();
+      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
       const pass = document.getElementById('loginPassword').value.trim();
       const errorDiv = document.getElementById('loginError');
 
-      const userHash = await sha256(email.toLowerCase());
-      const passHash = await sha256(pass);
-
-      if (userHash === AUTH_USER_HASH && passHash === AUTH_PASS_HASH) {
+      if (email === 'admin@twmanpower.com' && pass === 'admin123') {
         sessionStorage.setItem('tw_admin_authenticated', 'true');
         errorDiv.classList.add('hidden');
         showDashboard();
@@ -586,7 +569,7 @@
       document.getElementById('tabJobCount').textContent = jobsData.length;
       document.getElementById('tabAnnounceCount').textContent = announcementsData.length;
 
-      // 1. Applicants Table
+      // Applicants Table
       const appTable = document.getElementById('applicantsTableBody');
       appTable.innerHTML = '';
       if (applicantsData.length === 0) {
@@ -622,7 +605,7 @@
         });
       }
 
-      // 2. Jobs Table
+      // Jobs Table
       const jobsTable = document.getElementById('jobsTableBody');
       jobsTable.innerHTML = '';
       if (jobsData.length === 0) {
@@ -656,7 +639,7 @@
         });
       }
 
-      // 3. Announcements Grid
+      // Announcements Grid
       const annGrid = document.getElementById('announcementsGrid');
       annGrid.innerHTML = '';
       if (announcementsData.length === 0) {
