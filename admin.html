@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin & Staff Portal | TW (Phil.) International Manpower Inc.</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Supabase JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    /* Micro interactions */
     a, button, input, select, textarea {
       transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
       -webkit-tap-highlight-color: transparent;
@@ -34,7 +35,6 @@
   <div id="loginView" class="flex-grow flex items-center justify-center p-4">
     <div class="bg-white max-w-md w-full rounded-3xl p-8 shadow-2xl border border-slate-200 text-center space-y-6">
       
-      <!-- Brand Logo & Header -->
       <div class="space-y-2">
         <div class="w-16 h-16 bg-gradient-to-tr from-blue-950 to-blue-800 text-white rounded-2xl flex items-center justify-center mx-auto shadow-lg text-2xl font-black border border-white/20">
           TW
@@ -43,14 +43,12 @@
         <p class="text-xs text-slate-500">Authorized personnel access for TW (Phil.) International Manpower Inc.</p>
       </div>
 
-      <!-- Demo Credentials Notice -->
       <div class="bg-blue-50 border border-blue-200/70 p-3 rounded-2xl text-[11px] text-blue-900 text-left space-y-1">
-        <div class="font-bold flex items-center gap-1"><span>🔑</span> Demo Login Credentials:</div>
+        <div class="font-bold flex items-center gap-1"><span>🔑</span> Staff Login Credentials:</div>
         <div>User: <code class="bg-white px-1.5 py-0.5 rounded font-mono text-blue-950 border border-blue-100">admin@twmanpower.com</code></div>
         <div>Pass: <code class="bg-white px-1.5 py-0.5 rounded font-mono text-blue-950 border border-blue-100">admin123</code></div>
       </div>
 
-      <!-- Login Form -->
       <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4 text-left">
         <div>
           <label for="loginEmail" class="block text-xs font-bold text-slate-700 mb-1">Staff Work Email</label>
@@ -91,23 +89,23 @@
     </div>
   </div>
 
-  <!-- ================= DASHBOARD VIEW (AFTER LOGIN) ================= -->
+  <!-- ================= DASHBOARD VIEW ================= -->
   <div id="dashboardView" class="hidden min-h-screen flex flex-col">
     
-    <!-- Top Admin Header -->
+    <!-- Top Header -->
     <header class="bg-blue-950 text-white border-b border-blue-900 sticky top-0 z-40">
       <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <span class="w-8 h-8 rounded-lg bg-red-600 font-black text-xs flex items-center justify-center shadow">TW</span>
           <div>
             <div class="text-xs sm:text-sm font-black tracking-tight leading-tight">TW MANPOWER MANAGEMENT CONSOLE</div>
-            <div class="text-[10px] text-slate-400 font-medium">Logged in as: <strong class="text-amber-400">Recruitment Officer (Admin)</strong></div>
+            <div class="text-[10px] text-slate-400 font-medium">Database: <strong class="text-emerald-400">Supabase Cloud Connected</strong></div>
           </div>
         </div>
 
         <div class="flex items-center gap-3">
-          <a href="index.html" target="_blank" class="hidden sm:inline-block text-xs bg-white/10 hover:bg-white/20 text-slate-200 px-3 py-1.5 rounded-lg border border-white/20">
-            View Live Site ↗
+          <a href="jobs.html" target="_blank" class="hidden sm:inline-block text-xs bg-white/10 hover:bg-white/20 text-slate-200 px-3 py-1.5 rounded-lg border border-white/20">
+            View Live Jobs Page ↗
           </a>
           <button onclick="handleLogout()" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow cursor-pointer">
             Sign Out
@@ -119,54 +117,52 @@
     <!-- Main Workspace -->
     <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full space-y-8">
       
-      <!-- Top Metrics Overview -->
+      <!-- Metrics Overview -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm card-glow">
           <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">Active Job Posts</div>
-          <div id="statActiveJobs" class="text-3xl font-black text-blue-950 mt-1">5</div>
+          <div id="statActiveJobs" class="text-3xl font-black text-blue-950 mt-1">0</div>
           <span class="text-[10px] text-emerald-600 font-semibold mt-1 block">Live on portal</span>
         </div>
 
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm card-glow">
           <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Vacancy Slots</div>
-          <div id="statTotalSlots" class="text-3xl font-black text-amber-500 mt-1">115</div>
+          <div id="statTotalSlots" class="text-3xl font-black text-amber-500 mt-1">0</div>
           <span class="text-[10px] text-slate-400 font-medium mt-1 block">Across Taiwan & Japan</span>
         </div>
 
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm card-glow">
           <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">Live Bulletins</div>
-          <div id="statBulletins" class="text-3xl font-black text-blue-900 mt-1">2</div>
+          <div id="statBulletins" class="text-3xl font-black text-blue-900 mt-1">0</div>
           <span class="text-[10px] text-slate-400 font-medium mt-1 block">Active advisories</span>
         </div>
 
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm card-glow">
-          <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">DMW License Status</div>
+          <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">Cloud Status</div>
           <div class="text-lg font-black text-emerald-600 mt-2 flex items-center gap-1.5">
             <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            ACTIVE / VALID
+            LIVE SYNC ACTIVE
           </div>
           <span class="text-[10px] text-slate-400 font-mono block mt-0.5">DMW-051-LB-03202023-R</span>
         </div>
       </div>
 
-      <!-- Management Tabs Navigation -->
+      <!-- Tab Buttons -->
       <div class="flex border-b border-slate-200 space-x-4">
         <button id="tabJobsBtn" onclick="switchTab('jobs')" class="pb-3 text-xs sm:text-sm font-black text-blue-950 border-b-2 border-blue-950 cursor-pointer">
-          💼 Job Vacancies Manager (<span id="tabJobCount">5</span>)
+          💼 Job Vacancies Manager (<span id="tabJobCount">0</span>)
         </button>
         <button id="tabAnnounceBtn" onclick="switchTab('announcements')" class="pb-3 text-xs sm:text-sm font-bold text-slate-500 hover:text-slate-800 border-b-2 border-transparent cursor-pointer">
-          📢 Official Announcements & Bulletins (<span id="tabAnnounceCount">2</span>)
+          📢 Official Announcements & Bulletins (<span id="tabAnnounceCount">0</span>)
         </button>
       </div>
 
       <!-- ================= SECTION 1: JOB VACANCIES ================= -->
       <div id="sectionJobs" class="space-y-6">
-        
-        <!-- Action Bar: Add New Job Button -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200">
           <div>
             <h2 class="text-base font-black text-blue-950">Current Overseas Job Orders</h2>
-            <p class="text-xs text-slate-500">Manage, edit, or publish approved Taiwan and Japan job orders.</p>
+            <p class="text-xs text-slate-500">Changes made here sync in real-time across the live website.</p>
           </div>
           <button onclick="openJobModal()" class="btn-action bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow cursor-pointer flex items-center gap-1.5">
             <span>➕</span>
@@ -174,22 +170,21 @@
           </button>
         </div>
 
-        <!-- Jobs Table Container -->
         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
           <div class="overflow-x-auto">
             <table class="w-full text-left text-xs">
               <thead class="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase text-[10px] tracking-wider">
                 <tr>
-                  <th class="p-4">Position & Code</th>
-                  <th class="p-4">Country & Industry</th>
-                  <th class="p-4">Est. Monthly Salary</th>
+                  <th class="p-4">Position & Ref No.</th>
+                  <th class="p-4">Country & Category</th>
+                  <th class="p-4">Monthly Salary</th>
                   <th class="p-4">Slots</th>
                   <th class="p-4">Status</th>
                   <th class="p-4 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody id="jobsTableBody" class="divide-y divide-slate-100 text-slate-700">
-                <!-- Dynamically Rendered by JavaScript -->
+                <tr><td colspan="6" class="p-8 text-center text-slate-400">Loading database records... ⏳</td></tr>
               </tbody>
             </table>
           </div>
@@ -198,12 +193,10 @@
 
       <!-- ================= SECTION 2: ANNOUNCEMENTS ================= -->
       <div id="sectionAnnouncements" class="hidden space-y-6">
-        
-        <!-- Action Bar: Add Bulletin -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200">
           <div>
             <h2 class="text-base font-black text-blue-950">Official Bulletins & Advisories</h2>
-            <p class="text-xs text-slate-500">Post holiday closures, walk-in interview batches, and POEA/DMW warnings.</p>
+            <p class="text-xs text-slate-500">Post holiday closures, walk-in interview batches, and advisories.</p>
           </div>
           <button onclick="openAnnouncementModal()" class="btn-action bg-blue-900 hover:bg-blue-800 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow cursor-pointer flex items-center gap-1.5">
             <span>➕</span>
@@ -211,21 +204,19 @@
           </button>
         </div>
 
-        <!-- Announcements Grid -->
         <div id="announcementsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Dynamically Rendered by JavaScript -->
+          <div class="col-span-full p-8 text-center bg-white rounded-2xl border border-slate-200 text-slate-400">Loading bulletins... ⏳</div>
         </div>
       </div>
 
     </main>
 
-    <!-- Admin Footer -->
     <footer class="bg-slate-900 text-slate-500 text-xs py-6 px-4 text-center border-t border-slate-800 mt-auto">
-      TW (Phil.) International Manpower Inc. — Administrative Management System • Powered by <strong>VPH Media Production</strong>
+      TW (Phil.) International Manpower Inc. — Cloud Database Connected System • Powered by <strong>VPH Media Production</strong>
     </footer>
   </div>
 
-  <!-- ================= MODAL: ADD / EDIT JOB VACANCY ================= -->
+  <!-- ================= MODAL: ADD / EDIT JOB ================= -->
   <div id="jobModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm hidden">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 space-y-4 max-h-[90vh] overflow-y-auto">
       
@@ -285,15 +276,15 @@
 
         <div>
           <label for="jobRequirements" class="block text-xs font-bold text-slate-700 mb-1">Key Qualifications Summary</label>
-          <textarea id="jobRequirements" rows="2" placeholder="e.g. Male/Female, 20-35 yrs old, high school grad, no experience needed..." class="w-full text-xs font-medium border border-slate-300 rounded-xl px-3 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900"></textarea>
+          <textarea id="jobRequirements" rows="2" placeholder="e.g. Male/Female, 20-35 yrs old, high school grad..." class="w-full text-xs font-medium border border-slate-300 rounded-xl px-3 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900"></textarea>
         </div>
 
         <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
           <button type="button" onclick="closeJobModal()" class="px-4 py-2 text-xs font-bold text-slate-500 hover:text-slate-800">
             Cancel
           </button>
-          <button type="submit" class="btn-action bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow cursor-pointer">
-            Save Job Vacancy
+          <button id="jobSubmitBtn" type="submit" class="btn-action bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow cursor-pointer">
+            Save to Database
           </button>
         </div>
       </form>
@@ -336,15 +327,15 @@
 
         <div>
           <label for="announceContent" class="block text-xs font-bold text-slate-700 mb-1">Announcement Details</label>
-          <textarea id="announceContent" rows="3" required placeholder="Describe details, schedules, requirements, or office hours..." class="w-full text-xs font-medium border border-slate-300 rounded-xl px-3 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900"></textarea>
+          <textarea id="announceContent" rows="3" required placeholder="Describe details, schedules, requirements..." class="w-full text-xs font-medium border border-slate-300 rounded-xl px-3 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900"></textarea>
         </div>
 
         <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
           <button type="button" onclick="closeAnnouncementModal()" class="px-4 py-2 text-xs font-bold text-slate-500 hover:text-slate-800">
             Cancel
           </button>
-          <button type="submit" class="btn-action bg-blue-900 hover:bg-blue-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow cursor-pointer">
-            Publish Bulletin
+          <button id="announceSubmitBtn" type="submit" class="btn-action bg-blue-900 hover:bg-blue-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow cursor-pointer">
+            Publish to Cloud
           </button>
         </div>
       </form>
@@ -352,94 +343,14 @@
     </div>
   </div>
 
-  <!-- ================= JAVASCRIPT ENGINE (LOCAL DATABASE & STATE) ================= -->
+  <!-- ================= SUPABASE CLOUD SYNC ENGINE ================= -->
   <script>
-    // Initial Seed Data for Job Vacancies
-    const initialJobs = [
-      {
-        id: "job-1",
-        title: "Rubber Injection Molding Worker",
-        country: "🇹🇼 Taiwan",
-        category: "Manufacturing",
-        salary: "NT$ 27,470 (~₱48,000)",
-        slots: 30,
-        status: "Active Hiring",
-        orderNo: "JO-TW-2026-081",
-        requirements: "Male, 20-35 yrs old, 165cm height, with factory or molding background."
-      },
-      {
-        id: "job-2",
-        title: "Female Soldering Operator",
-        country: "🇹🇼 Taiwan",
-        category: "Electronics",
-        salary: "NT$ 27,470 (~₱48,000)",
-        slots: 25,
-        status: "Active Hiring",
-        orderNo: "JO-TW-2026-082",
-        requirements: "Female, 20-30 yrs old, good hand-eye coordination, soldering experience preferred."
-      },
-      {
-        id: "job-3",
-        title: "Female Factory Staff (College Grad)",
-        country: "🇹🇼 Taiwan",
-        category: "Quality Control",
-        salary: "NT$ 27,470 + Overtime",
-        slots: 20,
-        status: "Manpower Pooling",
-        orderNo: "JO-TW-2026-083",
-        requirements: "Female, Bachelor's degree holder, basic computer skills."
-      },
-      {
-        id: "job-4",
-        title: "Female Caretaker (Mandarin Speaker)",
-        country: "🇹🇼 Taiwan",
-        category: "Healthcare / Home Care",
-        salary: "NT$ 20,000 (~₱35,000)",
-        slots: 15,
-        status: "Active Hiring",
-        orderNo: "JO-TW-2026-084",
-        requirements: "Female, 23-40 yrs old, ex-abroad or can speak conversational Mandarin."
-      },
-      {
-        id: "job-5",
-        title: "Japan SSW Certified Caregiver",
-        country: "🇯🇵 Japan",
-        category: "TITP / SSW Track",
-        salary: "¥ 180,000 (~₱70,000)",
-        slots: 25,
-        status: "Manpower Pooling",
-        orderNo: "JO-JP-2026-019",
-        requirements: "JLPT N4 Passer, Prometric Nursing Care Passer."
-      }
-    ];
+    const SUPABASE_URL = 'https://jfjfpckefxvjbplsqlgb.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_MHYyBZYL5HUy9PCSzWC5WQ_8nT2HOew';
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    // Initial Seed Data for Announcements
-    const initialAnnouncements = [
-      {
-        id: "ann-1",
-        title: "National Heroes Day Office Closure",
-        tag: "OFFICE ADVISORY",
-        date: "August 31, 2026",
-        content: "No office operations on Monday, August 31, 2026 in observance of National Heroes Day. Application processing resumes on Tuesday, September 1."
-      },
-      {
-        id: "ann-2",
-        title: "Walk-in Trade Test: Taiwan Electronic Assemblers",
-        tag: "INTERVIEW SCHEDULE",
-        date: "September 8, 2026",
-        content: "Principal employer from Taichung will conduct personal interview and dexterity test at our Malate office. Bring original passport and 2x2 photos."
-      }
-    ];
-
-    // Database Initialization
-    let jobs = JSON.parse(localStorage.getItem('tw_admin_jobs')) || initialJobs;
-    let announcements = JSON.parse(localStorage.getItem('tw_admin_announcements')) || initialAnnouncements;
-
-    function saveState() {
-      localStorage.setItem('tw_admin_jobs', JSON.stringify(jobs));
-      localStorage.setItem('tw_admin_announcements', JSON.stringify(announcements));
-      renderDashboard();
-    }
+    let jobsData = [];
+    let announcementsData = [];
 
     // Authentication Handlers
     function handleLogin(e) {
@@ -466,7 +377,7 @@
     function showDashboard() {
       document.getElementById('loginView').classList.add('hidden');
       document.getElementById('dashboardView').classList.remove('hidden');
-      renderDashboard();
+      loadCloudData();
     }
 
     // Tabs Switcher
@@ -489,26 +400,86 @@
       }
     }
 
-    // Render Dashboard Engine
+    // Load Live Data from Supabase
+    async function loadCloudData() {
+      try {
+        const [jobsRes, annRes] = await Promise.all([
+          supabaseClient.from('jobs').select('*').order('created_at', { ascending: false }),
+          supabaseClient.from('announcements').select('*').order('created_at', { ascending: false })
+        ]);
+
+        jobsData = jobsRes.data || [];
+        announcementsData = annRes.data || [];
+
+        // If database is completely empty on first launch, auto-populate starter jobs
+        if (jobsData.length === 0) {
+          await seedInitialJobs();
+          return;
+        }
+
+        renderDashboard();
+      } catch (err) {
+        console.error('Error loading Supabase data:', err);
+      }
+    }
+
+    async function seedInitialJobs() {
+      const starterJobs = [
+        {
+          title: "Rubber Injection Molding Worker",
+          country: "🇹🇼 Taiwan",
+          category: "Manufacturing",
+          salary: "NT$ 27,470 (~₱48,000)",
+          slots: 30,
+          status: "Active Hiring",
+          order_no: "JO-TW-2026-081",
+          requirements: "Male, 20-35 yrs old, 165cm height, with factory or molding background."
+        },
+        {
+          title: "Female Soldering Operator",
+          country: "🇹🇼 Taiwan",
+          category: "Electronics",
+          salary: "NT$ 27,470 (~₱48,000)",
+          slots: 25,
+          status: "Active Hiring",
+          order_no: "JO-TW-2026-082",
+          requirements: "Female, 20-30 yrs old, soldering experience preferred."
+        },
+        {
+          title: "Japan SSW Certified Caregiver",
+          country: "🇯🇵 Japan",
+          category: "TITP / SSW Track",
+          salary: "¥ 180,000 (~₱70,000)",
+          slots: 25,
+          status: "Manpower Pooling",
+          order_no: "JO-JP-2026-019",
+          requirements: "JLPT N4 Passer, Prometric Nursing Care Passer."
+        }
+      ];
+
+      await supabaseClient.from('jobs').insert(starterJobs);
+      loadCloudData();
+    }
+
+    // Render Dashboard Table & Grid
     function renderDashboard() {
-      // 1. Stats Counter Calculations
-      const activeJobsCount = jobs.filter(j => j.status === 'Active Hiring').length;
-      const totalSlots = jobs.reduce((sum, j) => sum + (parseInt(j.slots) || 0), 0);
+      const activeJobsCount = jobsData.filter(j => j.status === 'Active Hiring').length;
+      const totalSlots = jobsData.reduce((sum, j) => sum + (parseInt(j.slots) || 0), 0);
 
       document.getElementById('statActiveJobs').textContent = activeJobsCount;
       document.getElementById('statTotalSlots').textContent = totalSlots;
-      document.getElementById('statBulletins').textContent = announcements.length;
-      document.getElementById('tabJobCount').textContent = jobs.length;
-      document.getElementById('tabAnnounceCount').textContent = announcements.length;
+      document.getElementById('statBulletins').textContent = announcementsData.length;
+      document.getElementById('tabJobCount').textContent = jobsData.length;
+      document.getElementById('tabAnnounceCount').textContent = announcementsData.length;
 
-      // 2. Render Jobs Table
+      // Render Jobs Table
       const jobsTable = document.getElementById('jobsTableBody');
       jobsTable.innerHTML = '';
 
-      if (jobs.length === 0) {
-        jobsTable.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-slate-400 font-medium">No job vacancies created yet. Click "+ Post New Job Vacancy" above.</td></tr>`;
+      if (jobsData.length === 0) {
+        jobsTable.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-slate-400">No job records found. Click "+ Post New Job Vacancy" above.</td></tr>`;
       } else {
-        jobs.forEach((job) => {
+        jobsData.forEach((job) => {
           let badgeColor = "bg-emerald-100 text-emerald-800";
           if (job.status === 'Manpower Pooling') badgeColor = "bg-blue-100 text-blue-800";
           if (job.status === 'Interview Closed') badgeColor = "bg-slate-100 text-slate-600";
@@ -518,7 +489,7 @@
           row.innerHTML = `
             <td class="p-4">
               <div class="font-bold text-blue-950 text-xs sm:text-sm">${job.title}</div>
-              <div class="text-[10px] text-slate-400 font-mono">${job.orderNo || 'N/A'}</div>
+              <div class="text-[10px] text-slate-400 font-mono">${job.order_no || 'N/A'}</div>
             </td>
             <td class="p-4">
               <div class="font-semibold text-slate-800">${job.country}</div>
@@ -532,10 +503,10 @@
               </span>
             </td>
             <td class="p-4 text-right space-x-1">
-              <button onclick="editJob('${job.id}')" class="bg-slate-100 hover:bg-slate-200 text-blue-900 font-bold px-2.5 py-1 rounded text-xs">
+              <button onclick="editJob('${job.id}')" class="bg-slate-100 hover:bg-slate-200 text-blue-900 font-bold px-2.5 py-1 rounded text-xs cursor-pointer">
                 Edit
               </button>
-              <button onclick="deleteJob('${job.id}')" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-2.5 py-1 rounded text-xs">
+              <button onclick="deleteJob('${job.id}')" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-2.5 py-1 rounded text-xs cursor-pointer">
                 Delete
               </button>
             </td>
@@ -544,14 +515,14 @@
         });
       }
 
-      // 3. Render Announcements Grid
+      // Render Announcements Grid
       const annGrid = document.getElementById('announcementsGrid');
       annGrid.innerHTML = '';
 
-      if (announcements.length === 0) {
-        annGrid.innerHTML = `<div class="col-span-full p-8 text-center bg-white rounded-2xl border border-slate-200 text-slate-400 font-medium">No official bulletins published. Click "+ Create Announcement" above.</div>`;
+      if (announcementsData.length === 0) {
+        annGrid.innerHTML = `<div class="col-span-full p-8 text-center bg-white rounded-2xl border border-slate-200 text-slate-400">No official bulletins published yet. Click "+ Create Announcement" above.</div>`;
       } else {
-        announcements.forEach((ann) => {
+        announcementsData.forEach((ann) => {
           let tagColor = "bg-blue-100 text-blue-900";
           if (ann.tag === 'URGENT HIRING') tagColor = "bg-red-100 text-red-700";
           if (ann.tag === 'DMW WARNING') tagColor = "bg-amber-100 text-amber-800";
@@ -568,8 +539,8 @@
               <p class="text-xs text-slate-600 leading-relaxed">${ann.content}</p>
             </div>
             <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
-              <button onclick="editAnnouncement('${ann.id}')" class="text-blue-900 hover:underline font-bold text-xs">Edit</button>
-              <button onclick="deleteAnnouncement('${ann.id}')" class="text-red-600 hover:underline font-bold text-xs">Delete</button>
+              <button onclick="editAnnouncement('${ann.id}')" class="text-blue-900 hover:underline font-bold text-xs cursor-pointer">Edit</button>
+              <button onclick="deleteAnnouncement('${ann.id}')" class="text-red-600 hover:underline font-bold text-xs cursor-pointer">Delete</button>
             </div>
           `;
           annGrid.appendChild(card);
@@ -577,7 +548,7 @@
       }
     }
 
-    // Modal Operations: Job Orders
+    // Modal Operations: Job Vacancies
     function openJobModal() {
       document.getElementById('jobEditId').value = '';
       document.getElementById('jobForm').reset();
@@ -589,33 +560,38 @@
       document.getElementById('jobModal').classList.add('hidden');
     }
 
-    function saveJob(e) {
+    async function saveJob(e) {
       e.preventDefault();
+      const btn = document.getElementById('jobSubmitBtn');
+      btn.disabled = true;
+      btn.innerHTML = 'Saving to Cloud... ⏳';
+
       const editId = document.getElementById('jobEditId').value;
-      const newJob = {
-        id: editId || 'job-' + Date.now(),
+      const jobPayload = {
         title: document.getElementById('jobTitle').value,
         country: document.getElementById('jobCountry').value,
         category: document.getElementById('jobCategory').value,
         salary: document.getElementById('jobSalary').value,
-        slots: document.getElementById('jobSlots').value,
+        slots: parseInt(document.getElementById('jobSlots').value, 10) || 1,
         status: document.getElementById('jobStatus').value,
-        orderNo: document.getElementById('jobOrderNo').value,
+        order_no: document.getElementById('jobOrderNo').value,
         requirements: document.getElementById('jobRequirements').value
       };
 
       if (editId) {
-        jobs = jobs.map(j => j.id === editId ? newJob : j);
+        await supabaseClient.from('jobs').update(jobPayload).eq('id', editId);
       } else {
-        jobs.unshift(newJob);
+        await supabaseClient.from('jobs').insert([jobPayload]);
       }
 
-      saveState();
+      btn.disabled = false;
+      btn.innerHTML = 'Save to Database';
       closeJobModal();
+      loadCloudData();
     }
 
     function editJob(id) {
-      const job = jobs.find(j => j.id === id);
+      const job = jobsData.find(j => j.id === id);
       if (!job) return;
 
       document.getElementById('jobEditId').value = job.id;
@@ -625,17 +601,17 @@
       document.getElementById('jobSalary').value = job.salary;
       document.getElementById('jobSlots').value = job.slots;
       document.getElementById('jobStatus').value = job.status;
-      document.getElementById('jobOrderNo').value = job.orderNo || '';
+      document.getElementById('jobOrderNo').value = job.order_no || '';
       document.getElementById('jobRequirements').value = job.requirements || '';
 
       document.getElementById('jobModalTitle').textContent = 'Edit Job Vacancy';
       document.getElementById('jobModal').classList.remove('hidden');
     }
 
-    function deleteJob(id) {
-      if (confirm('Are you sure you want to remove this job vacancy from the portal?')) {
-        jobs = jobs.filter(j => j.id !== id);
-        saveState();
+    async function deleteJob(id) {
+      if (confirm('Delete this job from the database? It will be removed live from all website pages.')) {
+        await supabaseClient.from('jobs').delete().eq('id', id);
+        loadCloudData();
       }
     }
 
@@ -651,11 +627,14 @@
       document.getElementById('announcementModal').classList.add('hidden');
     }
 
-    function saveAnnouncement(e) {
+    async function saveAnnouncement(e) {
       e.preventDefault();
+      const btn = document.getElementById('announceSubmitBtn');
+      btn.disabled = true;
+      btn.innerHTML = 'Publishing... ⏳';
+
       const editId = document.getElementById('announceEditId').value;
-      const newAnn = {
-        id: editId || 'ann-' + Date.now(),
+      const annPayload = {
         title: document.getElementById('announceTitle').value,
         tag: document.getElementById('announceTag').value,
         date: document.getElementById('announceDate').value,
@@ -663,17 +642,19 @@
       };
 
       if (editId) {
-        announcements = announcements.map(a => a.id === editId ? newAnn : a);
+        await supabaseClient.from('announcements').update(annPayload).eq('id', editId);
       } else {
-        announcements.unshift(newAnn);
+        await supabaseClient.from('announcements').insert([annPayload]);
       }
 
-      saveState();
+      btn.disabled = false;
+      btn.innerHTML = 'Publish to Cloud';
       closeAnnouncementModal();
+      loadCloudData();
     }
 
     function editAnnouncement(id) {
-      const ann = announcements.find(a => a.id === id);
+      const ann = announcementsData.find(a => a.id === id);
       if (!ann) return;
 
       document.getElementById('announceEditId').value = ann.id;
@@ -686,14 +667,14 @@
       document.getElementById('announcementModal').classList.remove('hidden');
     }
 
-    function deleteAnnouncement(id) {
-      if (confirm('Are you sure you want to delete this bulletin notice?')) {
-        announcements = announcements.filter(a => a.id !== id);
-        saveState();
+    async function deleteAnnouncement(id) {
+      if (confirm('Delete this announcement bulletin?')) {
+        await supabaseClient.from('announcements').delete().eq('id', id);
+        loadCloudData();
       }
     }
 
-    // Check Session on Load
+    // Check Authentication on Page Load
     document.addEventListener('DOMContentLoaded', () => {
       if (sessionStorage.getItem('tw_admin_authenticated') === 'true') {
         showDashboard();
