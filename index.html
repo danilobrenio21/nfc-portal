@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TW (Phil.) International Manpower Inc. | DMW Licensed Agency</title>
+  <title>TW (Phil.) International Manpower Inc. | DMW Licensed Overseas Recruitment Agency</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Universal smooth micro-interactions */
     a, button, input, select, textarea {
       transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
       -webkit-tap-highlight-color: transparent;
     }
-
     button:hover, a.btn-action:hover {
       transform: translateY(-2px);
       filter: brightness(1.05);
@@ -20,49 +18,13 @@
       transform: scale(0.96) translateY(1px);
       filter: brightness(0.95);
     }
-
-    .interactive-card {
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    .card-glow {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-    .interactive-card:hover {
+    .card-glow:hover {
       transform: translateY(-4px);
+      box-shadow: 0 14px 28px -10px rgba(15, 23, 42, 0.12);
     }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Ultra-Smooth Modal Transitions */
-    #leadModal {
-      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.4s ease;
-    }
-    #leadModalCard {
-      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
-    }
-    .modal-hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-    .modal-hidden #leadModalCard {
-      transform: scale(0.88) translateY(24px);
-      opacity: 0;
-    }
-    .modal-visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .modal-visible #leadModalCard {
-      transform: scale(1) translateY(0);
-      opacity: 1;
-    }
-
-    /* Clean Google Translate Styling */
     .goog-te-banner-frame.skiptranslate { display: none !important; }
     body { top: 0px !important; }
     .goog-te-combo {
@@ -80,7 +42,7 @@
     .goog-te-gadget { color: transparent !important; font-size: 0px !important; }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen relative">
+<body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen">
 
   <!-- TOP BAR -->
   <div class="bg-blue-950 text-white text-xs py-2 px-4 border-b border-blue-900">
@@ -109,7 +71,7 @@
 
       <!-- Desktop Navigation -->
       <nav aria-label="Main Navigation" class="hidden lg:flex items-center space-x-4 text-xs font-semibold text-slate-600">
-        <a href="index.html" class="text-blue-900 font-bold border-b-2 border-blue-900 pb-1">Home</a>
+        <a href="index.html" class="text-blue-900 font-black border-b-2 border-blue-900 pb-1">Home</a>
         <a href="about.html" class="hover:text-blue-900 hover:-translate-y-0.5 transition">About Us</a>
         <a href="jobs.html" class="hover:text-blue-900 hover:-translate-y-0.5 transition">Job Vacancies</a>
         <a href="process.html" class="hover:text-blue-900 hover:-translate-y-0.5 transition">Application Guide</a>
@@ -143,327 +105,108 @@
   </header>
 
   <!-- HERO SECTION -->
-  <section class="relative bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white py-14 sm:py-20 px-4 reveal">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-      
-      <div class="lg:col-span-7 space-y-5 text-center lg:text-left">
-        <span class="inline-block text-xs font-bold tracking-widest text-amber-400 uppercase bg-amber-400/10 px-3.5 py-1.5 rounded-full border border-amber-400/30">
-          🌍 Taiwan, Japan & Overseas Placement
-        </span>
-        <h1 class="text-3xl sm:text-5xl font-black leading-tight">
-          Connecting Filipino Talent to <span class="text-red-500">Global Careers</span>.
-        </h1>
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
-          DMW-licensed land-based recruitment agency deploying skilled workers, technical trainees, factory operators, and professionals worldwide.
-        </p>
-        
-        <div class="pt-2 flex flex-col sm:flex-row justify-center lg:justify-start gap-3">
-          <a href="jobs.html" class="btn-action w-full sm:w-auto text-center bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl text-sm transition shadow-lg hover:shadow-red-600/30 inline-block">
-            View Active Job Vacancies
-          </a>
-          <a href="apply.html" class="btn-action w-full sm:w-auto text-center bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl text-sm transition border border-white/20 hover:border-white/40 inline-block backdrop-blur-sm">
-            Submit Pre-Registration
-          </a>
-        </div>
+  <section class="bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white py-16 sm:py-24 px-4 text-center">
+    <div class="max-w-4xl mx-auto space-y-4">
+      <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-3.5 py-1.5 rounded-full border border-white/20 text-xs font-bold text-amber-400">
+        <span>🇵🇭 Official Overseas Employment Gateway</span>
       </div>
-
-      <!-- Quick Pre-Registration Form -->
-      <div id="apply" class="lg:col-span-5 bg-white text-slate-900 p-6 sm:p-7 rounded-2xl shadow-2xl border border-slate-100">
-        <div class="flex items-center justify-between mb-1">
-          <h3 class="text-lg font-bold text-blue-950">Quick Pre-Registration</h3>
-          <span class="text-[10px] font-bold bg-green-100 text-green-700 px-2.5 py-0.5 rounded-full">NO FEES COLLECTED</span>
-        </div>
-        <p class="text-xs text-slate-500 mb-4">Manpower pooling for upcoming interview batches.</p>
-        
-        <form action="https://api.web3forms.com/submit" method="POST" class="space-y-3.5">
-          <input type="hidden" name="access_key" value="a22d6a8d-48ef-467f-948e-336c83f1b15c" />
-          <input type="hidden" name="subject" value="New Quick Pre-Registration - TW Manpower Portal" />
-          <input type="hidden" name="from_name" value="TW Manpower Recruitment Portal" />
-
-          <div>
-            <label for="full-name" class="block text-xs font-semibold text-slate-700 mb-1">Full Name</label>
-            <input id="full-name" name="name" type="text" required placeholder="Juan Dela Cruz" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900" />
-          </div>
-
-          <div>
-            <label for="email-address" class="block text-xs font-semibold text-slate-700 mb-1">Email Address</label>
-            <input id="email-address" name="email" type="email" required placeholder="juandelacruz@gmail.com" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900" />
-          </div>
-          
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div>
-              <label for="contact-number" class="block text-xs font-semibold text-slate-700 mb-1">Contact Number</label>
-              <input id="contact-number" name="phone" type="tel" required placeholder="09170000000" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900" />
-            </div>
-            <div>
-              <label for="target-country" class="block text-xs font-semibold text-slate-700 mb-1">Target Country</label>
-              <select id="target-country" name="country" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900">
-                <option value="Taiwan (Factory / Electronics)">Taiwan (Factory / Electronics)</option>
-                <option value="Japan (TITP / SSW Track)">Japan (TITP / SSW Track)</option>
-                <option value="Other Overseas Destinations">Other Overseas Destinations</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label for="target-skill" class="block text-xs font-semibold text-slate-700 mb-1">Target Skill/Job</label>
-            <select id="target-skill" name="job_position" class="w-full text-sm border border-slate-300 rounded-lg px-3 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900">
-              <option value="Rubber Injection Molding Worker">Rubber Injection Molding Worker</option>
-              <option value="Female Soldering Operator">Female Soldering Operator</option>
-              <option value="Female Factory Staff (College Grad)">Female Factory Staff (College Grad)</option>
-              <option value="Female Caretaker (Ex-Abroad / Mandarin)">Female Caretaker (Ex-Abroad / Mandarin)</option>
-              <option value="Overhead Crane Operator">Overhead Crane Operator</option>
-              <option value="General Electronics & Assembly">General Electronics & Assembly</option>
-            </select>
-          </div>
-
-          <button type="submit" class="btn-action w-full bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 rounded-lg text-sm transition duration-200 shadow-md hover:shadow-lg cursor-pointer">
-            Submit Application
-          </button>
-        </form>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- HIGHLIGHTS -->
-  <section class="max-w-6xl mx-auto px-4 -mt-6 relative z-20 reveal">
-    <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-      <div class="interactive-card p-3 rounded-xl hover:bg-slate-50">
-        <div class="text-xl sm:text-2xl font-black text-blue-900">DMW Licensed</div>
-        <div class="text-xs text-slate-500 font-medium mt-1">DMW-051-LB-03202023-R</div>
-      </div>
-      <div class="interactive-card p-3 rounded-xl hover:bg-slate-50">
-        <div class="text-xl sm:text-2xl font-black text-blue-900">Taiwan & Japan</div>
-        <div class="text-xs text-slate-500 font-medium mt-1">Direct Employer Job Orders</div>
-      </div>
-      <div class="interactive-card p-3 rounded-xl hover:bg-slate-50">
-        <div class="text-xl sm:text-2xl font-black text-blue-900">₱0 Initial Fee</div>
-        <div class="text-xs text-slate-500 font-medium mt-1">Manpower Pooling Phase</div>
-      </div>
-      <div class="interactive-card p-3 rounded-xl hover:bg-slate-50">
-        <div class="text-xl sm:text-2xl font-black text-blue-900">Malate, Manila</div>
-        <div class="text-xs text-slate-500 font-medium mt-1">Accessible Central Office</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ENHANCED PROVEN TRACK RECORD (GOLD METRICS & MODERN UI GLOW) -->
-  <section id="metrics-section" class="max-w-6xl mx-auto px-4 py-16 reveal">
-    <div class="bg-gradient-to-br from-blue-950 via-slate-900 to-blue-900 text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden border border-blue-800/40">
-      
-      <!-- Ambient Glow Accents -->
-      <div class="absolute -top-24 -left-24 w-72 h-72 bg-amber-400/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-24 -right-24 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="relative z-10 text-center max-w-2xl mx-auto mb-12">
-        <span class="text-xs font-bold uppercase tracking-widest text-amber-400 bg-amber-400/10 px-3.5 py-1 rounded-full border border-amber-400/30 shadow-sm">
-          Proven Track Record
-        </span>
-        <h2 class="text-2xl sm:text-4xl font-black mt-3 tracking-tight">Our Placement & Success Milestones</h2>
-        <p class="text-slate-300 text-xs sm:text-sm mt-2">Empowering thousands of Filipino workers with ethical recruitment and legitimate job deployments.</p>
-      </div>
-
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 text-center relative z-10">
-        
-        <!-- Metric 1: Deployed -->
-        <div class="bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-amber-400/40 rounded-2xl p-6 backdrop-blur-md interactive-card group transition-all duration-300">
-          <div class="text-3xl sm:text-5xl font-black text-amber-400 flex items-center justify-center tracking-tight drop-shadow-[0_2px_12px_rgba(251,191,36,0.3)]">
-            <span class="counter" data-target="1500">0</span>
-            <span class="text-amber-400 ml-0.5 group-hover:scale-110 transition-transform duration-200">+</span>
-          </div>
-          <p class="text-xs sm:text-sm font-bold text-slate-100 mt-2.5">Workers Deployed</p>
-          <span class="text-[10px] text-slate-400 block mt-0.5">Taiwan & Japan hubs</span>
-        </div>
-
-        <!-- Metric 2: Approval Rate -->
-        <div class="bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-amber-400/40 rounded-2xl p-6 backdrop-blur-md interactive-card group transition-all duration-300">
-          <div class="text-3xl sm:text-5xl font-black text-amber-400 flex items-center justify-center tracking-tight drop-shadow-[0_2px_12px_rgba(251,191,36,0.3)]">
-            <span class="counter" data-target="98">0</span>
-            <span class="text-amber-400 ml-0.5 group-hover:scale-110 transition-transform duration-200">%</span>
-          </div>
-          <p class="text-xs sm:text-sm font-bold text-slate-100 mt-2.5">Visa Approval Rate</p>
-          <span class="text-[10px] text-slate-400 block mt-0.5">Strict compliance screening</span>
-        </div>
-
-        <!-- Metric 3: Principals -->
-        <div class="bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-amber-400/40 rounded-2xl p-6 backdrop-blur-md interactive-card group transition-all duration-300">
-          <div class="text-3xl sm:text-5xl font-black text-amber-400 flex items-center justify-center tracking-tight drop-shadow-[0_2px_12px_rgba(251,191,36,0.3)]">
-            <span class="counter" data-target="25">0</span>
-            <span class="text-amber-400 ml-0.5 group-hover:scale-110 transition-transform duration-200">+</span>
-          </div>
-          <p class="text-xs sm:text-sm font-bold text-slate-100 mt-2.5">Foreign Principals</p>
-          <span class="text-[10px] text-slate-400 block mt-0.5">Accredited employer partners</span>
-        </div>
-
-        <!-- Metric 4: Compliance -->
-        <div class="bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-amber-400/40 rounded-2xl p-6 backdrop-blur-md interactive-card group transition-all duration-300">
-          <div class="text-3xl sm:text-5xl font-black text-amber-400 flex items-center justify-center tracking-tight drop-shadow-[0_2px_12px_rgba(251,191,36,0.3)]">
-            <span class="counter" data-target="100">0</span>
-            <span class="text-amber-400 ml-0.5 group-hover:scale-110 transition-transform duration-200">%</span>
-          </div>
-          <p class="text-xs sm:text-sm font-bold text-slate-100 mt-2.5">DMW Compliant</p>
-          <span class="text-[10px] text-slate-400 block mt-0.5">No illegal fees collected</span>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- LATEST ANNOUNCEMENTS -->
-  <section class="max-w-6xl mx-auto px-4 py-8 reveal">
-    <div class="mb-6">
-      <span class="text-xs font-bold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-100">
-        Official Bulletin & Updates
-      </span>
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-blue-950 mt-2">Latest Announcements</h2>
-      <p class="text-xs sm:text-sm text-slate-500 mt-1">Upcoming employer interview schedules, pooling notices, and office advisories.</p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 text-white rounded-3xl p-6 shadow-md border border-blue-800/40 interactive-card flex flex-col justify-between min-h-[290px]">
-        <div>
-          <span class="bg-red-600 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm inline-block mb-3">Office Advisory</span>
-          <h3 class="text-lg font-black leading-snug text-amber-400">National Heroes Day Closure</h3>
-          <p class="text-xs text-slate-200 mt-2.5 leading-relaxed">
-            No office operations on <strong>Monday, August 31, 2026</strong>. Operations & application processing resume on <strong>Tuesday, September 1, 2026</strong>.
-          </p>
-        </div>
-        <div class="pt-4 border-t border-white/10 text-[11px] text-slate-300 flex items-center gap-1.5">
-          <span>🇵🇭</span> We honor our national heroes.
-        </div>
-      </div>
-
-      <div class="bg-white rounded-3xl p-6 shadow-md border border-blue-200 interactive-card flex flex-col justify-between min-h-[290px]">
-        <div>
-          <div class="flex items-center justify-between gap-2 mb-2">
-            <span class="bg-blue-100 text-blue-900 text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full">🇹🇼 Bound for Taiwan</span>
-            <span class="text-[10px] font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded border border-red-100">HIRING</span>
-          </div>
-          <h3 class="text-base font-black leading-snug text-blue-950 mt-1">Rubber Injection Molding Workers</h3>
-          <ul class="text-xs text-slate-600 mt-3 space-y-1.5 bg-slate-50 p-3 rounded-xl border border-slate-100">
-            <li class="flex items-center gap-1.5"><span>✅</span> <strong>Male, 20–35 yrs old</strong></li>
-            <li class="flex items-center gap-1.5"><span>✅</span> <strong>Height:</strong> At least 165 cm</li>
-            <li class="flex items-center gap-1.5"><span>✅</span> <strong>Exp:</strong> Molding experience</li>
-          </ul>
-        </div>
-        <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
-          <span class="text-[10px] font-semibold text-slate-400">₱0 Initial Fee</span>
-          <a href="jobs.html" class="btn-action inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow transition">
-            Apply Now →
-          </a>
-        </div>
-      </div>
-
-      <div class="relative rounded-3xl overflow-hidden shadow-md group border border-slate-200 interactive-card min-h-[290px]">
-        <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=800&auto=format&fit=crop" alt="Japan Caregiver" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500" />
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent p-6 flex flex-col justify-end text-white">
-          <span class="bg-red-600 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm w-max mb-2">Japan SSW / TITP</span>
-          <h3 class="text-base font-bold leading-snug">Caregivers & Nursing Assistants</h3>
-          <p class="text-xs text-slate-300 mt-1 line-clamp-2">Free intensive Nihongo training support for certified passers.</p>
-        </div>
-      </div>
-
-      <div class="relative rounded-3xl overflow-hidden shadow-md group border border-slate-200 interactive-card min-h-[290px]">
-        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop" alt="Walk-in Screening" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500" />
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent p-6 flex flex-col justify-end text-white">
-          <span class="bg-emerald-600 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded shadow-sm w-max mb-2">Walk-In Applicants</span>
-          <h3 class="text-base font-bold leading-snug">Malate Office Screening Daily</h3>
-          <p class="text-xs text-slate-300 mt-1 line-clamp-2">Mon - Fri, 9:00 AM – 4:00 PM at Marioco Bldg, Malate.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LIVE SOCIAL COMMUNITY CARD -->
-  <section class="max-w-6xl mx-auto px-4 py-8 reveal">
-    <div class="text-center mb-6">
-      <span class="text-xs font-bold uppercase tracking-widest text-blue-900 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
-        Live Social Updates
-      </span>
-      <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Official Facebook Community</h2>
-      <p class="text-xs sm:text-sm text-slate-500 mt-1">Real-time pooling announcements, interview batches, and official notices direct from Facebook.</p>
-    </div>
-
-    <div class="max-w-xl mx-auto bg-gradient-to-br from-blue-950 via-slate-900 to-blue-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-blue-800/50 relative overflow-hidden interactive-card">
-      <div class="flex items-center gap-4">
-        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-blue-600 flex items-center justify-center shrink-0 shadow-lg border border-white/20">
-          <svg class="w-7 h-7 sm:w-8 sm:h-8 fill-white" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <h3 class="text-base sm:text-lg font-black leading-tight text-white">TW (Phil.) International Manpower Inc.</h3>
-            <span class="bg-blue-500 text-[10px] font-black px-1.5 py-0.5 rounded-full">✓</span>
-          </div>
-          <p class="text-xs text-slate-300 mt-0.5 flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            Daily Pooling Notices & Schedules Active
-          </p>
-        </div>
-      </div>
-
-      <div class="mt-5 pt-4 border-t border-white/10 space-y-2 text-xs text-slate-300">
-        <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center justify-between">
-          <span>📢 Latest: Rubber Injection Molding Workers (Taiwan)</span>
-          <span class="text-[10px] font-bold text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">NEW</span>
-        </div>
-        <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center justify-between">
-          <span>📢 Advisory: National Heroes Day Office Closure</span>
-          <span class="text-[10px] font-bold text-slate-300 bg-white/10 px-2 py-0.5 rounded">ADVISORY</span>
-        </div>
-      </div>
-
-      <div class="mt-6">
-        <a href="https://www.facebook.com/share/19Qor4aPka/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="btn-action w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg transition text-xs sm:text-sm cursor-pointer">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          Open Facebook Page in App
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+        Trusted Overseas Careers in <span class="text-amber-400">Taiwan</span> & <span class="text-red-400">Japan</span>
+      </h1>
+      <p class="text-slate-300 text-xs sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Connecting qualified Filipino talent with premier overseas employers. 100% DMW regulated recruitment process with zero placement fee collected during initial pooling.
+      </p>
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
+        <a href="jobs.html" class="btn-action bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-black px-6 py-3.5 rounded-xl shadow-lg inline-block">
+          Explore Job Openings →
+        </a>
+        <a href="apply.html" class="btn-action bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl border border-white/20 inline-block">
+          Submit Online Application
         </a>
       </div>
     </div>
   </section>
 
-  <!-- MAP SECTION -->
-  <section class="max-w-6xl mx-auto px-4 py-12 reveal">
-    <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center interactive-card">
-      <div class="lg:col-span-5 space-y-4">
-        <span class="text-xs font-bold uppercase tracking-widest text-blue-900 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
-          Visit Our Office
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Headquarters in Malate, Manila</h2>
-        
-        <div class="space-y-3 text-xs sm:text-sm text-slate-600 pt-2">
-          <div class="flex items-start gap-3">
-            <span class="text-lg">📍</span>
-            <div>
-              <strong>Suite 201 & 203, Marioco (Maricor) Building</strong><br />
-              1945 M. Adriatico Street, Malate, Manila, 1004
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="text-lg">🕒</span>
-            <div><strong>Hours:</strong> Monday – Friday: 9:00 AM to 4:00 PM</div>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="text-lg">📞</span>
-            <div><strong>Hotlines:</strong> 0917 115 6683 / (02) 8403 4885</div>
-          </div>
-        </div>
+  <!-- MAIN HOMEPAGE CONTENT -->
+  <main class="max-w-6xl mx-auto px-4 py-12 flex-grow w-full space-y-16">
 
-        <div class="pt-2">
-          <a href="https://maps.google.com/?q=1945+M.+Adriatico+St,+Malate,+Manila,+Philippines" target="_blank" rel="noopener noreferrer" class="btn-action inline-block bg-blue-900 hover:bg-blue-800 text-white text-xs font-bold px-5 py-3 rounded-xl shadow transition">
-            Open in Google Maps App
-          </a>
+    <!-- ================= REAL-TIME LATEST ANNOUNCEMENTS ================= -->
+    <section class="space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2 border-b border-slate-200 pb-3">
+        <div>
+          <div class="text-[11px] font-bold text-red-600 uppercase tracking-wider">Official Advisories</div>
+          <h2 class="text-xl sm:text-2xl font-black text-blue-950">Latest Public Announcements</h2>
         </div>
+        <a href="advisory.html" class="text-xs font-bold text-blue-900 hover:underline flex items-center gap-1">
+          <span>View All Advisories</span>
+          <span>→</span>
+        </a>
       </div>
 
-      <div class="lg:col-span-7 h-[300px] sm:h-[350px] w-full rounded-2xl overflow-hidden border border-slate-200 shadow-inner">
-        <iframe title="TW Manpower Map Location" width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=1945%20M.%20Adriatico%20St,%20Malate,%20Manila&t=&z=16&ie=UTF8&iwloc=&output=embed"></iframe>
+      <div id="homeAnnouncementsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="col-span-full py-8 text-center text-slate-400 text-xs">
+          Loading announcements from database... ⏳
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- ================= REAL-TIME FEATURED VACANCIES ================= -->
+    <section class="space-y-6">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2 border-b border-slate-200 pb-3">
+        <div>
+          <div class="text-[11px] font-bold text-emerald-600 uppercase tracking-wider">Active Hiring Orders</div>
+          <h2 class="text-xl sm:text-2xl font-black text-blue-950">Featured Overseas Vacancies</h2>
+        </div>
+        <a href="jobs.html" class="text-xs font-bold text-blue-900 hover:underline flex items-center gap-1">
+          <span>View All Vacancies</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <div id="homeJobsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="col-span-full py-8 text-center text-slate-400 text-xs">
+          Loading live job orders... ⏳
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 CORE VALUE PROPOSITIONS -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+      <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3 card-glow">
+        <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-900 flex items-center justify-center text-xl font-bold">
+          🛡️
+        </div>
+        <h3 class="text-base font-black text-blue-950">Fully DMW Accredited</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Operating strictly under license DMW-051-LB-03202023-R with transparent employer contracts and government verified job orders.
+        </p>
+      </div>
+
+      <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3 card-glow">
+        <div class="w-12 h-12 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center text-xl font-bold">
+          🚫
+        </div>
+        <h3 class="text-base font-black text-blue-950">₱0 Initial Placement Fee</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Free pre-registration and pooling screening. We never collect fees through Facebook, GCash, or unauthorized sub-agents.
+        </p>
+      </div>
+
+      <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3 card-glow">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl font-bold">
+          🌏
+        </div>
+        <h3 class="text-base font-black text-blue-950">Direct Principal Linkage</h3>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          Established direct hiring partnerships with premier semiconductor, manufacturing, and nursing care institutions across Taiwan and Japan.
+        </p>
+      </div>
+    </section>
+
+  </main>
 
   <!-- FOOTER -->
-  <footer class="bg-slate-900 text-slate-400 py-10 px-4 text-xs border-t border-slate-800 mt-auto reveal">
+  <footer class="bg-slate-900 text-slate-400 py-10 px-4 text-xs border-t border-slate-800 mt-auto">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
       <div class="space-y-1">
         <div class="text-base font-bold text-white tracking-wide">TW (PHIL.) INTERNATIONAL MANPOWER INC.</div>
@@ -479,6 +222,9 @@
           </a>
         </div>
         <p class="text-amber-400 font-semibold">⚠️ Advisory: Manpower Pooling Only. No Fees Collected During Initial Application.</p>
+        <div class="pt-1">
+          <a href="admin.html" class="text-[10px] text-slate-500 hover:text-slate-400 underline">🔒 Staff / Admin Portal</a>
+        </div>
       </div>
     </div>
 
@@ -492,220 +238,134 @@
     <span class="text-sm select-none">🌐</span>
   </div>
 
-  <!-- FLOATING COOKIE CONSENT BANNER -->
-  <div id="cookieConsentBanner" class="fixed bottom-4 right-4 left-4 sm:left-auto sm:max-w-md z-50 bg-slate-950/95 backdrop-blur-md text-white p-5 rounded-3xl border border-white/10 shadow-2xl transition-all duration-500 ease-out transform translate-y-20 opacity-0 pointer-events-none">
-    <div class="flex items-start gap-3">
-      <span class="text-2xl select-none">🍪</span>
-      <div class="space-y-1">
-        <h4 class="text-xs sm:text-sm font-bold text-white">We Value Your Privacy & Data</h4>
-        <p class="text-[11px] text-slate-300 leading-relaxed">
-          We use essential cookies to personalize language preferences and store job alert choices in accordance with the Data Privacy Act.
-        </p>
-        <div class="pt-3 flex items-center gap-2">
-          <button onclick="acceptCookies()" class="btn-action bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow cursor-pointer">
-            Accept & Continue
-          </button>
-          <a href="privacy.html" class="text-xs text-slate-400 hover:text-white underline px-2 py-1">
-            Read Policy
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- THEMED EXECUTIVE POPUP MODAL -->
-  <div id="leadModal" class="modal-hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-    <div id="leadModalCard" class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-100/80 relative">
-      
-      <!-- Top Decorative Band -->
-      <div class="h-1.5 bg-gradient-to-r from-red-600 via-amber-400 to-blue-900 w-full"></div>
-
-      <!-- Close Button -->
-      <button onclick="closeLeadModal()" class="absolute top-4 right-4 z-10 text-white/80 hover:text-white w-7 h-7 rounded-full bg-black/25 hover:bg-black/50 flex items-center justify-center transition cursor-pointer backdrop-blur-sm" aria-label="Close modal">
-        ✕
-      </button>
-
-      <!-- Modal Header (Navy Gradient Theme) -->
-      <div class="bg-gradient-to-br from-blue-950 via-blue-900 to-slate-900 text-white p-6 sm:p-7 relative overflow-hidden">
-        <div class="relative z-10 space-y-1.5">
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="text-[10px] font-black uppercase tracking-widest text-amber-400 bg-amber-400/10 px-2.5 py-0.5 rounded-full border border-amber-400/20">
-              Direct Pooling Desk
-            </span>
-          </div>
-          <h3 class="text-xl sm:text-2xl font-black tracking-tight text-white">
-            Priority Job Alerts
-          </h3>
-          <p class="text-slate-300 text-xs leading-relaxed">
-            Get notified first for upcoming <strong>Taiwan</strong> factory batches & <strong>Japan</strong> TITP/SSW interview schedules.
-          </p>
-        </div>
-      </div>
-
-      <!-- Modal Body -->
-      <div class="p-6 sm:p-7 space-y-4">
-        <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-700 bg-slate-50 p-3 rounded-2xl border border-slate-100">
-          <div class="flex items-center gap-1.5">
-            <span class="text-red-600 font-bold">✓</span>
-            <span>Taiwan Electronics</span>
-          </div>
-          <div class="flex items-center gap-1.5">
-            <span class="text-red-600 font-bold">✓</span>
-            <span>Japan Technical Trainee</span>
-          </div>
-          <div class="flex items-center gap-1.5">
-            <span class="text-red-600 font-bold">✓</span>
-            <span>Interview Batches</span>
-          </div>
-          <div class="flex items-center gap-1.5">
-            <span class="text-emerald-700 font-bold">✓</span>
-            <span>₱0 Pre-Reg Fee</span>
-          </div>
-        </div>
-
-        <form action="https://api.web3forms.com/submit" method="POST" class="space-y-3">
-          <input type="hidden" name="access_key" value="a22d6a8d-48ef-467f-948e-336c83f1b15c" />
-          <input type="hidden" name="subject" value="New Priority Job Alert Subscription - TW Manpower" />
-          <input type="hidden" name="from_name" value="TW Manpower Lead Engine" />
-
-          <div>
-            <label for="subscriber-email" class="block text-xs font-bold text-slate-700 mb-1 text-left">Applicant Email Address</label>
-            <input 
-              id="subscriber-email" 
-              name="email"
-              type="email" 
-              required 
-              placeholder="juandelacruz@gmail.com" 
-              class="w-full text-xs sm:text-sm border border-slate-300 rounded-xl px-3.5 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 transition" 
-            />
-          </div>
-
-          <button type="submit" class="btn-action w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl text-xs sm:text-sm shadow-md hover:shadow-red-600/30 transition cursor-pointer flex items-center justify-center gap-1.5">
-            <span>Subscribe to Priority Vacancies</span>
-            <span>→</span>
-          </button>
-        </form>
-
-        <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
-          <span>🔒 DMW & RA 10173 Compliant</span>
-          <button onclick="closeLeadModal()" class="font-semibold text-slate-500 hover:text-slate-800 hover:underline cursor-pointer">
-            Dismiss
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
+  <!-- DIRECT REST HOMEPAGE SYNC -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // 1. Mobile Navigation Toggle
+    const SUPABASE_URL = 'https://jfjfpckefxvjbplsqlgb.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_MHYyBZYL5HUy9PCSzWC5WQ_8nT2HOew';
+
+    const headers = {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY
+    };
+
+    async function loadHomeLiveFeed() {
+      // 1. Fetch Latest 3 Announcements
+      try {
+        const annRes = await fetch(`${SUPABASE_URL}/rest/v1/announcements?select=*&order=created_at.desc&limit=3`, { headers });
+        if (annRes.ok) {
+          const announcements = await annRes.json();
+          renderHomeAnnouncements(announcements);
+        }
+      } catch (err) {
+        console.warn('Failed loading home announcements:', err);
+      }
+
+      // 2. Fetch Latest 3 Jobs
+      try {
+        const jobsRes = await fetch(`${SUPABASE_URL}/rest/v1/jobs?select=*&order=created_at.desc&limit=3`, { headers });
+        if (jobsRes.ok) {
+          const jobs = await jobsRes.json();
+          renderHomeJobs(jobs);
+        }
+      } catch (err) {
+        console.warn('Failed loading home jobs:', err);
+      }
+    }
+
+    function renderHomeAnnouncements(items) {
+      const container = document.getElementById('homeAnnouncementsGrid');
+      if (!items || items.length === 0) {
+        container.innerHTML = `<div class="col-span-full py-6 text-center text-slate-400 text-xs">No recent announcements published.</div>`;
+        return;
+      }
+
+      container.innerHTML = '';
+      items.forEach((ann) => {
+        let tagColor = "bg-blue-100 text-blue-900 border-blue-200";
+        if (ann.tag === 'URGENT HIRING') tagColor = "bg-red-100 text-red-700 border-red-200";
+        if (ann.tag === 'DMW WARNING') tagColor = "bg-amber-100 text-amber-800 border-amber-200";
+
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-4 card-glow";
+        card.innerHTML = `
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-black px-3 py-1 rounded-full border ${tagColor}">${ann.tag}</span>
+              <span class="text-[11px] text-slate-400 font-medium">${ann.date}</span>
+            </div>
+            <h3 class="text-base font-black text-blue-950 leading-snug">${ann.title}</h3>
+            <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">${ann.content}</p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-[10px] text-slate-400 font-mono">TW Official Bulletin</span>
+            <a href="advisory.html" class="text-xs font-bold text-blue-900 hover:underline">Read Advisory →</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderHomeJobs(items) {
+      const container = document.getElementById('homeJobsGrid');
+      if (!items || items.length === 0) {
+        container.innerHTML = `<div class="col-span-full py-6 text-center text-slate-400 text-xs">No active vacancies currently listed.</div>`;
+        return;
+      }
+
+      container.innerHTML = '';
+      items.forEach((job) => {
+        let badgeColor = "bg-emerald-100 text-emerald-800 border-emerald-200";
+        if (job.status === 'Manpower Pooling') badgeColor = "bg-blue-100 text-blue-800 border-blue-200";
+        if (job.status === 'Interview Closed') badgeColor = "bg-slate-100 text-slate-600 border-slate-200";
+
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-3xl p-6 shadow-sm border border-slate-200 flex flex-col justify-between card-glow space-y-4";
+        card.innerHTML = `
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-bold text-blue-950 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">${job.country}</span>
+              <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${badgeColor}">${job.status}</span>
+            </div>
+
+            <div>
+              <h3 class="text-base font-black text-blue-950 leading-snug">${job.title}</h3>
+              <p class="text-xs text-slate-500 mt-0.5">${job.category}</p>
+            </div>
+
+            <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100 space-y-1.5 text-xs">
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500 font-medium">Monthly Comp:</span>
+                <strong class="text-slate-900">${job.salary}</strong>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500 font-medium">Available Slots:</span>
+                <strong class="text-blue-900">${job.slots} Candidates</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+            <span class="text-[10px] text-slate-400 font-medium">₱0 Pre-Reg Fee</span>
+            <a href="apply.html" class="btn-action inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow transition">
+              Apply Now →
+            </a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadHomeLiveFeed();
+
+      // Mobile Menu
       const menuBtn = document.getElementById('menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       if (menuBtn && mobileMenu) {
         menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
       }
-
-      // 2. Scroll Reveal for Sections
-      const reveals = document.querySelectorAll('.reveal');
-      const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      reveals.forEach(el => revealObserver.observe(el));
-
-      // 3. Counter Trigger
-      const counters = document.querySelectorAll('.counter');
-      let countersDone = false;
-
-      function runCounters() {
-        if (countersDone) return;
-        countersDone = true;
-
-        counters.forEach(counter => {
-          const target = parseInt(counter.getAttribute('data-target'), 10) || 0;
-          const duration = 1800;
-          const start = performance.now();
-
-          function step(now) {
-            const progress = Math.min((now - start) / duration, 1);
-            const easeOut = 1 - Math.pow(1 - progress, 3);
-            const value = Math.floor(easeOut * target);
-
-            counter.textContent = value.toLocaleString();
-
-            if (progress < 1) {
-              requestAnimationFrame(step);
-            } else {
-              counter.textContent = target.toLocaleString();
-            }
-          }
-          requestAnimationFrame(step);
-        });
-      }
-
-      const metricsSection = document.getElementById('metrics-section');
-      if (metricsSection && 'IntersectionObserver' in window) {
-        const counterObserver = new IntersectionObserver((entries) => {
-          if (entries[0].isIntersecting) {
-            runCounters();
-            counterObserver.disconnect();
-          }
-        }, { threshold: 0.15 });
-        counterObserver.observe(metricsSection);
-      }
-
-      // 4. Smooth Lead Modal Trigger (Delayed 2.2 seconds)
-      const modalDismissed = localStorage.getItem('tw_lead_modal_dismissed');
-      if (!modalDismissed) {
-        setTimeout(() => {
-          openLeadModal();
-        }, 2200);
-      }
-
-      // 5. Cookie Consent Banner Trigger (Delayed 1.2 seconds)
-      const cookiesAccepted = localStorage.getItem('tw_cookies_accepted');
-      const banner = document.getElementById('cookieConsentBanner');
-      if (!cookiesAccepted && banner) {
-        setTimeout(() => {
-          banner.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
-          banner.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
-        }, 1200);
-      }
     });
 
-    // Smooth Modal Functions
-    function openLeadModal() {
-      const modal = document.getElementById('leadModal');
-      if (!modal) return;
-      modal.classList.remove('modal-hidden');
-      modal.classList.add('modal-visible');
-    }
-
-    function closeLeadModal() {
-      const modal = document.getElementById('leadModal');
-      if (!modal) return;
-      modal.classList.remove('modal-visible');
-      modal.classList.add('modal-hidden');
-      localStorage.setItem('tw_lead_modal_dismissed', 'true');
-    }
-
-    // Cookie Banner Controls
-    function acceptCookies() {
-      const banner = document.getElementById('cookieConsentBanner');
-      if (banner) {
-        banner.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
-        banner.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
-      }
-      localStorage.setItem('tw_cookies_accepted', 'true');
-    }
-
-    // Google Translation Initialization
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'en',
