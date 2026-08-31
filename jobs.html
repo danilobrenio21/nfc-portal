@@ -159,9 +159,6 @@
           </a>
         </div>
         <p class="text-amber-400 font-semibold">⚠️ Advisory: Manpower Pooling Only. No Fees Collected During Initial Application.</p>
-        <div class="pt-1">
-          <a href="admin.html" class="text-[10px] text-slate-500 hover:text-slate-400 underline">🔒 Staff / Admin Portal</a>
-        </div>
       </div>
     </div>
 
@@ -170,12 +167,38 @@
     </div>
   </footer>
 
-  <!-- FLOATING LANGUAGE SELECTOR -->
+  <!-- FLOATING LANGUAGE SELECTOR (BOTTOM-LEFT) -->
   <div id="google_translate_element" class="fixed bottom-4 left-4 z-50 bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl rounded-2xl px-3 py-1.5 flex items-center gap-1.5">
     <span class="text-sm select-none">🌐</span>
   </div>
 
-  <!-- DIRECT REST SYNC WITH LOCAL FALLBACK -->
+  <!-- FLOATING CHAT WITH US WIDGET (BOTTOM-RIGHT) -->
+  <div id="floatingChatWidget" class="fixed bottom-4 right-4 z-50 flex flex-col items-end space-y-2">
+    <div class="bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl rounded-2xl p-3 text-xs text-slate-700 max-w-[210px] hidden sm:block">
+      <div class="flex items-center gap-1.5 font-bold text-blue-950">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        Recruiter Live Support
+      </div>
+      <p class="text-[11px] text-slate-500 mt-1 leading-snug">
+        Mon–Fri: 9:00 AM – 4:00 PM<br/>Click to chat with our Manila team.
+      </p>
+    </div>
+
+    <a 
+      href="https://m.me/19Qor4aPka" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="btn-action bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-4 py-3.5 rounded-full shadow-2xl border border-white/20 flex items-center gap-2 cursor-pointer group"
+      aria-label="Chat with Recruiter on Messenger"
+    >
+      <svg class="w-5 h-5 fill-white shrink-0 group-hover:scale-110 transition duration-200" viewBox="0 0 24 24">
+        <path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.094.304 2.253.464 3.443.464 6.627 0 12-4.975 12-11.111C24 4.974 18.627 0 12 0zm1.191 14.963l-3.056-3.259-5.963 3.259 6.556-6.963 3.13 3.259 5.889-3.259-6.556 6.963z"/>
+      </svg>
+      <span class="text-xs font-black tracking-wide">Chat with Us</span>
+    </a>
+  </div>
+
+  <!-- DIRECT REST SYNC -->
   <script>
     const SUPABASE_URL = 'https://jfjfpckefxvjbplsqlgb.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_MHYyBZYL5HUy9PCSzWC5WQ_8nT2HOew';
