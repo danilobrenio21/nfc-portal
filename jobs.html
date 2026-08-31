@@ -3,16 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Job Vacancies | TW (Phil.) International Manpower Inc.</title>
+  <title>Active Job Vacancies | TW (Phil.) International Manpower Inc.</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Universal smooth micro-interactions */
-    a, button, input, select {
-      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    a, button, input, select, textarea {
+      transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
       -webkit-tap-highlight-color: transparent;
     }
-
-    /* Hover & Active Feedback */
     button:hover, a.btn-action:hover {
       transform: translateY(-2px);
       filter: brightness(1.05);
@@ -21,18 +18,12 @@
       transform: scale(0.96) translateY(1px);
       filter: brightness(0.95);
     }
-
-    /* Interactive job card hover */
-    .job-card {
-      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease;
+    .interactive-card {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .job-card:hover {
+    .interactive-card:hover {
       transform: translateY(-4px);
-      border-color: #93c5fd;
-      box-shadow: 0 12px 24px -8px rgba(30, 58, 138, 0.12);
     }
-
-    /* Scroll Reveal */
     .reveal {
       opacity: 0;
       transform: translateY(20px);
@@ -42,8 +33,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-
-    /* Clean Google Translate Styling */
     .goog-te-banner-frame.skiptranslate { display: none !important; }
     body { top: 0px !important; }
     .goog-te-combo {
@@ -125,183 +114,42 @@
 
   <!-- BANNER -->
   <section class="bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white py-12 sm:py-16 px-4 text-center reveal">
-    <div class="max-w-4xl mx-auto space-y-4">
+    <div class="max-w-4xl mx-auto space-y-3">
       <span class="inline-block text-xs font-bold tracking-widest text-amber-400 uppercase bg-amber-400/10 px-3.5 py-1.5 rounded-full border border-amber-400/30">
-        📢 Active Recruitment Batches
+        Direct Employer Job Orders
       </span>
-      <h1 class="text-3xl sm:text-4xl font-black">Official Job Vacancies</h1>
-      <p class="text-slate-300 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">
-        Browse open positions bound for Taiwan. Select any job card to review complete qualifications and requirements.
+      <h1 class="text-3xl sm:text-4xl font-black">Active Overseas Job Vacancies</h1>
+      <p class="text-slate-300 text-xs sm:text-sm max-w-2xl mx-auto">
+        Browse legitimate and DMW-approved employment opportunities for Taiwan and Japan. Free initial pre-registration with ₱0 placement fee collected during initial pooling.
       </p>
-      
-      <!-- FIXED RESPONSIVE GREEN ADVISORY BADGE -->
-      <div class="pt-2 px-2 flex justify-center">
-        <div class="bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-bold px-4 py-2.5 rounded-2xl max-w-xl text-center leading-snug shadow-sm">
-          ⚠️ Manpower Pooling Only • ₱0 Placement Fee Collected During Initial Application
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- JOB LISTINGS SECTION -->
-  <main class="max-w-6xl mx-auto px-4 py-10 flex-grow">
+  <!-- MAIN VACANCIES FEED -->
+  <main class="max-w-6xl mx-auto px-4 py-12 flex-grow w-full space-y-8">
     
-    <!-- Filter Tags -->
-    <div class="flex flex-wrap items-center justify-center gap-2 mb-10 reveal">
-      <button onclick="filterJobs('all')" class="filter-btn active bg-blue-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow cursor-pointer">
-        All Jobs (5)
-      </button>
-      <button onclick="filterJobs('factory')" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 text-xs font-bold px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm cursor-pointer">
-        Factory & Molding
-      </button>
-      <button onclick="filterJobs('technical')" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 text-xs font-bold px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm cursor-pointer">
-        Technical & Operator
-      </button>
-      <button onclick="filterJobs('caregiver')" class="filter-btn bg-white text-slate-600 hover:bg-slate-100 text-xs font-bold px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm cursor-pointer">
-        Caretaker / Healthcare
-      </button>
+    <!-- Filter Bar -->
+    <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Filter by Destination:</span>
+        <button onclick="filterJobs('all')" id="filterAll" class="bg-blue-950 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm">All Jobs</button>
+        <button onclick="filterJobs('Taiwan')" id="filterTaiwan" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-lg">🇹🇼 Taiwan</button>
+        <button onclick="filterJobs('Japan')" id="filterJapan" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-lg">🇯🇵 Japan</button>
+      </div>
+
+      <div class="text-xs font-semibold text-slate-500">
+        Showing: <strong id="jobsCountDisplay" class="text-blue-950">Loading...</strong>
+      </div>
     </div>
 
-    <!-- JOBS GRID -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-      <!-- JOB 1: Rubber Injection Molding -->
-      <div class="job-item factory bg-white border border-slate-200 rounded-2xl p-6 shadow-sm job-card flex flex-col justify-between cursor-pointer reveal" onclick="openJobModal('job-1')">
-        <div>
-          <div class="flex items-center justify-between gap-2 mb-3">
-            <span class="bg-blue-100 text-blue-800 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full">🇹🇼 Taiwan Bound</span>
-            <span class="text-xs text-slate-400 font-medium">Male • 20–35 yo</span>
-          </div>
-          <h2 class="text-lg font-black text-blue-950 leading-snug hover:text-red-600 transition">
-            Rubber Injection Molding Workers
-          </h2>
-          <p class="text-xs text-slate-500 mt-1 line-clamp-2">Factory production line workers with dedicated rubber injection molding experience.</p>
-          
-          <div class="mt-4 pt-4 border-t border-slate-100 space-y-1.5 text-xs text-slate-600">
-            <div class="flex items-center gap-2"><span>📏</span> <strong>Height:</strong> At least 165 cm</div>
-            <div class="flex items-center gap-2"><span>💼</span> <strong>Experience:</strong> Rubber Injection Molding</div>
-          </div>
-        </div>
-
-        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-3" onclick="event.stopPropagation()">
-          <button onclick="openJobModal('job-1')" class="text-xs font-bold text-blue-900 hover:underline">View Details</button>
-          <a href="apply.html" class="btn-action bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-xl shadow">Apply for Position</a>
-        </div>
+    <!-- Jobs Grid Container -->
+    <div id="liveJobsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="col-span-full py-16 text-center text-slate-400 font-semibold text-sm">
+        Connecting to Supabase Cloud Database... ⏳
       </div>
-
-      <!-- JOB 2: Female Soldering Workers -->
-      <div class="job-item technical bg-white border border-slate-200 rounded-2xl p-6 shadow-sm job-card flex flex-col justify-between cursor-pointer reveal" onclick="openJobModal('job-2')">
-        <div>
-          <div class="flex items-center justify-between gap-2 mb-3">
-            <span class="bg-blue-100 text-blue-800 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full">🇹🇼 Taiwan Bound</span>
-            <span class="text-xs text-slate-400 font-medium">Female • 20–30 yo</span>
-          </div>
-          <h2 class="text-lg font-black text-blue-950 leading-snug hover:text-red-600 transition">
-            Female Soldering Operators
-          </h2>
-          <p class="text-xs text-slate-500 mt-1 line-clamp-2">Electronics & PCB assembly workers with practical soldering experience.</p>
-          
-          <div class="mt-4 pt-4 border-t border-slate-100 space-y-1.5 text-xs text-slate-600">
-            <div class="flex items-center gap-2"><span>📏</span> <strong>Height:</strong> At least 155 cm</div>
-            <div class="flex items-center gap-2"><span>🎓</span> <strong>Education:</strong> High School / Vocational Grad</div>
-          </div>
-        </div>
-
-        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-3" onclick="event.stopPropagation()">
-          <button onclick="openJobModal('job-2')" class="text-xs font-bold text-blue-900 hover:underline">View Details</button>
-          <a href="apply.html" class="btn-action bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-xl shadow">Apply for Position</a>
-        </div>
-      </div>
-
-      <!-- JOB 3: Female College Graduates -->
-      <div class="job-item factory bg-white border border-slate-200 rounded-2xl p-6 shadow-sm job-card flex flex-col justify-between cursor-pointer reveal" onclick="openJobModal('job-3')">
-        <div>
-          <div class="flex items-center justify-between gap-2 mb-3">
-            <span class="bg-blue-100 text-blue-800 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full">🇹🇼 Taiwan Bound</span>
-            <span class="text-xs text-slate-400 font-medium">Female • 20–30 yo</span>
-          </div>
-          <h2 class="text-lg font-black text-blue-950 leading-snug hover:text-red-600 transition">
-            Female Factory Staff (College Grad)
-          </h2>
-          <p class="text-xs text-slate-500 mt-1 line-clamp-2">Open opportunity for female college graduates with or without prior overseas experience.</p>
-          
-          <div class="mt-4 pt-4 border-t border-slate-100 space-y-1.5 text-xs text-slate-600">
-            <div class="flex items-center gap-2"><span>📏</span> <strong>Height:</strong> At least 155 cm</div>
-            <div class="flex items-center gap-2"><span>🎓</span> <strong>Education:</strong> College Graduate</div>
-          </div>
-        </div>
-
-        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-3" onclick="event.stopPropagation()">
-          <button onclick="openJobModal('job-3')" class="text-xs font-bold text-blue-900 hover:underline">View Details</button>
-          <a href="apply.html" class="btn-action bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-xl shadow">Apply for Position</a>
-        </div>
-      </div>
-
-      <!-- JOB 4: Female Caretakers -->
-      <div class="job-item caregiver bg-white border border-slate-200 rounded-2xl p-6 shadow-sm job-card flex flex-col justify-between cursor-pointer reveal" onclick="openJobModal('job-4')">
-        <div>
-          <div class="flex items-center justify-between gap-2 mb-3">
-            <span class="bg-red-100 text-red-800 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full">🇹🇼 Caregiving</span>
-            <span class="text-xs text-slate-400 font-medium">Female • 25+ yo</span>
-          </div>
-          <h2 class="text-lg font-black text-blue-950 leading-snug hover:text-red-600 transition">
-            Female Caretakers (Ex-Abroad / Mandarin)
-          </h2>
-          <p class="text-xs text-slate-500 mt-1 line-clamp-2">Ex-Taiwan, Ex-Hong Kong, or Ex-Singapore caretakers who can speak Mandarin.</p>
-          
-          <div class="mt-4 pt-4 border-t border-slate-100 space-y-1.5 text-xs text-slate-600">
-            <div class="flex items-center gap-2"><span>🗣️</span> <strong>Languages:</strong> English & Mandarin</div>
-            <div class="flex items-center gap-2"><span>🌍</span> <strong>Background:</strong> Ex-TW / HK / SG</div>
-          </div>
-        </div>
-
-        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-3" onclick="event.stopPropagation()">
-          <button onclick="openJobModal('job-4')" class="text-xs font-bold text-blue-900 hover:underline">View Details</button>
-          <a href="apply.html" class="btn-action bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-xl shadow">Apply for Position</a>
-        </div>
-      </div>
-
-      <!-- JOB 5: Overhead Crane Operator -->
-      <div class="job-item technical bg-white border border-slate-200 rounded-2xl p-6 shadow-sm job-card flex flex-col justify-between cursor-pointer reveal" onclick="openJobModal('job-5')">
-        <div>
-          <div class="flex items-center justify-between gap-2 mb-3">
-            <span class="bg-blue-100 text-blue-800 text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full">🇹🇼 Heavy Tech</span>
-            <span class="text-xs text-slate-400 font-medium">Male • 21–35 yo</span>
-          </div>
-          <h2 class="text-lg font-black text-blue-950 leading-snug hover:text-red-600 transition">
-            Overhead Crane Operator
-          </h2>
-          <p class="text-xs text-slate-500 mt-1 line-clamp-2">Factory overhead crane operators with verified operation experience.</p>
-          
-          <div class="mt-4 pt-4 border-t border-slate-100 space-y-1.5 text-xs text-slate-600">
-            <div class="flex items-center gap-2"><span>📏</span> <strong>Height:</strong> At least 165 cm</div>
-            <div class="flex items-center gap-2"><span>🏗️</span> <strong>Experience:</strong> Overhead Crane handling</div>
-          </div>
-        </div>
-
-        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-3" onclick="event.stopPropagation()">
-          <button onclick="openJobModal('job-5')" class="text-xs font-bold text-blue-900 hover:underline">View Details</button>
-          <a href="apply.html" class="btn-action bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2 rounded-xl shadow">Apply for Position</a>
-        </div>
-      </div>
-
     </div>
+
   </main>
-
-  <!-- POPUP MODAL (FULL JOB DETAILS) -->
-  <div id="job-modal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative max-h-[90vh] overflow-y-auto">
-      
-      <!-- Close Button -->
-      <button onclick="closeJobModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-black cursor-pointer">
-        ✕
-      </button>
-
-      <div id="modal-content">
-        <!-- Dynamic content via JS -->
-      </div>
-    </div>
-  </div>
 
   <!-- FOOTER -->
   <footer class="bg-slate-900 text-slate-400 py-10 px-4 text-xs border-t border-slate-800 mt-auto reveal">
@@ -320,6 +168,9 @@
           </a>
         </div>
         <p class="text-amber-400 font-semibold">⚠️ Advisory: Manpower Pooling Only. No Fees Collected During Initial Application.</p>
+        <div class="pt-1">
+          <a href="admin.html" class="text-[10px] text-slate-500 hover:text-slate-400 underline">🔒 Staff / Admin Portal</a>
+        </div>
       </div>
     </div>
 
@@ -333,171 +184,134 @@
     <span class="text-sm select-none">🌐</span>
   </div>
 
+  <!-- DIRECT REST API CLIENT -->
   <script>
-    // Job Data Repository
-    const jobsDatabase = {
-      'job-1': {
-        title: "Rubber Injection Molding Workers",
-        badge: "🇹🇼 Bound for Taiwan",
-        qualifications: [
-          "Male applicants",
-          "20 to 35 years old",
-          "At least 165 cm in height",
-          "With rubber injection molding experience",
-          "Physically fit for factory operations"
-        ],
-        contact: "0917 115 6683",
-        notes: "Interested applicants are encouraged to prepare their complete requirements and apply immediately."
-      },
-      'job-2': {
-        title: "Female Soldering Operators",
-        badge: "🇹🇼 Bound for Taiwan",
-        qualifications: [
-          "Female applicants",
-          "20 to 30 years old",
-          "At least 155 cm in height",
-          "High School or Vocational Graduate",
-          "With practical soldering experience"
-        ],
-        contact: "0917 115 6683",
-        notes: "Prepare your documents and certificates for interview verification."
-      },
-      'job-3': {
-        title: "Female Applicants (College Graduate)",
-        badge: "🇹🇼 Bound for Taiwan",
-        qualifications: [
-          "Female applicants",
-          "20 to 30 years old",
-          "At least 155 cm in height",
-          "College graduate (Any 4-year or 2-year course)",
-          "With or without overseas experience"
-        ],
-        contact: "0917 115 6683",
-        notes: "Excellent opportunity to start a global career in Taiwan."
-      },
-      'job-4': {
-        title: "Female Caretakers (Ex-Abroad)",
-        badge: "🇹🇼 Caretaking • Taiwan",
-        qualifications: [
-          "Female applicants only",
-          "25 years old and above",
-          "At least 150 cm in height",
-          "Fluent in English and can speak Mandarin",
-          "Ex-Taiwan, Ex-Hong Kong, or Ex-Singapore",
-          "Kind, patient, compassionate, and hardworking"
-        ],
-        contact: "0917 184 7514 (Look for Ms. Apple)",
-        notes: "Submit your updated résumé or contact Ms. Apple directly for prompt interview queueing."
-      },
-      'job-5': {
-        title: "Overhead Crane Operator",
-        badge: "🇹🇼 Bound for Taiwan",
-        qualifications: [
-          "Male applicants",
-          "21 to 35 years old",
-          "At least 165 cm in height",
-          "College graduate or undergraduate",
-          "With or without crane license",
-          "Must possess verified overhead crane experience"
-        ],
-        contact: "0917 115 6683",
-        notes: "Prepare documentary proof of previous crane operation experience."
-      }
+    const SUPABASE_URL = 'https://jfjfpckefxvjbplsqlgb.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_MHYyBZYL5HUy9PCSzWC5WQ_8nT2HOew';
+
+    const headers = {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Content-Type': 'application/json'
     };
 
-    function openJobModal(jobKey) {
-      const job = jobsDatabase[jobKey];
-      if (!job) return;
+    let allJobs = [];
+    let currentFilter = 'all';
 
-      const modal = document.getElementById('job-modal');
-      const content = document.getElementById('modal-content');
+    async function fetchLiveJobs() {
+      const container = document.getElementById('liveJobsContainer');
 
-      const qualsList = job.qualifications.map(q => `<li class="flex items-center gap-2"><span>✅</span> <span>${q}</span></li>`).join('');
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/jobs?select=*&order=created_at.desc`, { headers });
+        if (!res.ok) throw new Error(res.statusText);
+        allJobs = await res.json();
 
-      content.innerHTML = `
-        <span class="inline-block text-[10px] font-black uppercase tracking-wider bg-blue-100 text-blue-900 px-3 py-1 rounded-full mb-2">${job.badge}</span>
-        <h2 class="text-2xl font-black text-blue-950 mb-4 leading-tight">${job.title}</h2>
-        
-        <div class="space-y-4 text-xs text-slate-700">
-          <div>
-            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Qualifications & Requirements:</h3>
-            <ul class="space-y-2 bg-slate-50 p-4 rounded-xl border border-slate-200">
-              ${qualsList}
-            </ul>
+        renderJobsGrid();
+      } catch (err) {
+        console.error('Fetch error:', err);
+        container.innerHTML = `
+          <div class="col-span-full p-8 text-center bg-white rounded-2xl border border-red-100 text-red-600 text-xs font-bold">
+            Unable to load jobs from cloud database. Please verify internet connection.
+          </div>
+        `;
+      }
+    }
+
+    function renderJobsGrid() {
+      const container = document.getElementById('liveJobsContainer');
+      const countDisplay = document.getElementById('jobsCountDisplay');
+
+      let filtered = allJobs;
+      if (currentFilter === 'Taiwan') {
+        filtered = allJobs.filter(j => j.country.includes('Taiwan'));
+      } else if (currentFilter === 'Japan') {
+        filtered = allJobs.filter(j => j.country.includes('Japan'));
+      }
+
+      countDisplay.textContent = `${filtered.length} Vacancy ${filtered.length === 1 ? 'Order' : 'Orders'}`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full p-12 text-center bg-white rounded-3xl border border-slate-200 text-slate-400">
+            No active vacancies found for this category right now.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = '';
+      filtered.forEach((job) => {
+        let badgeColor = "bg-emerald-100 text-emerald-800 border-emerald-200";
+        if (job.status === 'Manpower Pooling') badgeColor = "bg-blue-100 text-blue-800 border-blue-200";
+        if (job.status === 'Interview Closed') badgeColor = "bg-slate-100 text-slate-600 border-slate-200";
+
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-3xl p-6 shadow-md border border-slate-200 flex flex-col justify-between interactive-card space-y-4";
+        card.innerHTML = `
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-bold text-blue-950 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">${job.country}</span>
+              <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${badgeColor}">${job.status}</span>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-black text-blue-950 leading-snug">${job.title}</h3>
+              <p class="text-xs text-slate-500 mt-0.5">${job.category}</p>
+              ${job.order_no ? `<span class="text-[10px] font-mono text-slate-400 mt-0.5 block">${job.order_no}</span>` : ''}
+            </div>
+
+            <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100 space-y-2 text-xs">
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500 font-medium">Monthly Comp:</span>
+                <strong class="text-slate-900">${job.salary}</strong>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-500 font-medium">Available Slots:</span>
+                <strong class="text-blue-900">${job.slots} Candidates</strong>
+              </div>
+            </div>
+
+            ${job.requirements ? `
+              <div class="text-xs text-slate-600 leading-relaxed pt-1">
+                <strong>Requirements:</strong> ${job.requirements}
+              </div>
+            ` : ''}
           </div>
 
-          <div class="p-3.5 bg-blue-50/70 border border-blue-100 rounded-xl space-y-1">
-            <div class="font-bold text-blue-950">📍 Office Location & Screening:</div>
-            <div class="text-slate-600">Marioco Bldg., Adriatico St., Malate, Manila</div>
-            <div class="text-slate-600">🕘 Mon–Fri | 9:00 AM – 4:00 PM</div>
-            <div class="text-blue-900 font-bold">📞 ${job.contact}</div>
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+            <span class="text-[10px] text-slate-400 font-medium">₱0 Pre-Reg Fee</span>
+            <a href="apply.html" class="btn-action inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow transition">
+              Apply for Job →
+            </a>
           </div>
-
-          <p class="text-slate-500 italic text-[11px]">${job.notes}</p>
-        </div>
-
-        <div class="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row gap-3">
-          <a href="apply.html" class="btn-action w-full text-center bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl shadow-lg transition">
-            Apply for Position
-          </a>
-          <button onclick="closeJobModal()" class="w-full sm:w-auto px-5 py-3 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-50 transition cursor-pointer">
-            Close
-          </button>
-        </div>
-      `;
-
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeJobModal() {
-      const modal = document.getElementById('job-modal');
-      modal.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
-
-    function filterJobs(category) {
-      const items = document.querySelectorAll('.job-item');
-      const buttons = document.querySelectorAll('.filter-btn');
-
-      buttons.forEach(btn => {
-        btn.classList.remove('bg-blue-900', 'text-white');
-        btn.classList.add('bg-white', 'text-slate-600');
-      });
-      event.target.classList.add('bg-blue-900', 'text-white');
-      event.target.classList.remove('bg-white', 'text-slate-600');
-
-      items.forEach(item => {
-        if (category === 'all' || item.classList.contains(category)) {
-          item.style.display = 'flex';
-        } else {
-          item.style.display = 'none';
-        }
+        `;
+        container.appendChild(card);
       });
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-      // Mobile Navigation
+    function filterJobs(cat) {
+      currentFilter = cat;
+      const btnAll = document.getElementById('filterAll');
+      const btnTw = document.getElementById('filterTaiwan');
+      const btnJp = document.getElementById('filterJapan');
+
+      btnAll.className = cat === 'all' ? "bg-blue-950 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm" : "bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-lg";
+      btnTw.className = cat === 'Taiwan' ? "bg-blue-950 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm" : "bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-lg";
+      btnJp.className = cat === 'Japan' ? "bg-blue-950 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm" : "bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-lg";
+
+      renderJobsGrid();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      fetchLiveJobs();
+
       const menuBtn = document.getElementById('menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       if (menuBtn && mobileMenu) {
         menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
       }
-
-      // Scroll Reveal
-      const reveals = document.querySelectorAll('.reveal');
-      const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      reveals.forEach(el => revealObserver.observe(el));
     });
 
-    // Google Translation Initialization
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'en',
