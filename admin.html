@@ -29,7 +29,7 @@
 </head>
 <body class="bg-slate-100 text-slate-800 antialiased font-sans min-h-screen flex flex-col">
 
-  <!-- AUTHENTICATION VIEW -->
+  <!-- ================= AUTHENTICATION VIEW ================= -->
   <div id="loginView" class="flex-grow flex items-center justify-center p-4">
     <div class="bg-white max-w-md w-full rounded-3xl p-8 shadow-2xl border border-slate-200 text-center space-y-6">
       
@@ -87,7 +87,7 @@
     </div>
   </div>
 
-  <!-- DASHBOARD VIEW -->
+  <!-- ================= DASHBOARD VIEW ================= -->
   <div id="dashboardView" class="hidden min-h-screen flex flex-col">
     
     <header class="bg-blue-950 text-white border-b border-blue-900 sticky top-0 z-40">
@@ -96,13 +96,13 @@
           <span class="w-8 h-8 rounded-lg bg-red-600 font-black text-xs flex items-center justify-center shadow">TW</span>
           <div>
             <div class="text-xs sm:text-sm font-black tracking-tight leading-tight">TW MANPOWER MANAGEMENT CONSOLE</div>
-            <div class="text-[10px] text-slate-400 font-medium">Database: <strong class="text-emerald-400">Supabase Cloud Connected</strong></div>
+            <div class="text-[10px] text-slate-400 font-medium">Database: <strong class="text-emerald-400">Cloud Sync Active</strong></div>
           </div>
         </div>
 
         <div class="flex items-center gap-3">
-          <a href="jobs.html" target="_blank" class="hidden sm:inline-block text-xs bg-white/10 hover:bg-white/20 text-slate-200 px-3 py-1.5 rounded-lg border border-white/20">
-            View Live Jobs Page ↗
+          <a href="advisory.html" target="_blank" class="hidden sm:inline-block text-xs bg-white/10 hover:bg-white/20 text-slate-200 px-3 py-1.5 rounded-lg border border-white/20">
+            View Live Bulletins ↗
           </a>
           <button onclick="handleLogout()" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow cursor-pointer">
             Sign Out
@@ -113,6 +113,7 @@
 
     <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full space-y-8">
       
+      <!-- Top Metrics -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm card-glow">
           <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">Active Job Posts</div>
@@ -127,9 +128,9 @@
         </div>
 
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm card-glow">
-          <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Records</div>
-          <div id="statTotalJobs" class="text-3xl font-black text-blue-900 mt-1">0</div>
-          <span class="text-[10px] text-slate-400 font-medium mt-1 block">In Cloud Database</span>
+          <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">Live Bulletins</div>
+          <div id="statBulletins" class="text-3xl font-black text-blue-900 mt-1">0</div>
+          <span class="text-[10px] text-emerald-600 font-semibold mt-1 block">Advisories Published</span>
         </div>
 
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm card-glow">
@@ -142,11 +143,22 @@
         </div>
       </div>
 
-      <div class="space-y-6">
+      <!-- Tab Switcher -->
+      <div class="flex border-b border-slate-200 space-x-6">
+        <button id="tabJobsBtn" onclick="switchTab('jobs')" class="pb-3 text-xs sm:text-sm font-black text-blue-950 border-b-2 border-blue-950 cursor-pointer">
+          💼 Job Vacancies (<span id="tabJobCount">0</span>)
+        </button>
+        <button id="tabAnnounceBtn" onclick="switchTab('announcements')" class="pb-3 text-xs sm:text-sm font-bold text-slate-500 hover:text-slate-800 border-b-2 border-transparent cursor-pointer">
+          📢 Announcements & Advisories (<span id="tabAnnounceCount">0</span>)
+        </button>
+      </div>
+
+      <!-- SECTION 1: JOBS -->
+      <div id="sectionJobs" class="space-y-6">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200">
           <div>
             <h2 class="text-base font-black text-blue-950">Current Overseas Job Orders</h2>
-            <p class="text-xs text-slate-500">Changes made here sync live to the public website immediately.</p>
+            <p class="text-xs text-slate-500">Live recruitment orders synced to jobs.html.</p>
           </div>
           <button onclick="openJobModal()" class="btn-action bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow cursor-pointer flex items-center gap-1.5">
             <span>➕</span>
@@ -175,6 +187,24 @@
         </div>
       </div>
 
+      <!-- SECTION 2: ANNOUNCEMENTS -->
+      <div id="sectionAnnouncements" class="hidden space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200">
+          <div>
+            <h2 class="text-base font-black text-blue-950">Official Bulletins & Advisories</h2>
+            <p class="text-xs text-slate-500">Post holiday closures, walk-in interview schedules, and DMW warnings.</p>
+          </div>
+          <button onclick="openAnnouncementModal()" class="btn-action bg-blue-900 hover:bg-blue-800 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow cursor-pointer flex items-center gap-1.5">
+            <span>➕</span>
+            <span>Create Announcement</span>
+          </button>
+        </div>
+
+        <div id="announcementsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="col-span-full p-8 text-center bg-white rounded-2xl border border-slate-200 text-slate-400">Loading bulletins... ⏳</div>
+        </div>
+      </div>
+
     </main>
 
     <footer class="bg-slate-900 text-slate-500 text-xs py-6 px-4 text-center border-t border-slate-800 mt-auto">
@@ -182,10 +212,9 @@
     </footer>
   </div>
 
-  <!-- MODAL: ADD / EDIT JOB -->
+  <!-- MODAL: JOB -->
   <div id="jobModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm hidden">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 space-y-4 max-h-[90vh] overflow-y-auto">
-      
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
         <h3 id="jobModalTitle" class="text-base font-black text-blue-950">Post New Job Vacancy</h3>
         <button onclick="closeJobModal()" class="text-slate-400 hover:text-slate-600 text-sm font-bold">✕</button>
@@ -254,11 +283,59 @@
           </button>
         </div>
       </form>
-
     </div>
   </div>
 
-  <!-- DIRECT REST API CLOUD SYNC -->
+  <!-- MODAL: ANNOUNCEMENT -->
+  <div id="announcementModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm hidden">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 id="announcementModalTitle" class="text-base font-black text-blue-950">Create Official Bulletin</h3>
+        <button onclick="closeAnnouncementModal()" class="text-slate-400 hover:text-slate-600 text-sm font-bold">✕</button>
+      </div>
+
+      <form id="announcementForm" onsubmit="saveAnnouncement(event)" class="space-y-3.5">
+        <input type="hidden" id="announceEditId" value="" />
+
+        <div>
+          <label for="announceTitle" class="block text-xs font-bold text-slate-700 mb-1">Bulletin Title</label>
+          <input id="announceTitle" type="text" required placeholder="e.g. Special Walk-In Interview Batch" class="w-full text-xs font-medium border border-slate-300 rounded-xl px-3 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="announceTag" class="block text-xs font-bold text-slate-700 mb-1">Category Tag</label>
+            <select id="announceTag" class="w-full text-xs font-medium border border-slate-300 rounded-xl px-3 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900">
+              <option value="OFFICE ADVISORY">OFFICE ADVISORY</option>
+              <option value="INTERVIEW SCHEDULE">INTERVIEW SCHEDULE</option>
+              <option value="URGENT HIRING">URGENT HIRING</option>
+              <option value="DMW WARNING">DMW WARNING</option>
+            </select>
+          </div>
+          <div>
+            <label for="announceDate" class="block text-xs font-bold text-slate-700 mb-1">Effective Date / Month</label>
+            <input id="announceDate" type="text" required placeholder="e.g. September 2026" class="w-full text-xs font-medium border border-slate-300 rounded-xl px-3 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900" />
+          </div>
+        </div>
+
+        <div>
+          <label for="announceContent" class="block text-xs font-bold text-slate-700 mb-1">Bulletin Content / Instructions</label>
+          <textarea id="announceContent" rows="4" required placeholder="Provide clear instructions, reminders, or schedule details..." class="w-full text-xs font-medium border border-slate-300 rounded-xl px-3 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900"></textarea>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
+          <button type="button" onclick="closeAnnouncementModal()" class="px-4 py-2 text-xs font-bold text-slate-500 hover:text-slate-800">
+            Cancel
+          </button>
+          <button id="announceSubmitBtn" type="submit" class="btn-action bg-blue-900 hover:bg-blue-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow cursor-pointer">
+            Publish Bulletin
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DIRECT REST SYNC SCRIPT -->
   <script>
     const SUPABASE_URL = 'https://jfjfpckefxvjbplsqlgb.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_MHYyBZYL5HUy9PCSzWC5WQ_8nT2HOew';
@@ -266,11 +343,11 @@
     const headers = {
       'apikey': SUPABASE_KEY,
       'Authorization': 'Bearer ' + SUPABASE_KEY,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=representation'
+      'Content-Type': 'application/json'
     };
 
     let jobsData = [];
+    let announcementsData = [];
 
     function handleLogin(e) {
       e.preventDefault();
@@ -299,63 +376,39 @@
       loadCloudData();
     }
 
-    async function loadCloudData() {
-      try {
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/jobs?select=*&order=created_at.desc`, { headers });
-        if (!res.ok) throw new Error(res.statusText);
-        jobsData = await res.json();
+    function switchTab(tab) {
+      const secJobs = document.getElementById('sectionJobs');
+      const secAnn = document.getElementById('sectionAnnouncements');
+      const btnJobs = document.getElementById('tabJobsBtn');
+      const btnAnn = document.getElementById('tabAnnounceBtn');
 
-        if (jobsData.length === 0) {
-          await seedInitialJobs();
-          return;
-        }
-
-        renderDashboard();
-      } catch (err) {
-        console.error('Error loading jobs:', err);
+      if (tab === 'jobs') {
+        secJobs.classList.remove('hidden');
+        secAnn.classList.add('hidden');
+        btnJobs.className = "pb-3 text-xs sm:text-sm font-black text-blue-950 border-b-2 border-blue-950 cursor-pointer";
+        btnAnn.className = "pb-3 text-xs sm:text-sm font-bold text-slate-500 hover:text-slate-800 border-b-2 border-transparent cursor-pointer";
+      } else {
+        secJobs.classList.add('hidden');
+        secAnn.classList.remove('hidden');
+        btnJobs.className = "pb-3 text-xs sm:text-sm font-bold text-slate-500 hover:text-slate-800 border-b-2 border-transparent cursor-pointer";
+        btnAnn.className = "pb-3 text-xs sm:text-sm font-black text-blue-950 border-b-2 border-blue-950 cursor-pointer";
       }
     }
 
-    async function seedInitialJobs() {
-      const starterJobs = [
-        {
-          title: "Rubber Injection Molding Worker",
-          country: "🇹🇼 Taiwan",
-          category: "Manufacturing",
-          salary: "NT$ 27,470 (~₱48,000)",
-          slots: 30,
-          status: "Active Hiring",
-          order_no: "JO-TW-2026-081",
-          requirements: "Male, 20-35 yrs old, 165cm height, with factory or molding background."
-        },
-        {
-          title: "Female Soldering Operator",
-          country: "🇹🇼 Taiwan",
-          category: "Electronics",
-          salary: "NT$ 27,470 (~₱48,000)",
-          slots: 25,
-          status: "Active Hiring",
-          order_no: "JO-TW-2026-082",
-          requirements: "Female, 20-30 yrs old, soldering experience preferred."
-        },
-        {
-          title: "Japan SSW Certified Caregiver",
-          country: "🇯🇵 Japan",
-          category: "TITP / SSW Track",
-          salary: "¥ 180,000 (~₱70,000)",
-          slots: 25,
-          status: "Manpower Pooling",
-          order_no: "JO-JP-2026-019",
-          requirements: "JLPT N4 Passer, Prometric Nursing Care Passer."
-        }
-      ];
+    async function loadCloudData() {
+      try {
+        const [jobsRes, annRes] = await Promise.all([
+          fetch(`${SUPABASE_URL}/rest/v1/jobs?select=*&order=created_at.desc`, { headers }),
+          fetch(`${SUPABASE_URL}/rest/v1/announcements?select=*&order=created_at.desc`, { headers })
+        ]);
 
-      await fetch(`${SUPABASE_URL}/rest/v1/jobs`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify(starterJobs)
-      });
-      loadCloudData();
+        if (jobsRes.ok) jobsData = await jobsRes.json();
+        if (annRes.ok) announcementsData = await annRes.json();
+
+        renderDashboard();
+      } catch (err) {
+        console.error('Error loading data:', err);
+      }
     }
 
     function renderDashboard() {
@@ -364,13 +417,15 @@
 
       document.getElementById('statActiveJobs').textContent = activeJobsCount;
       document.getElementById('statTotalSlots').textContent = totalSlots;
-      document.getElementById('statTotalJobs').textContent = jobsData.length;
+      document.getElementById('statBulletins').textContent = announcementsData.length;
+      document.getElementById('tabJobCount').textContent = jobsData.length;
+      document.getElementById('tabAnnounceCount').textContent = announcementsData.length;
 
+      // Render Jobs Table
       const jobsTable = document.getElementById('jobsTableBody');
       jobsTable.innerHTML = '';
-
       if (jobsData.length === 0) {
-        jobsTable.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-slate-400">No job records found. Click "+ Post New Job Vacancy" above.</td></tr>`;
+        jobsTable.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-slate-400">No job records found.</td></tr>`;
       } else {
         jobsData.forEach((job) => {
           let badgeColor = "bg-emerald-100 text-emerald-800";
@@ -390,25 +445,49 @@
             </td>
             <td class="p-4 font-bold text-slate-900">${job.salary}</td>
             <td class="p-4 font-bold text-blue-900">${job.slots} slots</td>
-            <td class="p-4">
-              <span class="text-[10px] font-bold px-2.5 py-1 rounded-full ${badgeColor}">
-                ${job.status}
-              </span>
-            </td>
+            <td class="p-4"><span class="text-[10px] font-bold px-2.5 py-1 rounded-full ${badgeColor}">${job.status}</span></td>
             <td class="p-4 text-right space-x-1">
-              <button onclick="editJob('${job.id}')" class="bg-slate-100 hover:bg-slate-200 text-blue-900 font-bold px-2.5 py-1 rounded text-xs cursor-pointer">
-                Edit
-              </button>
-              <button onclick="deleteJob('${job.id}')" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-2.5 py-1 rounded text-xs cursor-pointer">
-                Delete
-              </button>
+              <button onclick="editJob('${job.id}')" class="bg-slate-100 hover:bg-slate-200 text-blue-900 font-bold px-2.5 py-1 rounded text-xs cursor-pointer">Edit</button>
+              <button onclick="deleteJob('${job.id}')" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-2.5 py-1 rounded text-xs cursor-pointer">Delete</button>
             </td>
           `;
           jobsTable.appendChild(row);
         });
       }
+
+      // Render Announcements Grid
+      const annGrid = document.getElementById('announcementsGrid');
+      annGrid.innerHTML = '';
+      if (announcementsData.length === 0) {
+        annGrid.innerHTML = `<div class="col-span-full p-8 text-center bg-white rounded-2xl border border-slate-200 text-slate-400">No announcements published yet. Click "+ Create Announcement" above.</div>`;
+      } else {
+        announcementsData.forEach((ann) => {
+          let tagColor = "bg-blue-100 text-blue-900";
+          if (ann.tag === 'URGENT HIRING') tagColor = "bg-red-100 text-red-700";
+          if (ann.tag === 'DMW WARNING') tagColor = "bg-amber-100 text-amber-800";
+
+          const card = document.createElement('div');
+          card.className = "bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between space-y-4 card-glow";
+          card.innerHTML = `
+            <div class="space-y-2">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[10px] font-black px-2.5 py-0.5 rounded-full ${tagColor}">${ann.tag}</span>
+                <span class="text-[10px] text-slate-400">${ann.date}</span>
+              </div>
+              <h3 class="font-bold text-blue-950 text-sm leading-snug">${ann.title}</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">${ann.content}</p>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
+              <button onclick="editAnnouncement('${ann.id}')" class="text-blue-900 hover:underline font-bold text-xs cursor-pointer">Edit</button>
+              <button onclick="deleteAnnouncement('${ann.id}')" class="text-red-600 hover:underline font-bold text-xs cursor-pointer">Delete</button>
+            </div>
+          `;
+          annGrid.appendChild(card);
+        });
+      }
     }
 
+    // Modal Job Ops
     function openJobModal() {
       document.getElementById('jobEditId').value = '';
       document.getElementById('jobForm').reset();
@@ -477,11 +556,75 @@
     }
 
     async function deleteJob(id) {
-      if (confirm('Delete this job from the database? It will be removed from the live website.')) {
-        await fetch(`${SUPABASE_URL}/rest/v1/jobs?id=eq.${id}`, {
-          method: 'DELETE',
-          headers
+      if (confirm('Delete this job? It will be removed from the live website.')) {
+        await fetch(`${SUPABASE_URL}/rest/v1/jobs?id=eq.${id}`, { method: 'DELETE', headers });
+        loadCloudData();
+      }
+    }
+
+    // Modal Announcement Ops
+    function openAnnouncementModal() {
+      document.getElementById('announceEditId').value = '';
+      document.getElementById('announcementForm').reset();
+      document.getElementById('announcementModalTitle').textContent = 'Create Official Bulletin';
+      document.getElementById('announcementModal').classList.remove('hidden');
+    }
+
+    function closeAnnouncementModal() {
+      document.getElementById('announcementModal').classList.add('hidden');
+    }
+
+    async function saveAnnouncement(e) {
+      e.preventDefault();
+      const btn = document.getElementById('announceSubmitBtn');
+      btn.disabled = true;
+      btn.innerHTML = 'Publishing... ⏳';
+
+      const editId = document.getElementById('announceEditId').value;
+      const annPayload = {
+        title: document.getElementById('announceTitle').value,
+        tag: document.getElementById('announceTag').value,
+        date: document.getElementById('announceDate').value,
+        content: document.getElementById('announceContent').value
+      };
+
+      if (editId) {
+        await fetch(`${SUPABASE_URL}/rest/v1/announcements?id=eq.${editId}`, {
+          method: 'PATCH',
+          headers,
+          body: JSON.stringify(annPayload)
         });
+      } else {
+        await fetch(`${SUPABASE_URL}/rest/v1/announcements`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify(annPayload)
+        });
+      }
+
+      btn.disabled = false;
+      btn.innerHTML = 'Publish Bulletin';
+      closeAnnouncementModal();
+      loadCloudData();
+    }
+
+    function editAnnouncement(id) {
+      const ann = announcementsData.find(a => a.id === id);
+      if (!ann) return;
+
+      document.getElementById('announceEditId').value = ann.id;
+      document.getElementById('announceTitle').value = ann.title;
+      document.getElementById('announceTag').value = ann.tag;
+      document.getElementById('announceDate').value = ann.date;
+      document.getElementById('announceContent').value = ann.content;
+
+      document.getElementById('announcementModalTitle').textContent = 'Edit Bulletin';
+      document.getElementById('announcementModal').classList.remove('hidden');
+    }
+
+    async function deleteAnnouncement(id) {
+      if (confirm('Delete this announcement bulletin?')) {
+        await fetch(`${SUPABASE_URL}/rest/v1/announcements?id=eq.${id}`, { method: 'DELETE', headers });
         loadCloudData();
       }
     }
