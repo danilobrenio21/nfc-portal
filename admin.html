@@ -27,24 +27,54 @@
     }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-800 antialiased font-sans min-h-screen flex flex-col">
+<body class="bg-slate-900 text-slate-800 antialiased font-sans min-h-screen flex flex-col justify-between">
 
-  <!-- ================= AUTHENTICATION VIEW ================= -->
-  <div id="loginView" class="flex-grow flex items-center justify-center p-4">
+  <div id="gatekeeperView" class="flex-grow flex items-center justify-center p-4">
+    <div class="bg-slate-950/90 backdrop-blur-xl max-w-sm w-full rounded-3xl p-8 shadow-2xl border border-slate-800 text-center space-y-6 text-white">
+      <div class="w-14 h-14 bg-red-600/10 border border-red-500/30 text-red-500 rounded-2xl flex items-center justify-center mx-auto text-2xl font-black">
+        🔒
+      </div>
+      <div>
+        <h1 class="text-lg font-black tracking-tight">Security Gate Access</h1>
+        <p class="text-xs text-slate-400 mt-1">Authorized internal portal. Enter security PIN code to proceed.</p>
+      </div>
+
+      <form onsubmit="verifyGateCode(event)" class="space-y-4 text-left">
+        <div>
+          <label for="gatePasscode" class="block text-xs font-bold text-slate-400 mb-1">Security PIN / Passcode</label>
+          <input 
+            id="gatePasscode" 
+            type="password" 
+            required 
+            placeholder="••••••" 
+            autocomplete="off"
+            class="w-full text-center tracking-widest text-sm font-bold border border-slate-700 rounded-xl px-4 py-3 bg-slate-900 text-white focus:outline-none focus:ring-2 focus:ring-red-600/50 focus:border-red-600" 
+          />
+        </div>
+
+        <div id="gateError" class="hidden text-xs text-red-400 bg-red-950/50 border border-red-800 p-2.5 rounded-xl font-semibold text-center">
+          Invalid security code. Access denied.
+        </div>
+
+        <button type="submit" class="btn-action w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl text-xs sm:text-sm shadow-lg hover:shadow-red-600/30 cursor-pointer">
+          Unlock Staff Login →
+        </button>
+      </form>
+
+      <div class="pt-2 border-t border-slate-800/80 text-[11px] text-slate-500">
+        <a href="index.html" class="hover:text-slate-300 hover:underline">← Exit to Public Site</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="loginView" class="hidden flex-grow flex items-center justify-center p-4">
     <div class="bg-white max-w-md w-full rounded-3xl p-8 shadow-2xl border border-slate-200 text-center space-y-6">
-      
       <div class="space-y-2">
         <div class="w-16 h-16 bg-gradient-to-tr from-blue-950 to-blue-800 text-white rounded-2xl flex items-center justify-center mx-auto shadow-lg text-2xl font-black border border-white/20">
           TW
         </div>
-        <h1 class="text-xl sm:text-2xl font-black text-blue-950">Staff & Admin Portal</h1>
-        <p class="text-xs text-slate-500">Authorized personnel access for TW (Phil.) International Manpower Inc.</p>
-      </div>
-
-      <div class="bg-blue-50 border border-blue-200/70 p-3 rounded-2xl text-[11px] text-blue-900 text-left space-y-1">
-        <div class="font-bold flex items-center gap-1"><span>🔑</span> Staff Login Credentials:</div>
-        <div>User: <code class="bg-white px-1.5 py-0.5 rounded font-mono text-blue-950 border border-blue-100">admin@twmanpower.com</code></div>
-        <div>Pass: <code class="bg-white px-1.5 py-0.5 rounded font-mono text-blue-950 border border-blue-100">admin123</code></div>
+        <h2 class="text-xl sm:text-2xl font-black text-blue-950">Staff & Admin Portal</h2>
+        <p class="text-xs text-slate-500">Encrypted authentication handshake active.</p>
       </div>
 
       <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4 text-left">
@@ -54,8 +84,7 @@
             id="loginEmail" 
             type="email" 
             required 
-            value="admin@twmanpower.com"
-            placeholder="name@twmanpower.com" 
+            placeholder="admin@twmanpower.com" 
             class="w-full text-xs font-medium border border-slate-300 rounded-xl px-3.5 py-3 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900" 
           />
         </div>
@@ -66,31 +95,28 @@
             id="loginPassword" 
             type="password" 
             required 
-            value="admin123"
             placeholder="••••••••" 
             class="w-full text-xs font-medium border border-slate-300 rounded-xl px-3.5 py-3 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900" 
           />
         </div>
 
         <div id="loginError" class="hidden text-xs text-red-600 bg-red-50 p-2.5 rounded-xl border border-red-100 font-semibold text-center">
-          Invalid username or password. Please check your credentials.
+          Invalid username or password. Please verify your credentials.
         </div>
 
         <button type="submit" class="btn-action w-full bg-blue-950 hover:bg-blue-900 text-white font-bold py-3.5 rounded-xl text-xs sm:text-sm shadow-lg hover:shadow-blue-950/20 cursor-pointer">
-          Sign In to Admin Dashboard →
+          Sign In to Management Console →
         </button>
       </form>
 
-      <div class="pt-2 border-t border-slate-100 text-[11px] text-slate-400">
-        <a href="index.html" class="hover:text-slate-700 hover:underline">← Return to Public Website</a>
+      <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+        <button onclick="lockGate()" class="hover:text-red-600 hover:underline">🔒 Lock Gate</button>
+        <a href="index.html" class="hover:text-slate-700 hover:underline">Exit</a>
       </div>
     </div>
   </div>
 
-  <!-- ================= DASHBOARD VIEW ================= -->
-  <div id="dashboardView" class="hidden min-h-screen flex flex-col">
-    
-    <!-- Top Header -->
+  <div id="dashboardView" class="hidden min-h-screen bg-slate-100 flex flex-col">
     <header class="bg-blue-950 text-white border-b border-blue-900 sticky top-0 z-40">
       <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -112,10 +138,7 @@
       </div>
     </header>
 
-    <!-- Main Workspace -->
     <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full space-y-8">
-      
-      <!-- Metrics Overview -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm card-glow">
           <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">Candidate Inquiries</div>
@@ -142,7 +165,6 @@
         </div>
       </div>
 
-      <!-- Navigation Tabs -->
       <div class="flex border-b border-slate-200 space-x-6 overflow-x-auto text-xs sm:text-sm font-bold">
         <button id="tabApplicantsBtn" onclick="switchTab('applicants')" class="pb-3 text-blue-950 border-b-2 border-blue-950 cursor-pointer whitespace-nowrap">
           📥 Candidate Inquiries (<span id="tabApplicantCount">0</span>)
@@ -154,16 +176,15 @@
           📢 Advisories & Bulletins (<span id="tabAnnounceCount">0</span>)
         </button>
         <button id="tabSettingsBtn" onclick="switchTab('settings')" class="pb-3 text-slate-500 hover:text-slate-800 border-b-2 border-transparent cursor-pointer whitespace-nowrap">
-          ⚙️ Site Settings & Notice Banner
+          ⚙️ Site Settings
         </button>
       </div>
 
-      <!-- ================= SECTION 1: APPLICANT INQUIRIES INBOX ================= -->
       <div id="sectionApplicants" class="space-y-6">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200">
           <div>
             <h2 class="text-base font-black text-blue-950">Applicant Inquiries & Pre-Registrations</h2>
-            <p class="text-xs text-slate-500">Incoming candidate leads submitted through the website forms.</p>
+            <p class="text-xs text-slate-500">Incoming candidate leads submitted through website forms.</p>
           </div>
           <button onclick="exportApplicantsToCSV()" class="btn-action bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow cursor-pointer flex items-center gap-1.5">
             <span>📊</span>
@@ -192,7 +213,6 @@
         </div>
       </div>
 
-      <!-- ================= SECTION 2: JOB VACANCIES ================= -->
       <div id="sectionJobs" class="hidden space-y-6">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200">
           <div>
@@ -226,7 +246,6 @@
         </div>
       </div>
 
-      <!-- ================= SECTION 3: ANNOUNCEMENTS ================= -->
       <div id="sectionAnnouncements" class="hidden space-y-6">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 rounded-2xl border border-slate-200">
           <div>
@@ -244,17 +263,14 @@
         </div>
       </div>
 
-      <!-- ================= SECTION 4: SITE SETTINGS & EMERGENCY NOTICE ================= -->
       <div id="sectionSettings" class="hidden space-y-6">
         <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm max-w-3xl space-y-6">
           <div>
             <h2 class="text-lg font-black text-blue-950">Global Agency Settings & Alert Banner</h2>
-            <p class="text-xs text-slate-500">Changes made here update agency contact numbers and urgent notices site-wide.</p>
+            <p class="text-xs text-slate-500">Changes made here update agency contact numbers and notice banners site-wide.</p>
           </div>
 
           <form id="settingsForm" onsubmit="saveSiteSettings(event)" class="space-y-5">
-            
-            <!-- Emergency Notice Card -->
             <div class="bg-red-50 border border-red-200/70 p-4 rounded-2xl space-y-3">
               <div class="flex items-center justify-between">
                 <span class="text-xs font-black text-red-900 flex items-center gap-1.5">
@@ -266,8 +282,8 @@
                 </label>
               </div>
               <div>
-                <label for="settingBannerText" class="block text-[11px] font-bold text-red-900 mb-1">Banner Text (e.g. Typhoon / Holiday Office Advisory)</label>
-                <input id="settingBannerText" type="text" placeholder="e.g. Office is closed today due to weather advisory. Processing resumes tomorrow." class="w-full text-xs font-medium border border-red-200 rounded-xl px-3 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-red-600/30" />
+                <label for="settingBannerText" class="block text-[11px] font-bold text-red-900 mb-1">Banner Text (e.g. Typhoon / Holiday Notice)</label>
+                <input id="settingBannerText" type="text" placeholder="e.g. Office is closed today due to weather advisory." class="w-full text-xs font-medium border border-red-200 rounded-xl px-3 py-2.5 bg-white focus:outline-none focus:ring-2 focus:ring-red-600/30" />
               </div>
             </div>
 
@@ -295,15 +311,13 @@
           </form>
         </div>
       </div>
-
     </main>
 
     <footer class="bg-slate-900 text-slate-500 text-xs py-6 px-4 text-center border-t border-slate-800 mt-auto">
-      TW (Phil.) International Manpower Inc. — Cloud Connected System • Powered by <strong>VPH Media Production</strong>
+      TW (Phil.) International Manpower Inc. — Protected Console • Powered by <strong>VPH Media Production</strong>
     </footer>
   </div>
 
-  <!-- MODAL: JOB -->
   <div id="jobModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm hidden">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 space-y-4 max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -313,7 +327,6 @@
 
       <form id="jobForm" onsubmit="saveJob(event)" class="space-y-3.5">
         <input type="hidden" id="jobEditId" value="" />
-
         <div>
           <label for="jobTitle" class="block text-xs font-bold text-slate-700 mb-1">Job Title / Role</label>
           <input id="jobTitle" type="text" required placeholder="e.g. SMT Machine Operator" class="w-full text-xs font-medium border border-slate-300 rounded-xl px-3 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900" />
@@ -366,18 +379,13 @@
         </div>
 
         <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
-          <button type="button" onclick="closeJobModal()" class="px-4 py-2 text-xs font-bold text-slate-500 hover:text-slate-800">
-            Cancel
-          </button>
-          <button id="jobSubmitBtn" type="submit" class="btn-action bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow cursor-pointer">
-            Save to Database
-          </button>
+          <button type="button" onclick="closeJobModal()" class="px-4 py-2 text-xs font-bold text-slate-500 hover:text-slate-800">Cancel</button>
+          <button id="jobSubmitBtn" type="submit" class="btn-action bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow cursor-pointer">Save to Database</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- MODAL: ANNOUNCEMENT -->
   <div id="announcementModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm hidden">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 space-y-4 max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -387,7 +395,6 @@
 
       <form id="announcementForm" onsubmit="saveAnnouncement(event)" class="space-y-3.5">
         <input type="hidden" id="announceEditId" value="" />
-
         <div>
           <label for="announceTitle" class="block text-xs font-bold text-slate-700 mb-1">Bulletin Title</label>
           <input id="announceTitle" type="text" required placeholder="e.g. Special Walk-In Interview Batch" class="w-full text-xs font-medium border border-slate-300 rounded-xl px-3 py-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900" />
@@ -415,18 +422,13 @@
         </div>
 
         <div class="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
-          <button type="button" onclick="closeAnnouncementModal()" class="px-4 py-2 text-xs font-bold text-slate-500 hover:text-slate-800">
-            Cancel
-          </button>
-          <button id="announceSubmitBtn" type="submit" class="btn-action bg-blue-900 hover:bg-blue-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow cursor-pointer">
-            Publish Bulletin
-          </button>
+          <button type="button" onclick="closeAnnouncementModal()" class="px-4 py-2 text-xs font-bold text-slate-500 hover:text-slate-800">Cancel</button>
+          <button id="announceSubmitBtn" type="submit" class="btn-action bg-blue-900 hover:bg-blue-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow cursor-pointer">Publish Bulletin</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- DIRECT REST SYNC ENGINE -->
   <script>
     const SUPABASE_URL = 'https://jfjfpckefxvjbplsqlgb.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_MHYyBZYL5HUy9PCSzWC5WQ_8nT2HOew';
@@ -437,17 +439,62 @@
       'Content-Type': 'application/json'
     };
 
+    // Master Security Hashes (SHA-256)
+    // GATE PIN: 'TW2026'
+    const GATE_CODE_HASH = '1f1146740c0f7aa9fa58fc5514f04944d18ec66bdf9c2c2f62cb2506e7561be9';
+    // ADMIN USER: 'admin@twmanpower.com'
+    const AUTH_USER_HASH = '170068b55ca45494cb3b7d15ff1672688006cb40a455f528ffc5a78280f824cf';
+    // ADMIN PASS: 'admin123'
+    const AUTH_PASS_HASH = '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9';
+
     let applicantsData = [];
     let jobsData = [];
     let announcementsData = [];
 
-    function handleLogin(e) {
+    // Helper: Browser Web Crypto SHA-256
+    async function sha256(text) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(text);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    // LAYER 1: Verify Gate Passcode
+    async function verifyGateCode(e) {
+      e.preventDefault();
+      const enteredCode = document.getElementById('gatePasscode').value.trim();
+      const codeHash = await sha256(enteredCode);
+
+      if (codeHash === GATE_CODE_HASH) {
+        sessionStorage.setItem('tw_gate_passed', 'true');
+        document.getElementById('gateError').classList.add('hidden');
+        document.getElementById('gatekeeperView').classList.add('hidden');
+        document.getElementById('loginView').classList.remove('hidden');
+      } else {
+        document.getElementById('gateError').classList.remove('hidden');
+      }
+    }
+
+    function lockGate() {
+      sessionStorage.removeItem('tw_gate_passed');
+      sessionStorage.removeItem('tw_admin_authenticated');
+      document.getElementById('loginView').classList.add('hidden');
+      document.getElementById('dashboardView').classList.add('hidden');
+      document.getElementById('gatekeeperView').classList.remove('hidden');
+    }
+
+    // LAYER 2: Verify Cryptographic Credentials
+    async function handleLogin(e) {
       e.preventDefault();
       const email = document.getElementById('loginEmail').value.trim();
       const pass = document.getElementById('loginPassword').value.trim();
       const errorDiv = document.getElementById('loginError');
 
-      if (email === 'admin@twmanpower.com' && pass === 'admin123') {
+      const userHash = await sha256(email.toLowerCase());
+      const passHash = await sha256(pass);
+
+      if (userHash === AUTH_USER_HASH && passHash === AUTH_PASS_HASH) {
         sessionStorage.setItem('tw_admin_authenticated', 'true');
         errorDiv.classList.add('hidden');
         showDashboard();
@@ -463,6 +510,7 @@
     }
 
     function showDashboard() {
+      document.getElementById('gatekeeperView').classList.add('hidden');
       document.getElementById('loginView').classList.add('hidden');
       document.getElementById('dashboardView').classList.remove('hidden');
       loadCloudData();
@@ -513,7 +561,7 @@
 
         renderDashboard();
       } catch (err) {
-        console.error('Error loading data:', err);
+        console.error('Error loading cloud database:', err);
       }
     }
 
@@ -538,15 +586,14 @@
       document.getElementById('tabJobCount').textContent = jobsData.length;
       document.getElementById('tabAnnounceCount').textContent = announcementsData.length;
 
-      // 1. Render Applicants Table
+      // 1. Applicants Table
       const appTable = document.getElementById('applicantsTableBody');
       appTable.innerHTML = '';
       if (applicantsData.length === 0) {
-        appTable.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-slate-400">No applicant submissions yet. Try submitting from apply.html.</td></tr>`;
+        appTable.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-slate-400">No applicant submissions yet.</td></tr>`;
       } else {
         applicantsData.forEach(app => {
           const createdDate = new Date(app.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-          
           let statusColor = "bg-amber-100 text-amber-800";
           if (app.status === 'Contacted') statusColor = "bg-blue-100 text-blue-800";
           if (app.status === 'Interview Scheduled') statusColor = "bg-purple-100 text-purple-800";
@@ -556,17 +603,9 @@
           const row = document.createElement('tr');
           row.className = "hover:bg-slate-50 transition";
           row.innerHTML = `
-            <td class="p-4">
-              <div class="font-bold text-blue-950 text-xs sm:text-sm">${app.full_name}</div>
-            </td>
-            <td class="p-4">
-              <div class="font-semibold text-slate-800">${app.phone}</div>
-              <div class="text-[10px] text-slate-500">${app.email}</div>
-            </td>
-            <td class="p-4">
-              <div class="font-semibold text-blue-900">${app.job_position}</div>
-              <div class="text-[10px] text-slate-500">${app.country}</div>
-            </td>
+            <td class="p-4"><div class="font-bold text-blue-950 text-xs sm:text-sm">${app.full_name}</div></td>
+            <td class="p-4"><div class="font-semibold text-slate-800">${app.phone}</div><div class="text-[10px] text-slate-500">${app.email}</div></td>
+            <td class="p-4"><div class="font-semibold text-blue-900">${app.job_position}</div><div class="text-[10px] text-slate-500">${app.country}</div></td>
             <td class="p-4 text-[11px] text-slate-500">${createdDate}</td>
             <td class="p-4">
               <select onchange="updateApplicantStatus('${app.id}', this.value)" class="text-[10px] font-bold px-2 py-1 rounded-lg border border-slate-200 cursor-pointer ${statusColor}">
@@ -577,19 +616,17 @@
                 <option value="Archived" ${app.status === 'Archived' ? 'selected' : ''}>Archived</option>
               </select>
             </td>
-            <td class="p-4 text-right">
-              <button onclick="deleteApplicant('${app.id}')" class="text-red-600 hover:underline font-bold text-xs cursor-pointer">Delete</button>
-            </td>
+            <td class="p-4 text-right"><button onclick="deleteApplicant('${app.id}')" class="text-red-600 hover:underline font-bold text-xs cursor-pointer">Delete</button></td>
           `;
           appTable.appendChild(row);
         });
       }
 
-      // 2. Render Jobs Table with 1-Click Status Toggles
+      // 2. Jobs Table
       const jobsTable = document.getElementById('jobsTableBody');
       jobsTable.innerHTML = '';
       if (jobsData.length === 0) {
-        jobsTable.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-slate-400">No job records found. Click "+ Post New Job Vacancy" above.</td></tr>`;
+        jobsTable.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-slate-400">No job records found.</td></tr>`;
       } else {
         jobsData.forEach(job => {
           let badgeColor = "bg-emerald-100 text-emerald-800";
@@ -599,14 +636,8 @@
           const row = document.createElement('tr');
           row.className = "hover:bg-slate-50 transition";
           row.innerHTML = `
-            <td class="p-4">
-              <div class="font-bold text-blue-950 text-xs sm:text-sm">${job.title}</div>
-              <div class="text-[10px] text-slate-400 font-mono">${job.order_no || 'N/A'}</div>
-            </td>
-            <td class="p-4">
-              <div class="font-semibold text-slate-800">${job.country}</div>
-              <div class="text-[10px] text-slate-500">${job.category}</div>
-            </td>
+            <td class="p-4"><div class="font-bold text-blue-950 text-xs sm:text-sm">${job.title}</div><div class="text-[10px] text-slate-400 font-mono">${job.order_no || 'N/A'}</div></td>
+            <td class="p-4"><div class="font-semibold text-slate-800">${job.country}</div><div class="text-[10px] text-slate-500">${job.category}</div></td>
             <td class="p-4 font-bold text-slate-900">${job.salary}</td>
             <td class="p-4 font-bold text-blue-900">${job.slots} slots</td>
             <td class="p-4">
@@ -625,7 +656,7 @@
         });
       }
 
-      // 3. Render Announcements Grid
+      // 3. Announcements Grid
       const annGrid = document.getElementById('announcementsGrid');
       annGrid.innerHTML = '';
       if (announcementsData.length === 0) {
@@ -657,13 +688,8 @@
       }
     }
 
-    // Applicant Ops
     async function updateApplicantStatus(id, newStatus) {
-      await fetch(`${SUPABASE_URL}/rest/v1/applications?id=eq.${id}`, {
-        method: 'PATCH',
-        headers,
-        body: JSON.stringify({ status: newStatus })
-      });
+      await fetch(`${SUPABASE_URL}/rest/v1/applications?id=eq.${id}`, { method: 'PATCH', headers, body: JSON.stringify({ status: newStatus }) });
       loadCloudData();
     }
 
@@ -675,16 +701,11 @@
     }
 
     function exportApplicantsToCSV() {
-      if (applicantsData.length === 0) {
-        alert('No applicant data to export.');
-        return;
-      }
-
+      if (applicantsData.length === 0) return alert('No applicant data to export.');
       let csv = 'Full Name,Email,Phone,Target Country,Position,Status,Date\n';
       applicantsData.forEach(a => {
         csv += `"${a.full_name}","${a.email}","${a.phone}","${a.country}","${a.job_position}","${a.status}","${new Date(a.created_at).toLocaleDateString()}"\n`;
       });
-
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
@@ -695,17 +716,11 @@
       document.body.removeChild(link);
     }
 
-    // Quick Job Status Toggle
     async function updateJobStatusQuick(id, newStatus) {
-      await fetch(`${SUPABASE_URL}/rest/v1/jobs?id=eq.${id}`, {
-        method: 'PATCH',
-        headers,
-        body: JSON.stringify({ status: newStatus })
-      });
+      await fetch(`${SUPABASE_URL}/rest/v1/jobs?id=eq.${id}`, { method: 'PATCH', headers, body: JSON.stringify({ status: newStatus }) });
       loadCloudData();
     }
 
-    // Job Modal Ops
     function openJobModal() {
       document.getElementById('jobEditId').value = '';
       document.getElementById('jobForm').reset();
@@ -763,13 +778,12 @@
     }
 
     async function deleteJob(id) {
-      if (confirm('Delete this job? It will be removed from the live website.')) {
+      if (confirm('Delete this job?')) {
         await fetch(`${SUPABASE_URL}/rest/v1/jobs?id=eq.${id}`, { method: 'DELETE', headers });
         loadCloudData();
       }
     }
 
-    // Announcement Ops
     function openAnnouncementModal() {
       document.getElementById('announceEditId').value = '';
       document.getElementById('announcementForm').reset();
@@ -819,18 +833,17 @@
     }
 
     async function deleteAnnouncement(id) {
-      if (confirm('Delete this announcement bulletin?')) {
+      if (confirm('Delete this announcement?')) {
         await fetch(`${SUPABASE_URL}/rest/v1/announcements?id=eq.${id}`, { method: 'DELETE', headers });
         loadCloudData();
       }
     }
 
-    // Site Settings Ops
     async function saveSiteSettings(e) {
       e.preventDefault();
       const btn = document.getElementById('settingsSubmitBtn');
       btn.disabled = true;
-      btn.innerHTML = 'Updating Site Settings... ⏳';
+      btn.innerHTML = 'Saving... ⏳';
 
       const payload = {
         emergency_banner_active: document.getElementById('settingBannerActive').checked,
@@ -840,20 +853,21 @@
         office_hours: document.getElementById('settingOfficeHours').value
       };
 
-      await fetch(`${SUPABASE_URL}/rest/v1/site_settings?id=eq.main`, {
-        method: 'PATCH',
-        headers,
-        body: JSON.stringify(payload)
-      });
-
+      await fetch(`${SUPABASE_URL}/rest/v1/site_settings?id=eq.main`, { method: 'PATCH', headers, body: JSON.stringify(payload) });
       btn.disabled = false;
       btn.innerHTML = 'Saved Successfully! ✓';
       setTimeout(() => { btn.innerHTML = 'Save Site Settings'; }, 2000);
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      if (sessionStorage.getItem('tw_admin_authenticated') === 'true') {
+      const gatePassed = sessionStorage.getItem('tw_gate_passed') === 'true';
+      const authed = sessionStorage.getItem('tw_admin_authenticated') === 'true';
+
+      if (authed) {
         showDashboard();
+      } else if (gatePassed) {
+        document.getElementById('gatekeeperView').classList.add('hidden');
+        document.getElementById('loginView').classList.remove('hidden');
       }
     });
   </script>
