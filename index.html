@@ -25,6 +25,9 @@
       transform: translateY(-4px);
       box-shadow: 0 14px 28px -10px rgba(15, 23, 42, 0.12);
     }
+    .hero-slide {
+      transition: opacity 0.8s ease-in-out;
+    }
     .goog-te-banner-frame.skiptranslate { display: none !important; }
     body { top: 0px !important; }
     .goog-te-combo {
@@ -104,37 +107,54 @@
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="bg-gradient-to-r from-blue-950 via-blue-900 to-slate-900 text-white py-16 sm:py-24 px-4 text-center">
-    <div class="max-w-4xl mx-auto space-y-4">
+  <!-- HERO PHOTO SLIDER SECTION -->
+  <section class="relative bg-slate-900 text-white overflow-hidden min-h-[460px] sm:min-h-[520px] flex items-center">
+    
+    <!-- Background Carousel Images -->
+    <div id="slide1" class="hero-slide absolute inset-0 bg-cover bg-center opacity-100 transition-opacity duration-1000" style="background-image: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.65)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div id="slide2" class="hero-slide absolute inset-0 bg-cover bg-center opacity-0 transition-opacity duration-1000" style="background-image: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.65)), url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80');"></div>
+    <div id="slide3" class="hero-slide absolute inset-0 bg-cover bg-center opacity-0 transition-opacity duration-1000" style="background-image: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.65)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80');"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 py-16 w-full z-10 space-y-6 text-left">
       <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-3.5 py-1.5 rounded-full border border-white/20 text-xs font-bold text-amber-400">
-        <span>🇵🇭 Official Overseas Employment Gateway</span>
+        <span>🇵🇭 DMW Licensed Recruitment Gateway</span>
       </div>
-      <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
-        Trusted Overseas Careers in <span class="text-amber-400">Taiwan</span> & <span class="text-red-400">Japan</span>
-      </h1>
-      <p class="text-slate-300 text-xs sm:text-base max-w-2xl mx-auto leading-relaxed">
-        Connecting qualified Filipino talent with premier overseas employers. 100% DMW regulated recruitment process with zero placement fee collected during initial pooling.
-      </p>
-      <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
+
+      <div class="space-y-3 max-w-2xl">
+        <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+          Your Trusted Bridge to Global Careers in <span class="text-amber-400">Taiwan</span> & <span class="text-red-400">Japan</span>
+        </h1>
+        <p class="text-slate-200 text-xs sm:text-sm md:text-base leading-relaxed">
+          Official recruitment agency connecting Filipino professionals, factory workers, caregivers, and technical interns with verified overseas employers.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3 pt-2">
         <a href="jobs.html" class="btn-action bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-black px-6 py-3.5 rounded-xl shadow-lg inline-block">
-          Explore Job Openings →
+          View Active Job Orders →
         </a>
-        <a href="apply.html" class="btn-action bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl border border-white/20 inline-block">
-          Submit Online Application
+        <a href="apply.html" class="btn-action bg-white/15 hover:bg-white/25 text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl border border-white/20 inline-block backdrop-blur">
+          Apply for Free Pre-Registration
         </a>
+      </div>
+
+      <!-- Slide Indicators -->
+      <div class="flex items-center gap-2 pt-4">
+        <button onclick="setSlide(0)" id="dot0" class="w-8 h-2 rounded-full bg-amber-400 transition-all"></button>
+        <button onclick="setSlide(1)" id="dot1" class="w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all"></button>
+        <button onclick="setSlide(2)" id="dot2" class="w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all"></button>
       </div>
     </div>
   </section>
 
-  <!-- MAIN HOMEPAGE CONTENT -->
+  <!-- MAIN BODY CONTENT -->
   <main class="max-w-6xl mx-auto px-4 py-12 flex-grow w-full space-y-16">
 
-    <!-- ================= REAL-TIME LATEST ANNOUNCEMENTS ================= -->
+    <!-- ================= DYNAMIC CLOUD SYNCED ANNOUNCEMENT SECTION ================= -->
     <section class="space-y-6">
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2 border-b border-slate-200 pb-3">
         <div>
-          <div class="text-[11px] font-bold text-red-600 uppercase tracking-wider">Official Advisories</div>
+          <div class="text-[11px] font-bold text-red-600 uppercase tracking-wider">Official Advisories & Bulletins</div>
           <h2 class="text-xl sm:text-2xl font-black text-blue-950">Latest Public Announcements</h2>
         </div>
         <a href="advisory.html" class="text-xs font-bold text-blue-900 hover:underline flex items-center gap-1">
@@ -143,63 +163,118 @@
         </a>
       </div>
 
+      <!-- Real-time Supabase Announcements Container -->
       <div id="homeAnnouncementsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="col-span-full py-8 text-center text-slate-400 text-xs">
-          Loading announcements from database... ⏳
+        <div class="col-span-full py-8 text-center text-slate-400 text-xs font-medium">
+          Loading official bulletins... ⏳
         </div>
       </div>
     </section>
 
-    <!-- ================= REAL-TIME FEATURED VACANCIES ================= -->
+    <!-- COUNTRY SPOTLIGHT -->
     <section class="space-y-6">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2 border-b border-slate-200 pb-3">
-        <div>
-          <div class="text-[11px] font-bold text-emerald-600 uppercase tracking-wider">Active Hiring Orders</div>
-          <h2 class="text-xl sm:text-2xl font-black text-blue-950">Featured Overseas Vacancies</h2>
-        </div>
-        <a href="jobs.html" class="text-xs font-bold text-blue-900 hover:underline flex items-center gap-1">
-          <span>View All Vacancies</span>
-          <span>→</span>
-        </a>
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <h2 class="text-2xl font-black text-blue-950">Specialized Deployment Programs</h2>
+        <p class="text-xs sm:text-sm text-slate-600">Explore legitimate job vacancies across our primary international destinations.</p>
       </div>
 
-      <div id="homeJobsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="col-span-full py-8 text-center text-slate-400 text-xs">
-          Loading live job orders... ⏳
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Taiwan Card -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4 card-glow flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-2xl">🇹🇼</span>
+              <span class="text-[10px] font-bold bg-blue-50 text-blue-900 px-3 py-1 rounded-full border border-blue-100">MANUFACTURING & TECH</span>
+            </div>
+            <h3 class="text-xl font-black text-blue-950">Taiwan Industrial Programs</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Direct recruitment for precision electronics, semiconductor fabrication, machine operators, and certified factory technicians in Taichung, Taipei, and Kaohsiung.
+            </p>
+            <ul class="text-xs text-slate-700 space-y-1.5 font-medium pt-1">
+              <li class="flex items-center gap-2"><span class="text-emerald-500 font-bold">✓</span> Monthly Salary: <strong>NT$ 27,470+</strong> with statutory benefits</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-500 font-bold">✓</span> Fast-track document processing</li>
+            </ul>
+          </div>
+          <div class="pt-4 border-t border-slate-100">
+            <a href="jobs.html" class="text-xs font-bold text-blue-950 hover:text-red-600 transition flex items-center justify-between">
+              <span>Browse Taiwan Vacancies</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Japan Card -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4 card-glow flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-2xl">🇯🇵</span>
+              <span class="text-[10px] font-bold bg-red-50 text-red-700 px-3 py-1 rounded-full border border-red-100">TITP & SSW TRACK</span>
+            </div>
+            <h3 class="text-xl font-black text-blue-950">Japan Specified Skilled Worker (SSW)</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Certified Technical Intern Training Program (TITP) and Specified Skilled Worker pathways for Caregivers, Food Service, and Agriculture.
+            </p>
+            <ul class="text-xs text-slate-700 space-y-1.5 font-medium pt-1">
+              <li class="flex items-center gap-2"><span class="text-emerald-500 font-bold">✓</span> Monthly Salary: <strong>¥ 180,000+</strong> (~₱70,000)</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-500 font-bold">✓</span> Japanese Language & Prometric exam guidance</li>
+            </ul>
+          </div>
+          <div class="pt-4 border-t border-slate-100">
+            <a href="programs.html" class="text-xs font-bold text-blue-950 hover:text-red-600 transition flex items-center justify-between">
+              <span>View Japan Programs</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4 PILLARS OF LEGITIMATE RECRUITMENT -->
+    <section class="bg-blue-950 text-white rounded-3xl p-8 sm:p-10 space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs font-bold tracking-widest text-amber-400 uppercase">Ethical Recruitment Standards</span>
+        <h2 class="text-2xl sm:text-3xl font-black">Why Overseas Applicants Trust TW Manpower</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-2">
+          <div class="text-2xl">📋</div>
+          <h4 class="font-bold text-sm text-white">DMW Licensed</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">Operates strictly under License No. DMW-051-LB-03202023-R.</p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-2">
+          <div class="text-2xl">🚫</div>
+          <h4 class="font-bold text-sm text-white">₱0 Initial Fee</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">No upfront placement or registration fees during resume evaluation.</p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-2">
+          <div class="text-2xl">🏢</div>
+          <h4 class="font-bold text-sm text-white">Direct Manila Office</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">Screening and orientation strictly at Marioco Bldg., Malate, Manila.</p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-5 space-y-2">
+          <div class="text-2xl">🤝</div>
+          <h4 class="font-bold text-sm text-white">Direct Employers</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">Verified employer contracts and full support from application to deployment.</p>
         </div>
       </div>
     </section>
 
-    <!-- 3 CORE VALUE PROPOSITIONS -->
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-      <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3 card-glow">
-        <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-900 flex items-center justify-center text-xl font-bold">
-          🛡️
-        </div>
-        <h3 class="text-base font-black text-blue-950">Fully DMW Accredited</h3>
-        <p class="text-xs text-slate-600 leading-relaxed">
-          Operating strictly under license DMW-051-LB-03202023-R with transparent employer contracts and government verified job orders.
-        </p>
-      </div>
-
-      <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3 card-glow">
-        <div class="w-12 h-12 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center text-xl font-bold">
-          🚫
-        </div>
-        <h3 class="text-base font-black text-blue-950">₱0 Initial Placement Fee</h3>
-        <p class="text-xs text-slate-600 leading-relaxed">
-          Free pre-registration and pooling screening. We never collect fees through Facebook, GCash, or unauthorized sub-agents.
-        </p>
-      </div>
-
-      <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-3 card-glow">
-        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl font-bold">
-          🌏
-        </div>
-        <h3 class="text-base font-black text-blue-950">Direct Principal Linkage</h3>
-        <p class="text-xs text-slate-600 leading-relaxed">
-          Established direct hiring partnerships with premier semiconductor, manufacturing, and nursing care institutions across Taiwan and Japan.
-        </p>
+    <!-- CALL TO ACTION -->
+    <section class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-sm text-center space-y-4">
+      <h2 class="text-2xl sm:text-3xl font-black text-blue-950">Ready to Start Your Overseas Career?</h2>
+      <p class="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
+        Complete your online pre-registration in under 3 minutes. Our recruitment team will review your qualifications and contact you for document scheduling.
+      </p>
+      <div class="pt-2">
+        <a href="apply.html" class="btn-action bg-red-600 hover:bg-red-700 text-white font-black text-xs sm:text-sm px-8 py-4 rounded-xl shadow-lg inline-block">
+          Apply for Pre-Registration Now →
+        </a>
       </div>
     </section>
 
@@ -238,127 +313,93 @@
     <span class="text-sm select-none">🌐</span>
   </div>
 
-  <!-- DIRECT REST HOMEPAGE SYNC -->
+  <!-- SCRIPTS: CAROUSEL & REAL-TIME SUPABASE ANNOUNCEMENTS -->
   <script>
+    // 1. Hero Photo Slider Controller
+    let currentSlide = 0;
+    const slides = [document.getElementById('slide1'), document.getElementById('slide2'), document.getElementById('slide3')];
+    const dots = [document.getElementById('dot0'), document.getElementById('dot1'), document.getElementById('dot2')];
+
+    function setSlide(index) {
+      currentSlide = index;
+      slides.forEach((slide, i) => {
+        if (slide) slide.style.opacity = i === currentSlide ? '1' : '0';
+      });
+      dots.forEach((dot, i) => {
+        if (dot) dot.className = i === currentSlide ? 'w-8 h-2 rounded-full bg-amber-400 transition-all' : 'w-2.5 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all';
+      });
+    }
+
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      setSlide(currentSlide);
+    }, 5000);
+
+    // 2. Fetch Real-time Latest Announcements from Supabase
     const SUPABASE_URL = 'https://jfjfpckefxvjbplsqlgb.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_MHYyBZYL5HUy9PCSzWC5WQ_8nT2HOew';
 
-    const headers = {
-      'apikey': SUPABASE_KEY,
-      'Authorization': 'Bearer ' + SUPABASE_KEY
-    };
-
-    async function loadHomeLiveFeed() {
-      // 1. Fetch Latest 3 Announcements
-      try {
-        const annRes = await fetch(`${SUPABASE_URL}/rest/v1/announcements?select=*&order=created_at.desc&limit=3`, { headers });
-        if (annRes.ok) {
-          const announcements = await annRes.json();
-          renderHomeAnnouncements(announcements);
-        }
-      } catch (err) {
-        console.warn('Failed loading home announcements:', err);
-      }
-
-      // 2. Fetch Latest 3 Jobs
-      try {
-        const jobsRes = await fetch(`${SUPABASE_URL}/rest/v1/jobs?select=*&order=created_at.desc&limit=3`, { headers });
-        if (jobsRes.ok) {
-          const jobs = await jobsRes.json();
-          renderHomeJobs(jobs);
-        }
-      } catch (err) {
-        console.warn('Failed loading home jobs:', err);
-      }
-    }
-
-    function renderHomeAnnouncements(items) {
+    async function loadLatestAnnouncements() {
       const container = document.getElementById('homeAnnouncementsGrid');
-      if (!items || items.length === 0) {
-        container.innerHTML = `<div class="col-span-full py-6 text-center text-slate-400 text-xs">No recent announcements published.</div>`;
-        return;
-      }
 
-      container.innerHTML = '';
-      items.forEach((ann) => {
-        let tagColor = "bg-blue-100 text-blue-900 border-blue-200";
-        if (ann.tag === 'URGENT HIRING') tagColor = "bg-red-100 text-red-700 border-red-200";
-        if (ann.tag === 'DMW WARNING') tagColor = "bg-amber-100 text-amber-800 border-amber-200";
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/announcements?select=*&order=created_at.desc&limit=3`, {
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_KEY
+          }
+        });
 
-        const card = document.createElement('div');
-        card.className = "bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-4 card-glow";
-        card.innerHTML = `
-          <div class="space-y-3">
-            <div class="flex items-center justify-between gap-2">
-              <span class="text-[10px] font-black px-3 py-1 rounded-full border ${tagColor}">${ann.tag}</span>
-              <span class="text-[11px] text-slate-400 font-medium">${ann.date}</span>
+        if (!res.ok) throw new Error(res.statusText);
+        const data = await res.json();
+
+        if (!data || data.length === 0) {
+          container.innerHTML = `<div class="col-span-full py-6 text-center text-slate-400 text-xs">No active announcements right now.</div>`;
+          return;
+        }
+
+        container.innerHTML = '';
+        data.forEach((ann) => {
+          let tagColor = "bg-blue-100 text-blue-900 border-blue-200";
+          if (ann.tag === 'URGENT HIRING') tagColor = "bg-red-100 text-red-700 border-red-200";
+          if (ann.tag === 'DMW WARNING') tagColor = "bg-amber-100 text-amber-800 border-amber-200";
+
+          const card = document.createElement('div');
+          card.className = "bg-white rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-4 card-glow";
+          card.innerHTML = `
+            <div class="space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[10px] font-black px-3 py-1 rounded-full border ${tagColor}">${ann.tag}</span>
+                <span class="text-[11px] text-slate-400 font-medium">${ann.date}</span>
+              </div>
+              <h3 class="text-base font-black text-blue-950 leading-snug">${ann.title}</h3>
+              <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">${ann.content}</p>
             </div>
-            <h3 class="text-base font-black text-blue-950 leading-snug">${ann.title}</h3>
-            <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">${ann.content}</p>
-          </div>
-          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-            <span class="text-[10px] text-slate-400 font-mono">TW Official Bulletin</span>
-            <a href="advisory.html" class="text-xs font-bold text-blue-900 hover:underline">Read Advisory →</a>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[10px] text-slate-400 font-mono">TW Official Bulletin</span>
+              <a href="advisory.html" class="text-xs font-bold text-blue-900 hover:underline">Read Advisory →</a>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      } catch (err) {
+        console.warn('Using fallback home bulletin:', err);
+        container.innerHTML = `
+          <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3 card-glow col-span-full md:col-span-1">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-black px-3 py-1 rounded-full border bg-blue-100 text-blue-900 border-blue-200">OFFICE ADVISORY</span>
+              <span class="text-[11px] text-slate-400 font-medium">September 2026</span>
+            </div>
+            <h3 class="text-base font-black text-blue-950">Official Recruitment Operations</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">All evaluations and document submissions are held exclusively at Marioco Bldg., Malate, Manila.</p>
           </div>
         `;
-        container.appendChild(card);
-      });
-    }
-
-    function renderHomeJobs(items) {
-      const container = document.getElementById('homeJobsGrid');
-      if (!items || items.length === 0) {
-        container.innerHTML = `<div class="col-span-full py-6 text-center text-slate-400 text-xs">No active vacancies currently listed.</div>`;
-        return;
       }
-
-      container.innerHTML = '';
-      items.forEach((job) => {
-        let badgeColor = "bg-emerald-100 text-emerald-800 border-emerald-200";
-        if (job.status === 'Manpower Pooling') badgeColor = "bg-blue-100 text-blue-800 border-blue-200";
-        if (job.status === 'Interview Closed') badgeColor = "bg-slate-100 text-slate-600 border-slate-200";
-
-        const card = document.createElement('div');
-        card.className = "bg-white rounded-3xl p-6 shadow-sm border border-slate-200 flex flex-col justify-between card-glow space-y-4";
-        card.innerHTML = `
-          <div class="space-y-3">
-            <div class="flex items-center justify-between gap-2">
-              <span class="text-xs font-bold text-blue-950 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">${job.country}</span>
-              <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${badgeColor}">${job.status}</span>
-            </div>
-
-            <div>
-              <h3 class="text-base font-black text-blue-950 leading-snug">${job.title}</h3>
-              <p class="text-xs text-slate-500 mt-0.5">${job.category}</p>
-            </div>
-
-            <div class="bg-slate-50 p-3 rounded-2xl border border-slate-100 space-y-1.5 text-xs">
-              <div class="flex justify-between items-center">
-                <span class="text-slate-500 font-medium">Monthly Comp:</span>
-                <strong class="text-slate-900">${job.salary}</strong>
-              </div>
-              <div class="flex justify-between items-center">
-                <span class="text-slate-500 font-medium">Available Slots:</span>
-                <strong class="text-blue-900">${job.slots} Candidates</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-            <span class="text-[10px] text-slate-400 font-medium">₱0 Pre-Reg Fee</span>
-            <a href="apply.html" class="btn-action inline-flex items-center justify-center bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow transition">
-              Apply Now →
-            </a>
-          </div>
-        `;
-        container.appendChild(card);
-      });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      loadHomeLiveFeed();
+      loadLatestAnnouncements();
 
-      // Mobile Menu
       const menuBtn = document.getElementById('menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       if (menuBtn && mobileMenu) {
