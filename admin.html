@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin & Staff Portal | TW (Phil.) International Manpower Inc.</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js Engine for Modern Interactive Analytics -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
   <style>
     /* Ultra-Smooth Micro Interactions */
@@ -21,7 +22,7 @@
       filter: brightness(0.95);
     }
 
-    /* Modern Glassmorphic Shadows & Glows */
+    /* Modern Glassmorphic Surfaces */
     .glass-card {
       background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(16px);
@@ -49,6 +50,7 @@
 </head>
 <body class="corporate-bg text-slate-800 antialiased font-sans min-h-screen flex flex-col justify-between">
 
+  <!-- ================= LAYER 1: GATE CODE ACCESS ================= -->
   <div id="gatekeeperView" class="flex-grow flex items-center justify-center p-4">
     <div class="bg-white/95 backdrop-blur-2xl max-w-md w-full rounded-3xl p-8 sm:p-10 shadow-2xl border border-white/40 text-center space-y-6">
       <div class="space-y-3">
@@ -95,6 +97,7 @@
     </div>
   </div>
 
+  <!-- ================= LAYER 2: STAFF LOGIN ================= -->
   <div id="loginView" class="hidden flex-grow flex items-center justify-center p-4">
     <div class="bg-white/95 backdrop-blur-2xl max-w-md w-full rounded-3xl p-8 sm:p-10 shadow-2xl border border-white/40 text-center space-y-6">
       <div class="space-y-3">
@@ -156,8 +159,10 @@
     </div>
   </div>
 
+  <!-- ================= DASHBOARD CONSOLE ================= -->
   <div id="dashboardView" class="hidden min-h-screen bg-slate-50 flex flex-col">
-    <header class="bg-blue-950 text-white border-b border-blue-900 sticky top-0 z-40 shadow-sm">
+    <!-- Top Header with Real-Time Clock -->
+    <header class="bg-blue-950 text-white border-b border-blue-900 sticky top-0 z-40 shadow-md">
       <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <img src="logo.jpg" alt="TW Logo" class="h-8 w-auto object-contain bg-white p-1 rounded-md" onerror="this.style.display='none'" />
@@ -167,7 +172,13 @@
           </div>
         </div>
 
+        <!-- Real-Time Date & Time Clock Widget -->
         <div class="flex items-center gap-3">
+          <div id="liveClockDisplay" class="text-xs font-mono font-bold text-amber-300 bg-blue-900/70 border border-blue-800 px-3 py-1.5 rounded-xl flex items-center gap-2 shadow-inner">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span id="liveTimeText">Loading Live Clock...</span>
+          </div>
+
           <a href="index.html" target="_blank" class="hidden sm:inline-block text-xs bg-white/10 hover:bg-white/20 text-slate-200 px-3 py-1.5 rounded-lg border border-white/20">
             Open Website ↗
           </a>
@@ -178,8 +189,10 @@
       </div>
     </header>
 
+    <!-- Workspace -->
     <main class="max-w-7xl mx-auto px-4 py-8 flex-grow w-full space-y-8">
       
+      <!-- Metrics Overview Cards -->
       <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
         <div class="glass-card p-5 rounded-2xl">
           <div class="text-xs font-bold text-slate-500 uppercase tracking-wider">Candidate Inquiries</div>
@@ -214,6 +227,7 @@
         </div>
       </div>
 
+      <!-- Navigation Tabs -->
       <div class="flex border-b border-slate-200 space-x-6 overflow-x-auto text-xs sm:text-sm font-bold">
         <button id="tabAnalyticsBtn" onclick="switchTab('analytics')" class="pb-3 text-blue-950 border-b-2 border-blue-950 cursor-pointer whitespace-nowrap flex items-center gap-1.5">
           <span>📈</span>
@@ -236,6 +250,7 @@
         </button>
       </div>
 
+      <!-- ================= SECTION 0: GRAPH ANALYTICS SUITE ================= -->
       <div id="sectionAnalytics" class="space-y-6">
         <div class="glass-card p-4 sm:p-5 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div class="space-y-1">
@@ -261,7 +276,6 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          
           <div class="lg:col-span-8 glass-card p-6 rounded-3xl space-y-4">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-100 pb-3">
               <div>
@@ -304,7 +318,6 @@
               </div>
             </div>
           </div>
-
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -334,6 +347,7 @@
         </div>
       </div>
 
+      <!-- ================= SECTION 1: APPLICANTS ================= -->
       <div id="sectionApplicants" class="hidden space-y-6">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 glass-card p-4 rounded-2xl">
           <div>
@@ -354,7 +368,7 @@
                   <th class="p-4">Candidate Name</th>
                   <th class="p-4">Contact Details</th>
                   <th class="p-4">Desired Program & Job</th>
-                  <th class="p-4">Submission Date</th>
+                  <th class="p-4">Submission Date & Time</th>
                   <th class="p-4">Recruitment Stage</th>
                   <th class="p-4 text-right">Actions</th>
                 </tr>
@@ -367,6 +381,7 @@
         </div>
       </div>
 
+      <!-- ================= SECTION 2: ALERT SUBSCRIBERS ================= -->
       <div id="sectionSubscribers" class="hidden space-y-6">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 glass-card p-4 rounded-2xl">
           <div>
@@ -386,7 +401,7 @@
                 <tr>
                   <th class="p-4">Subscriber Email</th>
                   <th class="p-4">Lead Source</th>
-                  <th class="p-4">Subscribed Date</th>
+                  <th class="p-4">Subscribed Date & Time</th>
                   <th class="p-4 text-right">Actions</th>
                 </tr>
               </thead>
@@ -398,6 +413,7 @@
         </div>
       </div>
 
+      <!-- ================= SECTION 3: JOBS ================= -->
       <div id="sectionJobs" class="hidden space-y-6">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 glass-card p-4 rounded-2xl">
           <div>
@@ -431,6 +447,7 @@
         </div>
       </div>
 
+      <!-- ================= SECTION 4: ANNOUNCEMENTS ================= -->
       <div id="sectionAnnouncements" class="hidden space-y-6">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 glass-card p-4 rounded-2xl">
           <div>
@@ -448,6 +465,7 @@
         </div>
       </div>
 
+      <!-- ================= SECTION 5: SETTINGS ================= -->
       <div id="sectionSettings" class="hidden space-y-6">
         <div class="glass-card p-6 sm:p-8 rounded-3xl max-w-3xl space-y-6">
           <div>
@@ -503,6 +521,8 @@
     </footer>
   </div>
 
+  <!-- ================= MODALS ================= -->
+  <!-- Job Vacancy Modal -->
   <div id="jobModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm hidden">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 space-y-4 max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -571,6 +591,7 @@
     </div>
   </div>
 
+  <!-- Announcement Modal -->
   <div id="announcementModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm hidden">
     <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 space-y-4 max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -614,6 +635,7 @@
     </div>
   </div>
 
+  <!-- DIRECT REST & ANALYTICS ENGINE -->
   <script>
     const SUPABASE_URL = 'https://jfjfpckefxvjbplsqlgb.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_MHYyBZYL5HUy9PCSzWC5WQ_8nT2HOew';
@@ -634,6 +656,31 @@
     let shareChartInstance = null;
     let currentAnalyticsRange = '7d';
     let isCompareEnabled = false;
+
+    // ================= REAL-TIME CLOCK TICKER =================
+    function startRealtimeClock() {
+      function tick() {
+        const timeText = document.getElementById('liveTimeText');
+        if (!timeText) return;
+
+        const now = new Date();
+        const options = {
+          timeZone: 'Asia/Manila',
+          weekday: 'short',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        };
+        const formatter = new Intl.DateTimeFormat('en-US', options);
+        timeText.textContent = `${formatter.format(now)} PHT`;
+      }
+      tick();
+      setInterval(tick, 1000);
+    }
 
     // LAYER 1: Verify Gate Passcode
     function verifyGateCode(e) {
@@ -689,6 +736,7 @@
       document.getElementById('gatekeeperView').classList.add('hidden');
       document.getElementById('loginView').classList.add('hidden');
       document.getElementById('dashboardView').classList.remove('hidden');
+      startRealtimeClock();
       loadCloudData();
     }
 
@@ -775,14 +823,22 @@
       document.getElementById('tabJobCount').textContent = jobsData.length;
       document.getElementById('tabAnnounceCount').textContent = announcementsData.length;
 
-      // 1. Applicants Table
+      // 1. Applicants Table with Date & Time formatting
       const appTable = document.getElementById('applicantsTableBody');
       appTable.innerHTML = '';
       if (applicantsData.length === 0) {
         appTable.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-slate-400">No applicant submissions yet.</td></tr>`;
       } else {
         applicantsData.forEach(app => {
-          const createdDate = new Date(app.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+          const createdDate = new Date(app.created_at).toLocaleString('en-US', { 
+            month: 'short', 
+            day: 'numeric', 
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+          });
+          
           let statusColor = "bg-amber-100 text-amber-800";
           if (app.status === 'Contacted') statusColor = "bg-blue-100 text-blue-800";
           if (app.status === 'Interview Scheduled') statusColor = "bg-purple-100 text-purple-800";
@@ -795,7 +851,7 @@
             <td class="p-4"><div class="font-bold text-blue-950 text-xs sm:text-sm">${app.full_name}</div></td>
             <td class="p-4"><div class="font-semibold text-slate-800">${app.phone}</div><div class="text-[10px] text-slate-500">${app.email}</div></td>
             <td class="p-4"><div class="font-semibold text-blue-900">${app.job_position}</div><div class="text-[10px] text-slate-500">${app.country}</div></td>
-            <td class="p-4 text-[11px] text-slate-500">${createdDate}</td>
+            <td class="p-4 text-[11px] font-mono text-slate-500">${createdDate}</td>
             <td class="p-4">
               <select onchange="updateApplicantStatus('${app.id}', this.value)" class="text-[10px] font-bold px-2 py-1 rounded-lg border border-slate-200 cursor-pointer ${statusColor}">
                 <option value="New" ${app.status === 'New' ? 'selected' : ''}>New</option>
@@ -811,20 +867,27 @@
         });
       }
 
-      // 2. Alert Subscribers Table
+      // 2. Alert Subscribers Table with Date & Time formatting
       const subTable = document.getElementById('subscribersTableBody');
       subTable.innerHTML = '';
       if (subscribersData.length === 0) {
         subTable.innerHTML = `<tr><td colspan="4" class="p-8 text-center text-slate-400">No email subscribers captured yet.</td></tr>`;
       } else {
         subscribersData.forEach(sub => {
-          const subDate = new Date(sub.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+          const subDate = new Date(sub.created_at).toLocaleString('en-US', { 
+            month: 'short', 
+            day: 'numeric', 
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+          });
           const row = document.createElement('tr');
           row.className = "hover:bg-slate-50/80 transition";
           row.innerHTML = `
             <td class="p-4 font-bold text-blue-950">${sub.email}</td>
             <td class="p-4"><span class="bg-purple-50 text-purple-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-purple-100">${sub.source || 'Modal Popup'}</span></td>
-            <td class="p-4 text-[11px] text-slate-500">${subDate}</td>
+            <td class="p-4 text-[11px] font-mono text-slate-500">${subDate}</td>
             <td class="p-4 text-right">
               <button onclick="deleteSubscriber('${sub.id}')" class="text-red-600 hover:underline font-bold text-xs cursor-pointer">Remove</button>
             </td>
@@ -961,12 +1024,11 @@
     function initOrUpdateCharts() {
       const { labels, currentData, pastData } = getChartDataForRange(currentAnalyticsRange);
 
-      // 1. Line Trend Chart
+      // Line Trend Chart
       const trendCanvas = document.getElementById('recruitmentTrendChart');
       if (trendCanvas) {
         const ctx = trendCanvas.getContext('2d');
         
-        // Gradient fill
         const gradient = ctx.createLinearGradient(0, 0, 0, 300);
         gradient.addColorStop(0, 'rgba(37, 99, 235, 0.28)');
         gradient.addColorStop(1, 'rgba(37, 99, 235, 0.0)');
@@ -1036,7 +1098,7 @@
         }
       }
 
-      // 2. Destination Breakdown Doughnut Chart
+      // Destination Share Chart
       const shareCanvas = document.getElementById('destinationShareChart');
       if (shareCanvas) {
         const ctx = shareCanvas.getContext('2d');
@@ -1109,9 +1171,9 @@
 
     function exportApplicantsToCSV() {
       if (applicantsData.length === 0) return alert('No applicant data to export.');
-      let csv = 'Full Name,Email,Phone,Target Country,Position,Status,Date\n';
+      let csv = 'Full Name,Email,Phone,Target Country,Position,Status,Date & Time\n';
       applicantsData.forEach(a => {
-        csv += `"${a.full_name}","${a.email}","${a.phone}","${a.country}","${a.job_position}","${a.status}","${new Date(a.created_at).toLocaleDateString()}"\n`;
+        csv += `"${a.full_name}","${a.email}","${a.phone}","${a.country}","${a.job_position}","${a.status}","${new Date(a.created_at).toLocaleString()}"\n`;
       });
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
@@ -1125,9 +1187,9 @@
 
     function exportSubscribersToCSV() {
       if (subscribersData.length === 0) return alert('No subscriber data to export.');
-      let csv = 'Subscriber Email,Lead Source,Date\n';
+      let csv = 'Subscriber Email,Lead Source,Date & Time\n';
       subscribersData.forEach(s => {
-        csv += `"${s.email}","${s.source || 'Modal Popup'}","${new Date(s.created_at).toLocaleDateString()}"\n`;
+        csv += `"${s.email}","${s.source || 'Modal Popup'}","${new Date(s.created_at).toLocaleString()}"\n`;
       });
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
